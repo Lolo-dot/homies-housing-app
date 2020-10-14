@@ -48,8 +48,6 @@ public class profile_page extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.m:
-                        intent = new Intent(getBaseContext(), bookmark_page.class);
-                        startActivity(intent);
                         break;
                     case R.id.p:
                         intent = new Intent(getBaseContext(), profile_page.class);
