@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Homies</string>
+    <string name="enter_username">"Saisissez votre nom d'utilisateur"</string>
+    <string name="enter_email">Entrez votre e-mail</string>
+    <string name="enter_password">Entrer le mot de passe</string>
+    <string name="enter_password_again">Entrez à nouveau le mot de passe</string>
+    <string name="sign_up">"S'inscrire"</string>
+    <string name="already_signed_up">Déjà inscrit?</string>
+    <string name="login">"S'identifier"</string>
+    <string name="register_here">Inscrivez-vous ici</string>
+</resources>
