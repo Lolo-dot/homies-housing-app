@@ -38,10 +38,10 @@ public class login_page extends AppCompatActivity {
         return true;
     }
 
-    public void Go_To_Profile(View view){
+    public void Go_To_Search(View view){
 
         if((validationName())&&(validationPword())) {
-            Intent intent = new Intent(view.getContext(), profile_page.class);
+            Intent intent = new Intent(view.getContext(), search_page.class);
             startActivityForResult(intent, 0);
         }
     }
