@@ -13,7 +13,8 @@
         android:layout_marginTop="59dp"
         tools:srcCompat="@tools:sample/avatars"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/todo" />
 
     <EditText
         android:id="@+id/UserName"
@@ -21,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/profilePic"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:hint="Name" />
+        android:hint="@string/name_hint" />
 
     <EditText
         android:id="@+id/Age"
@@ -31,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/UserName"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:hint="Age" />
+        android:hint="@string/age_hint" />
 
     <EditText
         android:id="@+id/Phone"
@@ -41,9 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/Age"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:hint="Phone" />
+        android:hint="@string/phone_hint" />
 
     <EditText
         android:id="@+id/Roommates"
@@ -51,19 +52,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/Phone"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:hint="Roommates Number" />
+        android:hint="@string/roommates_number_hint" />
 
     <EditText
         android:id="@+id/Description"
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_below="@id/Roommates"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
         android:background="@android:color/background_light"
-        android:hint="Description"
+        android:hint="@string/description_hint"
         android:textSize="20sp" />
 
     <androidx.cardview.widget.CardView
@@ -86,7 +87,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:layout_centerInParent="true"

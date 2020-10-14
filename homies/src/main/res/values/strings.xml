@@ -8,4 +8,17 @@
     <string name="already_signed_up">Already Signed-up?</string>
     <string name="login">Login</string>
     <string name="register_here">Register Here</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="name">Name: John Doe</string>
+    <string name="age">Age: 20</string>
+    <string name="phone">Phone: (647) 999 999</string>
+    <string name="roommates">Roommates: 0</string>
+    <string name="description">Description</string>
+    <string name="todo">TODO</string>
+    <string name="name_hint">Name</string>
+    <string name="age_hint">Age</string>
+    <string name="phone_hint">Phone</string>
+    <string name="roommates_number_hint">Roommates Number</string>
+    <string name="description_hint">Description</string>
+    <string name="submit">Save</string>
 </resources>

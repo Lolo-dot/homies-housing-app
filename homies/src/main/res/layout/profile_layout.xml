@@ -13,7 +13,8 @@
         android:layout_marginTop="59dp"
         tools:srcCompat="@tools:sample/avatars"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/todo" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Cardview2"
@@ -35,7 +36,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Profile"
+                android:text="@string/edit_profile"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:layout_centerInParent="true"
@@ -51,7 +52,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:text="Name: John Doe" />
+        android:text="@string/name" />
 
     <TextView
         android:id="@+id/Age"
@@ -61,7 +62,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:text="Age: 20" />
+        android:text="@string/age" />
 
     <TextView
         android:id="@+id/Phone"
@@ -71,7 +72,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:text="Phone: (647) 999 999" />
+        android:text="@string/phone" />
 
     <TextView
         android:id="@+id/Roommates"
@@ -81,7 +82,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:text="Roommates: 0" />
+        android:text="@string/roommates" />
 
     <TextView
         android:id="@+id/Description"
@@ -91,7 +92,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
         android:background="@android:color/background_light"
-        android:text="Description"
+        android:text="@string/description"
         android:textSize="20sp" />
 
     <RelativeLayout

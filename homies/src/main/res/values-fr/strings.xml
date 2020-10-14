@@ -8,4 +8,17 @@
     <string name="already_signed_up">Déjà inscrit?</string>
     <string name="login">"S'identifier"</string>
     <string name="register_here">Inscrivez-vous ici</string>
+    <string name="edit_profile">Editer le profil</string>
+    <string name="name">Nom: John Doe</string>
+    <string name="age">âge: 20</string>
+    <string name="phone">téléphone: (647) 999 999</string>
+    <string name="roommates">Numéro de colocataire: 0</string>
+    <string name="description">la description</string>
+    <string name="todo">TODO</string>
+    <string name="name_hint">Nom</string>
+    <string name="age_hint">âge</string>
+    <string name="phone_hint">téléphone</string>
+    <string name="roommates_number_hint">Numéro de colocataire</string>
+    <string name="description_hint">la description</string>
+    <string name="submit">sauvegarder</string>
 </resources>

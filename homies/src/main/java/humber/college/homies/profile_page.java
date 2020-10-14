@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,7 +18,26 @@ public class profile_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_layout);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
+        Intent intent = getIntent();
+        String profile_name = intent.getStringExtra("message1");
+        String profile_age = intent.getStringExtra("message2");
+        String profile_phone = intent.getStringExtra("message3");
+        String profile_roommates = intent.getStringExtra("message4");
+        String profile_description = intent.getStringExtra("message5");
+
+        TextView textview = findViewById(R.id.UserName);
+        textview.setText(profile_name);
+        TextView textview2 = findViewById(R.id.Age);
+        textview2.setText(profile_age);
+        TextView textview3 = findViewById(R.id.Phone);
+        textview3.setText(profile_phone);
+        TextView textview4 = findViewById(R.id.Roommates);
+        textview4.setText(profile_roommates);
+        TextView textview5 = findViewById(R.id.Description);
+        textview5.setText(profile_description);
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
