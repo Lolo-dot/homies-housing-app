@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".bookmark_page"></activity>
         <activity android:name=".profile_page"></activity>
+        <activity android:name=".edit_profile_page"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
