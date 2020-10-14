@@ -8,4 +8,15 @@
     <string name="already_signed_up">Déjà inscrit?</string>
     <string name="login">"S'identifier"</string>
     <string name="register_here">Inscrivez-vous ici</string>
+    <string name="placeHolderHouse1">Maison 1</string>
+    <string name="queryHintSearch">" Recherche de nouvelles maisons"</string>
+    <string name="placeHolderHouse2">Maison 2</string>
+    <string name="placeHolderHouse3">Maison 3</string>
+    <string name="placeHolderHouse4">Maison 4</string>
+    <string name="placeHolderHouse5">Maison 5</string>
+    <string name="placeHolderHouse6">Maison 6</string>
+    <string name="placeHolderHouse7">Maison 7</string>
+    <string name="placeHolderHouse8">Maison 8</string>
+    <string name="placeHolderHouse9">Maison 9</string>
+    <string name="queryHintBookmark">" Rechercher des maisons marquées"</string>
 </resources>
