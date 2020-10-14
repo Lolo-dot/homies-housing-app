@@ -41,8 +41,8 @@ public class login_page extends AppCompatActivity {
     public void Go_To_Profile(View view){
 
         if((validationName())&&(validationPword())) {
-            Intent intent = new Intent(view.getContext(), signup_page.class);
-            startActivity(intent);
+            Intent intent = new Intent(view.getContext(), profile_page.class);
+            startActivityForResult(intent, 0);
         }
     }
 
