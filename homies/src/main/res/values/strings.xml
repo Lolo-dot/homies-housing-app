@@ -8,17 +8,17 @@
     <string name="already_signed_up">Already Signed-up?</string>
     <string name="login">Login</string>
     <string name="register_here">Register Here</string>
-    <string name="placeHolderHouse1">Maison 1</string>
-    <string name="queryHintSearch">" Recherche de nouvelles maisons"</string>
-    <string name="placeHolderHouse2">Maison 2</string>
-    <string name="placeHolderHouse3">Maison 3</string>
-    <string name="placeHolderHouse4">Maison 4</string>
-    <string name="placeHolderHouse5">Maison 5</string>
-    <string name="placeHolderHouse6">Maison 6</string>
-    <string name="placeHolderHouse7">Maison 7</string>
-    <string name="placeHolderHouse8">Maison 8</string>
-    <string name="placeHolderHouse9">Maison 9</string>
-    <string name="queryHintBookmark">" Rechercher des maisons marquées"</string>
+    <string name="placeHolderHouse1">House 1</string>
+    <string name="queryHintSearch">Search for new houses</string>
+    <string name="placeHolderHouse2">House 2</string>
+    <string name="placeHolderHouse3">House 3</string>
+    <string name="placeHolderHouse4">House 4</string>
+    <string name="placeHolderHouse5">House 5</string>
+    <string name="placeHolderHouse6">House 6</string>
+    <string name="placeHolderHouse7">House 7</string>
+    <string name="placeHolderHouse8">House 8</string>
+    <string name="placeHolderHouse9">House 9</string>
+    <string name="queryHintBookmark">Search bookmarked houses</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="name">Name: John Doe</string>
     <string name="age">Age: 20</string>
@@ -32,4 +32,5 @@
     <string name="roommates_number_hint">Roommates Number</string>
     <string name="description_hint">Description</string>
     <string name="submit">Save</string>
+    <string name="messagesnonewmessages">No New Messages</string>
 </resources>
