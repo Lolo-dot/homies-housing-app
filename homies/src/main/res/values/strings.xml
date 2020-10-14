@@ -8,5 +8,15 @@
     <string name="already_signed_up">Already Signed-up?</string>
     <string name="login">Login</string>
     <string name="register_here">Register Here</string>
-
+    <string name="queryHintSearch">Search for new houses</string>
+    <string name="placeHolderHouse1">House 1</string>
+    <string name="placeHolderHouse2">House 2</string>
+    <string name="placeHolderHouse3">House 3</string>
+    <string name="placeHolderHouse4">House 4</string>
+    <string name="placeHolderHouse5">House 5</string>
+    <string name="placeHolderHouse6">House 6</string>
+    <string name="placeHolderHouse7">House 7</string>
+    <string name="placeHolderHouse8">House 8</string>
+    <string name="queryHintBookmark">Search bookmarked houses</string>
+    <string name="placeHolderHouse9">House 9</string>
 </resources>
