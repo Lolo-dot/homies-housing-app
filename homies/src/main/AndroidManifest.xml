@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".bookmark_page"></activity>
+        <activity android:name=".message_page"></activity>
         <activity android:name=".profile_page"></activity>
         <activity android:name=".search_page">
             <intent-filter>

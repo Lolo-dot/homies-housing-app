@@ -24,10 +24,12 @@ public class profile_page extends AppCompatActivity {
                 Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.s:
-                        intent = new Intent(getBaseContext(), MainActivity.class);
+                        intent = new Intent(getBaseContext(), search_page.class);
                         startActivity(intent);
                         break;
                     case R.id.m:
+                        intent = new Intent(getBaseContext(), message_page.class);
+                        startActivity(intent);
                         break;
                     case R.id.p:
                         intent = new Intent(getBaseContext(), profile_page.class);
