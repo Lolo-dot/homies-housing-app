@@ -23,152 +23,167 @@
 
     </SearchView>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:layout_marginTop="100dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_marginTop="100dp">
 
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="fill_parent"
-    android:layout_width="fill_parent"
-    >
-    <TableRow>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            android:paddingTop="10dp"
-            android:paddingRight="100dp"
-            android:paddingLeft="30dp"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            android:paddingTop="10dp"
-            android:paddingLeft="30dp"
-            />
-    </TableRow>
+        <TableLayout
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:weightSum="3"
+            >
+            <TableRow>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_launcher_background"
+                    android:paddingTop="10dp"
+                    />
 
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="House 1"
-            android:paddingLeft="60dp"
-            android:paddingTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="House 2"
-            android:paddingLeft="60dp"
-            android:paddingTop="10dp"/>
-    </TableRow>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/ic_launcher_background" />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/ic_launcher_background" />
+            </TableRow>
 
-    <TableRow>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            android:paddingTop="10dp"
-            android:paddingRight="100dp"
-            android:paddingLeft="30dp"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            android:paddingTop="10dp"
-            android:paddingLeft="30dp"
-            />
-    </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="House 1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="10dp"/>
 
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="House 3"
-            android:paddingLeft="60dp"
-            android:paddingTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="House 4"
-            android:paddingLeft="60dp"
-            android:paddingTop="10dp"/>
-    </TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:text="House 2" />
 
-    <TableRow>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            android:paddingTop="10dp"
-            android:paddingRight="100dp"
-            android:paddingLeft="30dp"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            android:paddingTop="10dp"
-            android:paddingLeft="30dp"
-            />
-    </TableRow>
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="House 3"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="10dp"/>
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_launcher_background"
+                    android:paddingTop="10dp"
+                    />
 
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="House 5"
-            android:paddingLeft="60dp"
-            android:paddingTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="House 6"
-            android:paddingLeft="60dp"
-            android:paddingTop="10dp"/>
-    </TableRow>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/ic_launcher_background" />
 
-    <TableRow>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            android:paddingTop="10dp"
-            android:paddingRight="100dp"
-            android:paddingLeft="30dp"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            android:paddingTop="10dp"
-            android:paddingLeft="30dp"
-            />
-    </TableRow>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/ic_launcher_background" />
+            </TableRow>
 
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="House 7"
-            android:paddingLeft="60dp"
-            android:paddingTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="House 8"
-            android:paddingLeft="60dp"
-            android:paddingTop="10dp"/>
-    </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="House 4"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="10dp"/>
 
-</TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:text="House 5" />
 
-</ScrollView>
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="House 6"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="10dp"/>
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_launcher_background"
+                    android:paddingTop="10dp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/ic_launcher_background" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="House 7"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:text="House 8" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="House 9"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="10dp"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
