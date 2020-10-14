@@ -27,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="60dp">
 
         <TableLayout
             android:layout_height="fill_parent"
@@ -36,28 +37,28 @@
             >
             <TableRow>
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_launcher_background"
-                    android:paddingTop="10dp"
+                    android:src="@drawable/house_apartment"
+                    android:paddingTop="30dp"
                     />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:paddingTop="30dp"
+                    android:src="@drawable/house_condo" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:paddingTop="30dp"
+                    android:src="@drawable/house_condo2" />
             </TableRow>
-
             <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
@@ -85,26 +86,26 @@
             </TableRow>
             <TableRow>
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_launcher_background"
-                    android:paddingTop="10dp"
+                    android:src="@drawable/house_flat"
+                    android:paddingTop="50dp"
                     />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:paddingTop="50dp"
+                    android:src="@drawable/house_home" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:paddingTop="50dp"
+                    android:src="@drawable/house_home2" />
             </TableRow>
 
             <TableRow>
@@ -134,26 +135,26 @@
             </TableRow>
             <TableRow>
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_launcher_background"
-                    android:paddingTop="10dp"
+                    android:src="@drawable/house_mall"
+                    android:paddingTop="50dp"
                     />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:paddingTop="50dp"
+                    android:src="@drawable/house_shop" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:paddingTop="50dp"
+                    android:src="@drawable/house_warehouse" />
             </TableRow>
 
             <TableRow>

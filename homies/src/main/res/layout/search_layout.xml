@@ -13,7 +13,7 @@
         android:layout_marginBottom="164dp"
         android:background="#25DFDEDE"
         android:iconifiedByDefault="false"
-        android:queryHint="Search Here"
+        android:queryHint="Search for new houses"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -36,8 +36,8 @@
     >
     <TableRow>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:src="@drawable/ic_launcher_background"
             android:paddingTop="10dp"
             android:paddingRight="100dp"
