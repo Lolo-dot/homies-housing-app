@@ -73,6 +73,7 @@
         android:layout_below="@id/Cardview"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="500dp"
-        android:text="@string/register_here" />
+        android:text="@string/register_here"
+        android:onClick="Go_To_Signup"/>
 
 </RelativeLayout>

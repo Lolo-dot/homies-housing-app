@@ -75,6 +75,7 @@
         app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="25dp"
         android:layout_marginTop="20dp"
+        android:onClick="Go_To_Profile"
         >
 
         <RelativeLayout

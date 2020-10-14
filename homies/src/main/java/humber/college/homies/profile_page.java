@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -41,4 +42,10 @@ public class profile_page extends AppCompatActivity {
             }
         });
     }
+
+    public void Go_To_EditProfile(View view){
+        Intent intent = new Intent(view.getContext(), edit_profile_page.class);
+        startActivityForResult(intent, 0);
+    }
+
 }
