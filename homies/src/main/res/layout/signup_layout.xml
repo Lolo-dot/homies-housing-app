@@ -5,46 +5,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    android:background="@drawable/red_gradient_background"
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="120dp"
         android:layout_height="150dp"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="30dp"
         app:srcCompat="@drawable/logo_placeholder"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+
     <EditText
         android:id="@+id/UserName"
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="72dp"
         android:ems="10"
         android:hint="@string/enter_username"
         android:inputType="textPersonName"
-        android:textSize="19sp" />
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/EmailAddress"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/UserName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/enter_email"
+        android:inputType="textEmailAddress"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/Phone"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/EmailAddress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/enter_email"
+        android:inputType="phone"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/Password"
         android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/UserName"
+        android:layout_height="35dp"
+        android:layout_below="@id/Phone"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
+        android:textSize="15sp"
         android:ems="10"
         android:hint="@string/enter_password"
-        android:inputType="textPassword"
-        android:textSize="19sp" />
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/ConfirmPassword"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/Password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:textSize="15sp"
+        android:ems="10"
+        android:hint="@string/enter_password_again"
+        android:inputType="textPassword" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Cardview"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/Password"
+        android:layout_below="@id/ConfirmPassword"
         android:layout_centerHorizontal="true"
         app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="25dp"
@@ -59,7 +95,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login"
+                android:text="@string/sign_up"
                 android:textColor="#fff"
                 android:textSize="30sp"
                 android:layout_centerInParent="true"
@@ -74,6 +110,7 @@
         android:layout_below="@id/Cardview"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="@string/register_here" />
+        android:text="@string/already_signed_up" />
+
 
 </RelativeLayout>
