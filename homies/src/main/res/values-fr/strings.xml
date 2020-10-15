@@ -33,4 +33,10 @@
     <string name="description_hint">la description</string>
     <string name="submit">sauvegarder</string>
     <string name="messagesnonewmessages">Aucun nouveau message</string>
+    <string name="FieldCannotbeEmpty">Le champ ne peut pas être vide</string>
+    <string name="editprofile_name">Nom: \\</string>
+    <string name="editprofile_age">âge</string>
+    <string name="editprofile_phone">téléphone</string>
+    <string name="editprofile_roomates">Numéro de colocataire</string>
+    <string name="editprofile_description">la description</string>
 </resources>

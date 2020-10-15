@@ -29,8 +29,14 @@
     <string name="name_hint">Name</string>
     <string name="age_hint">Age</string>
     <string name="phone_hint">Phone</string>
-    <string name="roommates_number_hint">Roommates Number</string>
+    <string name="roommates_number_hint">Number of Roommates</string>
     <string name="description_hint">Description</string>
     <string name="submit">Save</string>
     <string name="messagesnonewmessages">No New Messages</string>
+    <string name="FieldCannotbeEmpty">Field Can Not Be Empty</string>
+    <string name="editprofile_name">Name: \</string>
+    <string name="editprofile_age">Age: \</string>
+    <string name="editprofile_phone">Phone: \</string>
+    <string name="editprofile_roomates">Roomates: \</string>
+    <string name="editprofile_description">Description: \</string>
 </resources>

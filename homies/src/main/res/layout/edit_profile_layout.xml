@@ -10,8 +10,8 @@
         android:id="@+id/profilePic"
         android:layout_width="120dp"
         android:layout_height="150dp"
-        android:layout_marginTop="30dp"
-        tools:srcCompat="@tools:sample/avatars"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/profile_icon"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/todo" />
@@ -21,18 +21,22 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/profilePic"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        android:textSize="20sp"
-        android:hint="@string/name_hint" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:hint="@string/name_hint"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/Age"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/UserName"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
         android:textSize="20sp"
         android:hint="@string/age_hint" />
 
@@ -41,8 +45,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/Age"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
         android:textSize="20sp"
         android:hint="@string/phone_hint" />
 
@@ -51,8 +56,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/Phone"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
         android:textSize="20sp"
         android:hint="@string/roommates_number_hint" />
 
@@ -61,9 +67,12 @@
         android:layout_width="300dp"
         android:layout_height="120dp"
         android:layout_below="@id/Roommates"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:background="@android:color/background_light"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+        android:background="#EAE7E7"
         android:hint="@string/description_hint"
         android:textSize="20sp" />
 

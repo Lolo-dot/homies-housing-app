@@ -22,19 +22,19 @@ public class edit_profile_page extends AppCompatActivity {
 
     public void Go_To_Profile(View view){
         EditText edittext1 = (EditText)findViewById(R.id.UserName);
-        String txt_username = edittext1.getText().toString();
+        String txt_username = getString(R.string.editprofile_name)+edittext1.getText().toString();
 
         EditText edittext2 = (EditText)findViewById(R.id.Age);
-        String txt_age = edittext2.getText().toString();
+        String txt_age = getString(R.string.editprofile_age)+edittext2.getText().toString();
 
         EditText edittext3 = (EditText)findViewById(R.id.Phone);
-        String txt_phone = edittext3.getText().toString();
+        String txt_phone = getString(R.string.editprofile_phone)+edittext3.getText().toString();
 
         EditText edittext4 = (EditText)findViewById(R.id.Roommates);
-        String txt_roommates = edittext4.getText().toString();
+        String txt_roommates = getString(R.string.editprofile_roomates)+edittext4.getText().toString();
 
         EditText edittext5 = (EditText)findViewById(R.id.Description);
-        String txt_description = edittext5.getText().toString();
+        String txt_description = getString(R.string.editprofile_description)+edittext5.getText().toString();
 
         Intent intent = new Intent(view.getContext(), profile_page.class);
         intent.putExtra("message1", txt_username);

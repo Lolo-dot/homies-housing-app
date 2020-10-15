@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,5 +44,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void Go_To_Search(View view) {
+    }
 
+    public void Go_To_Signup(View view) {
+    }
+
+    public void Go_To_Login(View view) {
+    }
 }

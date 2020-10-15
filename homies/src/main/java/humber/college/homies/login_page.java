@@ -21,7 +21,7 @@ public class login_page extends AppCompatActivity {
         String txt_username = edittext1.getText().toString();
 
         if(txt_username.isEmpty()) {
-            edittext1.setText("Field Can Not Be Empty");
+            edittext1.setText(R.string.FieldCannotbeEmpty);
             return false;
         }
         return true;
@@ -29,10 +29,10 @@ public class login_page extends AppCompatActivity {
 
     private Boolean validationPword(){
         EditText edittext1 = (EditText)findViewById(R.id.Password);
-        String txt_username = edittext1.getText().toString();
+        String txt_password = edittext1.getText().toString();
 
-        if(txt_username.isEmpty()) {
-            edittext1.setText("Field Can Not Be Empty");
+        if(txt_password.isEmpty()) {
+            edittext1.setText(R.string.FieldCannotbeEmpty);
             return false;
         }
         return true;
@@ -41,14 +41,14 @@ public class login_page extends AppCompatActivity {
     public void Go_To_Search(View view){
 
         if((validationName())&&(validationPword())) {
-            Intent intent = new Intent(view.getContext(), search_page.class);
-            startActivityForResult(intent, 0);
+            Intent intent = new Intent(this, search_page.class);
+            startActivity(intent);
         }
     }
 
     public void Go_To_Signup(View view){
-        Intent intent = new Intent(view.getContext(), signup_page.class);
-        startActivityForResult(intent, 0);
+        Intent intent = new Intent(this, signup_page.class);
+        startActivity(intent);
     }
 
 }

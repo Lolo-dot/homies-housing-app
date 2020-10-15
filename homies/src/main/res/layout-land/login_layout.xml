@@ -11,20 +11,26 @@
         android:id="@+id/logo"
         android:layout_width="257dp"
         android:layout_height="268dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="75dp"
-        android:layout_marginTop="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="36dp"
         app:srcCompat="@drawable/logo_placeholder" />
 
     <EditText
         android:id="@+id/UserName"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_toRightOf="@+id/logo"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="125dp"
-        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="89dp"
+        android:layout_toEndOf="@+id/logo"
         android:hint="@string/enter_username"
+        android:gravity="center_horizontal"
         android:inputType="textPersonName"
         android:textSize="19sp" />
 
@@ -32,11 +38,14 @@
         android:id="@+id/Password"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_toRightOf="@id/logo"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="200dp"
-        android:ems="10"
+        android:layout_below="@+id/UserName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="89dp"
+        android:layout_toEndOf="@+id/logo"
         android:hint="@string/enter_password"
+        android:gravity="center_horizontal"
         android:inputType="textPassword"
         android:textSize="19sp" />
 
@@ -45,10 +54,13 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@id/Password"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="49dp"
+        android:layout_toEndOf="@+id/logo"
         app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="390dp">
+        app:cardCornerRadius="25dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -58,12 +70,11 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login"
-                android:textColor="#fff"
-                android:textSize="30sp"
                 android:layout_centerInParent="true"
                 android:onClick="Go_To_Search"
-                />
+                android:text="@string/login"
+                android:textColor="#fff"
+                android:textSize="25sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -72,9 +83,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/Cardview"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="500dp"
-        android:text="@string/register_here"
-        android:onClick="Go_To_Signup"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toEndOf="@+id/logo"
+        android:onClick="Go_To_Signup"
+        android:text="@string/register_here" />
 
 </RelativeLayout>
