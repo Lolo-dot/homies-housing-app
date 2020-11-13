@@ -31,6 +31,10 @@ public class search_page extends AppCompatActivity {
                         intent = new Intent(getBaseContext(), message_page.class);
                         startActivity(intent);
                         break;
+                    case R.id.b:
+                        intent = new Intent(getBaseContext(), bookmark_page.class);
+                        startActivity(intent);
+                        break;
                     case R.id.p:
                         intent = new Intent(getBaseContext(), profile_page.class);
                         startActivity(intent);

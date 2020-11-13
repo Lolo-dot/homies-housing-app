@@ -8,8 +8,14 @@
         android:id="@+id/m"
         android:title="Message"
         android:icon="@drawable/ic_message"/>
+
+    <item
+        android:id="@+id/b"
+        android:title="Bookmark"
+        android:icon="@drawable/ic_launcher_background"/>
     <item
         android:id="@+id/p"
         android:title="Profile"
         android:icon="@drawable/ic_profile"/>
+
 </menu>
