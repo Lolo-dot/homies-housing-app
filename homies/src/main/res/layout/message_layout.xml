@@ -6,7 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <EditText
+        android:layout_marginTop="30dp"
+        android:id="@+id/edMessages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Type Data here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMessages" />
+
     <TextView
+        android:id="@+id/tvMessages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/messagesnonewmessages"
@@ -15,16 +26,32 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/btWriteToDatabase"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="Write to Database"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edMessages" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bottom_bar"
             android:layout_alignParentBottom="true"
             android:background="?android:attr/windowBackground"
-            app:menu="@menu/menu"/>
+            app:menu="@menu/menu" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
