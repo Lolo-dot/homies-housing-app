@@ -14,14 +14,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
+import com.google.firebase.database.ValueEventListener;
 
 public class message_page extends AppCompatActivity {
     public Button writeToDB;
     public EditText edBox;
     public TextView textBox;
 
-    //private FirebaseDatabase database;
-    //private DatabaseReference myRefTest;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +40,10 @@ public class message_page extends AppCompatActivity {
 
         edBox=(EditText)findViewById(R.id.edMessages);
 
-        //database = FirebaseDatabase.getInstance();
-        //myRefTest = database.getReference("TestMessage");
+        FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("More testing:");
+        //myRef.setValue("Hello, World!");
 
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
         //DatabaseReference myRef = database.getReference("message");
@@ -73,26 +81,26 @@ public class message_page extends AppCompatActivity {
     }
 
     public void testFireBaseWrite(String value){
-       // FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference myRef = database.getReference("message");
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference("testmessage");
 
         //myRef.setValue("Hello, World!");
-        //myRef.setValue(value);
-        //Toast.makeText(getApplicationContext(),"writing "+value+" to FireBase!",Toast.LENGTH_SHORT).show();
-        //myRef.addValueEventListener(new ValueEventListener() {
-            //@Override
-            //public void onDataChange(DataSnapshot dataSnapshot) {
+        myRef.setValue(value);
+        Toast.makeText(getApplicationContext(),"writing "+value+" to FireBase!",Toast.LENGTH_SHORT).show();
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                //String value = dataSnapshot.getValue(String.class);
-                //textBox.setText(value);
-            //}
-
-            //@Override
-            //public void onCancelled(DatabaseError error) {
-             //   Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
-            //}
-        //});
+                String value = dataSnapshot.getValue(String.class);
+                textBox.setText(value);
+                Toast.makeText(getApplicationContext(),"loading message:"+value,Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
