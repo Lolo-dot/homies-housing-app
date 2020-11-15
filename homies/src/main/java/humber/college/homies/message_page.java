@@ -40,7 +40,7 @@ public class message_page extends AppCompatActivity {
 
         edBox=(EditText)findViewById(R.id.edMessages);
 
-        FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
+        //FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("More testing:");
         //myRef.setValue("Hello, World!");
