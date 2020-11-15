@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "52041779414",
+    "firebase_url": "https://homies-69dab.firebaseio.com",
+    "project_id": "homies-69dab",
+    "storage_bucket": "homies-69dab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52041779414:android:56f187cb3ef30344776177",
+        "android_client_info": {
+          "package_name": "humber.college.homies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52041779414-lujt7e2pkoae9idvo4cma1ssmo06qgre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAieYzs_hfU7c3JH5xVhWyXvbcBcWzxECs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52041779414-lujt7e2pkoae9idvo4cma1ssmo06qgre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
