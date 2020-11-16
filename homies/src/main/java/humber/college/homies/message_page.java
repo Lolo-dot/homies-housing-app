@@ -27,7 +27,7 @@ public class message_page extends AppCompatActivity {
     public TextView textBox;
 
     private FirebaseDatabase database;
-    private DatabaseReference myRef;
+   // private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,6 @@ public class message_page extends AppCompatActivity {
 
         //FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("More testing:");
         //myRef.setValue("Hello, World!");
 
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -83,17 +82,17 @@ public class message_page extends AppCompatActivity {
     public void testFireBaseWrite(String value){
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
         //DatabaseReference myRef = database.getReference("testmessage");
-
         //myRef.setValue("Hello, World!");
+        DatabaseReference myRef = database.getReference("p1");
         myRef.setValue(value);
-        Toast.makeText(getApplicationContext(),"writing "+value+" to FireBase!",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"pulling "+myRef.toString()+" to FireBase!",Toast.LENGTH_SHORT).show();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
-                textBox.setText(value);
+                changetv(value);
                 Toast.makeText(getApplicationContext(),"loading message:"+value,Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -101,6 +100,10 @@ public class message_page extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void changetv(String val){
+        textBox.setText(val);
     }
 
 

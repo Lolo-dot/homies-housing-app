@@ -18,20 +18,34 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class search_page extends AppCompatActivity {
 
     SearchView sv;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public String playerName;
+    public ArrayList<Player> players=new ArrayList<>();
+    RecyclerView rv;
+    MyAdapter adapter=new MyAdapter(this,players);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testsearchlayout);
 
+        //private FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference("message");
+
         //Toolbar toolbar = findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -40,18 +54,89 @@ public class search_page extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
+
         });
 
         sv= (SearchView) findViewById(R.id.mSearch);
-        RecyclerView rv= (RecyclerView) findViewById(R.id.myRecycler);
+        rv= (RecyclerView) findViewById(R.id.myRecycler);
 
         //SET ITS PROPETRIES
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setItemAnimator(new DefaultItemAnimator());
 
+        DatabaseReference refp1 = database.getReference("players");
+        refp1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                //String name = dataSnapshot.getValue(String.class);
+                Toast.makeText(getApplicationContext(),"loading message:"+playerName,Toast.LENGTH_SHORT).show();
+
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+
+                    Player p = postSnapshot.getValue(Player.class);
+                    //p.setName(name);
+                    //p.setPos("Midfielder");
+                    //p.setImg(R.drawable.herera);
+                    players.add(p);
+
+                    //String imgName2 = "@drawable/carrick";
+                    //int image = getResources().getIdentifier(imgName2, null, getPackageName());
+                    //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +imgName2+"<<<<<<<<<<<<<<<<<<<<<<<<");
+                    //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +image+"<<<<<<<<<<<<<<<<<<<<<<<<");
+
+                }
+
+               /* Player p=new Player();
+                p.setName(name);
+                p.setPos("Midfielder");
+                p.setImg(R.drawable.herera);
+                players.add(p);
+
+                p=new Player();
+                p.setName("David De Geaa");
+                p.setPos("Goalkeeper");
+                p.setImg(R.drawable.degea);
+                players.add(p);
+
+                p=new Player();
+                p.setName("Michael Carrick");
+                p.setPos("Midfielder");
+                p.setImg(R.drawable.carrick);
+                players.add(p);
+
+                p=new Player();
+                p.setName("Juan Mata");
+                p.setPos("Playmaker");
+                p.setImg(R.drawable.mata);
+                players.add(p);
+
+                p=new Player();
+                p.setName("Diego Costa");
+                p.setPos("Striker");
+                p.setImg(R.drawable.costa);
+                players.add(p);
+
+                p=new Player();
+                p.setName("Oscar");
+                p.setPos("Playmaker");
+                p.setImg(R.drawable.oscar);
+                players.add(p);*/
+               // p.getimg;
+                //int image = getApplicationContext().getResources().getIdentifier(imgName, null, getApplicationContext().getPackageName());
+
+                rv.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //ADAPTER
-        final MyAdapter adapter=new MyAdapter(this,getPlayers());
-        rv.setAdapter(adapter);
+        //final MyAdapter adapter=new MyAdapter(this,players);
+        //rv.setAdapter(adapter);
 
         //SEARCH
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -99,12 +184,76 @@ public class search_page extends AppCompatActivity {
             }
         });
     }
+/*
+    public String AccessDatabase(String playerNum){
 
-    private ArrayList<Player> getPlayers()
-    {
-        ArrayList<Player> players=new ArrayList<>();
+        DatabaseReference refp1 = database.getReference("p1");
+        refp1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String name = dataSnapshot.getValue(String.class);
+                Toast.makeText(getApplicationContext(),"loading message:"+playerName,Toast.LENGTH_SHORT).show();
+
+                ArrayList<Player> players=new ArrayList<>();
+
+                Player p=new Player();
+                p.setName(name);
+                p.setPos("Midfielder");
+                p.setImg(R.drawable.herera);
+                players.add(p);
+
+                p=new Player();
+                p.setName("David De Geaa");
+                p.setPos("Goalkeeper");
+                p.setImg(R.drawable.degea);
+                players.add(p);
+
+                p=new Player();
+                p.setName("Michael Carrick");
+                p.setPos("Midfielder");
+                p.setImg(R.drawable.carrick);
+                players.add(p);
+
+                p=new Player();
+                p.setName("Juan Mata");
+                p.setPos("Playmaker");
+                p.setImg(R.drawable.mata);
+                players.add(p);
+
+                p=new Player();
+                p.setName("Diego Costa");
+                p.setPos("Striker");
+                p.setImg(R.drawable.costa);
+                players.add(p);
+
+                p=new Player();
+                p.setName("Oscar");
+                p.setPos("Playmaker");
+                p.setImg(R.drawable.oscar);
+                players.add(p);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
+            }
+        });
+        return playerName;
+    }*/
+
+    public void getName(String Name){
+        playerName=Name;
+    }
+
+
+
+
+      /*  ArrayList<Player> players=new ArrayList<>();
+
         Player p=new Player();
-        p.setName("Ander Herera");
+        p.setName(playerName);
         p.setPos("Midfielder");
         p.setImg(R.drawable.herera);
         players.add(p);
@@ -137,11 +286,8 @@ public class search_page extends AppCompatActivity {
         p.setName("Oscar");
         p.setPos("Playmaker");
         p.setImg(R.drawable.oscar);
-        players.add(p);
+        players.add(p);*/
 
-
-        return players;
-    }
 
 
 }

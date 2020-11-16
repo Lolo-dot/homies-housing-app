@@ -1,6 +1,7 @@
 package humber.college.homies;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-/**
- * Created by Hp on 3/17/2016.
- */
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filterable{
 
     Context c;
@@ -47,9 +45,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
     public void onBindViewHolder(MyHolder holder, int position) {
 
         //BIND DATA
+        String imgName = players.get(position).getImg();
+        int image = c.getApplicationContext().getResources().getIdentifier(imgName, null, c.getApplicationContext().getPackageName());
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +imgName+"<<<<<<<<<<<<<<<<<<<<<<<<");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +image+"<<<<<<<<<<<<<<<<<<<<<<<<");
+
+
         holder.posTxt.setText(players.get(position).getPos());
         holder.nameTxt.setText(players.get(position).getName());
-        holder.img.setImageResource(players.get(position).getImg());
+        holder.img.setImageResource(image);
 
 
         //IMPLEMENT CLICK LISTENET

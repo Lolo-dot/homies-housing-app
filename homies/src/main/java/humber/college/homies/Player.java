@@ -4,7 +4,7 @@ public class Player {
 
     private String name;
     private String pos;
-    private int img;
+    private String img;
 
     public String getName() {
         return name;
@@ -22,11 +22,11 @@ public class Player {
         this.pos = pos;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 }
