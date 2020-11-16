@@ -3,15 +3,22 @@ package humber.college.homies;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -27,10 +34,10 @@ public class signup_page extends AppCompatActivity {
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
     ProgressBar progressBar;
-    boolean validation = true;
+    int userCount;
 
-    private static final int SIZE = 128;
-    private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
+ /*   private static final int SIZE = 128;
+    private static final String ALGORITHM = "PBKDF2WithHmacSHA1"; */
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -51,11 +58,14 @@ public class signup_page extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = mUsername.getText().toString().trim();
+                final String username = mUsername.getText().toString().trim();
                 String email = mEmail.getText().toString().trim();
                 String phone = mPassword.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
+                final String password = mPassword.getText().toString().trim();
                 String confirmPassword = mConfirmPassword.getText().toString().trim();
+                boolean validation = true;
+                DatabaseReference myRef = null;
+                Query query;
 
                 if(username.length() == 0){
                     mUsername.requestFocus();
@@ -65,6 +75,11 @@ public class signup_page extends AppCompatActivity {
                 else if(username.length() < 2){
                     mUsername.requestFocus();
                     mUsername.setError(getString(R.string.Error2));
+                    validation = false;
+                }
+                else if (usernameExists(username)){
+                    mUsername.requestFocus();
+                    mUsername.setError(getString(R.string.Error5));
                     validation = false;
                 }
 
@@ -101,10 +116,14 @@ public class signup_page extends AppCompatActivity {
                 }
 
                 if(validation){
-                    DatabaseReference myRef = database.getReference("USER").child("UserName");
-                    myRef.setValue(username);
-                    myRef = database.getReference("USER").child("Password");
+                 //   myRef = database.getReference("USER").child(username);
+                    myRef = database.getReference("USER").child(username).child("Password");
                     myRef.setValue(password);
+               //     myRef = database.getReference("USER").child("Username").child("Email");
+
+                    Intent intent = new Intent(view.getContext(), edit_profile_page.class);
+                    startActivityForResult(intent, 0);
+                 //   Toast.makeText(this)
                 }
 
             }
@@ -112,7 +131,7 @@ public class signup_page extends AppCompatActivity {
 
     }
 
-    public static String HashFunction(String password){
+    /*public static String HashFunction(String password){
             final SecureRandom random = null;
             byte[] salt = new byte[SIZE/8];
             random.nextBytes(salt);
@@ -131,6 +150,11 @@ public class signup_page extends AppCompatActivity {
         catch (InvalidKeySpecException ex) {
             throw new IllegalStateException("Invalid SecretKeyFactory", ex);
         }
+    }*/
+
+    public boolean usernameExists(String username){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("USER/"+username);
+        return (reference != null);
     }
 
     public void Go_To_EditProfile(View view){
