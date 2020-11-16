@@ -2,10 +2,20 @@ package humber.college.homies;
 
 public class Player {
 
-    private String name;
-    private String pos;
-    private String img;
-    private String phone;
+    public String name;
+    public String pos;
+    public String img;
+    public String phone;
+
+    public Player(){
+
+    }
+    public Player(String name, String pos, String img, String phone){
+        this.name=name;
+        this.pos=pos;
+        this.img=img;
+        this.phone=phone;
+    }
 
     public String getName() {
         return name;
@@ -39,7 +49,4 @@ public class Player {
         this.phone = phone;
     }
 
-    public Player getObjectPlayer(){
-        return this;
-    }
 }

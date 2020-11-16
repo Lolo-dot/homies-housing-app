@@ -9,8 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="humber.college.homies.search_page"
-    tools:showIn="@layout/activity_main">
+    tools:context="humber.college.homies.bookmark_page"
+    tools:showIn="@layout/bookmark_content_main">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,17 +18,15 @@
         android:layout_height="match_parent">
 
         <SearchView
-            android:id="@+id/mSearch"
+            android:id="@+id/bookSearchView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:queryHint="Search Houses"
-
-            ></SearchView>
+            android:queryHint="Search Saved Houses" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myRecycler"
+            android:id="@+id/myRecyclerBookMark"
             android:layout_width="wrap_content"
-            android:layout_below="@+id/mSearch"
+            android:layout_below="@+id/bookSearchView"
             android:layout_height="wrap_content"
             class="android.support.v7.widget.RecyclerView" />
 
