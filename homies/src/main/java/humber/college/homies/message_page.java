@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,7 @@ public class message_page extends AppCompatActivity {
     public Button writeToDB;
     public EditText edBox;
     public TextView textBox;
+    public TextView textPrefs;
 
     private FirebaseDatabase database;
    // private DatabaseReference myRef;
@@ -37,6 +40,9 @@ public class message_page extends AppCompatActivity {
         writeToDB = (Button) findViewById(R.id.btWriteToDatabase);
         writeToDB.setOnClickListener(onClickWrite);
         textBox = (TextView)findViewById(R.id.tvMessages);
+        textPrefs = (TextView)findViewById(R.id.tvPrefs);
+
+        textPrefs.setText(loadSavedPreferences());
 
         edBox=(EditText)findViewById(R.id.edMessages);
 
@@ -104,6 +110,14 @@ public class message_page extends AppCompatActivity {
 
     public void changetv(String val){
         textBox.setText(val);
+    }
+
+    private String loadSavedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        //loading preferences
+        String playerName = sharedPreferences.getString("Player Name", null);
+        return playerName;
     }
 
 

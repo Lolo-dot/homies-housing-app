@@ -5,6 +5,7 @@ public class Player {
     private String name;
     private String pos;
     private String img;
+    private String phone;
 
     public String getName() {
         return name;
@@ -28,5 +29,17 @@ public class Player {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Player getObjectPlayer(){
+        return this;
     }
 }

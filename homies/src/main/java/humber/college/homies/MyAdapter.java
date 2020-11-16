@@ -1,7 +1,9 @@
 package humber.college.homies;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,10 +63,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                Snackbar.make(v,players.get(pos).getName(),Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v,players.get(pos).getPhone(),Snackbar.LENGTH_SHORT).show();
+                savePreferences("Player Name",players.get(pos).getPhone());
+                //add go to messages intent,
             }
         });
 
+    }
+
+    private void savePreferences(String key, String value) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.commit();
     }
 
     //GET TOTAL NUM OF PLAYERS
