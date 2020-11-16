@@ -42,4 +42,5 @@
     <string name="Error1">FIELD CANNOT BE EMPTY</string>
     <string name="Error2">USERNAME SHOULD CONTAIN ATLEAST 2 CHARACTERS</string>
     <string name="Error3">THE PASSWORDS DO NOT MATCH</string>
+    <string name="Error4">PASSWORD NEEDS TO CONTAIN MINIMUM 6 CHARACTERS</string>
 </resources>

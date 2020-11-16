@@ -2,6 +2,7 @@ package humber.college.homies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,12 +13,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Random;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+
 public class signup_page extends AppCompatActivity {
 
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
     ProgressBar progressBar;
     boolean validation = true;
+
+    private static final int SIZE = 128;
+    private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -32,7 +45,8 @@ public class signup_page extends AppCompatActivity {
         button = findViewById(R.id.signupButton);
         progressBar = findViewById(R.id.signupProgressBar);
         progressBar.setVisibility(View.INVISIBLE);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +83,11 @@ public class signup_page extends AppCompatActivity {
                     mPassword.setError(getString(R.string.Error1));
                     validation = false;
                 }
+                else if(password.length() < 6){
+                    mPassword.requestFocus();
+                    mPassword.setError(getString(R.string.Error4));
+                    validation = false;
+                }
 
                 if(confirmPassword.length() == 0){
                     mConfirmPassword.requestFocus();
@@ -81,9 +100,37 @@ public class signup_page extends AppCompatActivity {
                     validation = false;
                 }
 
+                if(validation){
+                    DatabaseReference myRef = database.getReference("USER").child("UserName");
+                    myRef.setValue(username);
+                    myRef = database.getReference("USER").child("Password");
+                    myRef.setValue(password);
+                }
+
             }
         });
 
+    }
+
+    public static String HashFunction(String password){
+            final SecureRandom random = null;
+            byte[] salt = new byte[SIZE/8];
+            random.nextBytes(salt);
+            byte[] dk = pbkdf2(password, salt, 1 << cost);
+    }
+
+    public static byte[] pbkdf2(char[] password, byte[] salt, int iterations){
+        KeySpec spec = new PBEKeySpec(password, salt, iterations, SIZE);
+        try {
+            SecretKeyFactory f = SecretKeyFactory.getInstance(ALGORITHM);
+            return f.generateSecret(spec).getEncoded();
+        }
+        catch (NoSuchAlgorithmException ex) {
+            throw new IllegalStateException("Missing algorithm: " + ALGORITHM, ex);
+        }
+        catch (InvalidKeySpecException ex) {
+            throw new IllegalStateException("Invalid SecretKeyFactory", ex);
+        }
     }
 
     public void Go_To_EditProfile(View view){
