@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "52041779414-f8j69ahijen39hv8qsve01rfk5acf2rh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "humber.college.homies",
+            "certificate_hash": "057ef3975a3f4e9fc3e33a11d2b33b12e221328a"
+          }
+        },
+        {
           "client_id": "52041779414-85dhlj3og6oa6fe3u6r3579qp8a984er.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

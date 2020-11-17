@@ -33,7 +33,6 @@ public class signup_page extends AppCompatActivity {
 
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
-    ProgressBar progressBar;
     boolean validation;
 
  /*   private static final int SIZE = 128;
@@ -70,11 +69,6 @@ public class signup_page extends AppCompatActivity {
                 else if(username.length() < 2){
                     mUsername.requestFocus();
                     mUsername.setError(getString(R.string.Error2));
-                    validation = false;
-                }
-                else if (usernameExists(username)){
-                    mUsername.requestFocus();
-                    mUsername.setError(getString(R.string.Error5));
                     validation = false;
                 }
 
@@ -120,9 +114,10 @@ public class signup_page extends AppCompatActivity {
                             if(snapshot.child(username).exists()){
                                 mUsername.requestFocus();
                                 mUsername.setError(getString(R.string.Error5));
-                                validation = false;
                             }else{
                                 myRef.setValue(data);
+                                Intent intent = new Intent(getApplicationContext(), edit_profile_page.class);
+                                startActivityForResult(intent, 0);
                             }
                         }
 
@@ -132,35 +127,10 @@ public class signup_page extends AppCompatActivity {
                         }
                     });
                 }
-
-                if(validation){
-                    Intent intent = new Intent(view.getContext(), edit_profile_page.class);
-                    startActivityForResult(intent, 0);
-                }
             }
         });
     }
 
-    /*public static String HashFunction(String password){
-            final SecureRandom random = null;
-            byte[] salt = new byte[SIZE/8];
-            random.nextBytes(salt);
-            byte[] dk = pbkdf2(password, salt, 1 << cost);
-    }
-
-    public static byte[] pbkdf2(char[] password, byte[] salt, int iterations){
-        KeySpec spec = new PBEKeySpec(password, salt, iterations, SIZE);
-        try {
-            SecretKeyFactory f = SecretKeyFactory.getInstance(ALGORITHM);
-            return f.generateSecret(spec).getEncoded();
-        }
-        catch (NoSuchAlgorithmException ex) {
-            throw new IllegalStateException("Missing algorithm: " + ALGORITHM, ex);
-        }
-        catch (InvalidKeySpecException ex) {
-            throw new IllegalStateException("Invalid SecretKeyFactory", ex);
-        }
-    }*/
 
     public boolean usernameExists(String username) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("USER/" + username);
