@@ -8,8 +8,8 @@ public class Player {
     public String phone;
     public Boolean bookmarked;
 
+    //needed for java beans and firebase getting/setting to read/write objects
     public Player(){
-
     }
     public Player(String name, String pos, String img, String phone, Boolean bookmarked){
         this.name=name;

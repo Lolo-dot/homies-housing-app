@@ -32,7 +32,6 @@ public class bookmark_page extends AppCompatActivity {
 
     SearchView sv;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public String playerName;
     public ArrayList<Player> playerList=new ArrayList<>();
     RecyclerView rv;
     MyAdapter adapter=new MyAdapter(this,playerList);
@@ -42,18 +41,12 @@ public class bookmark_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testbookmark_layout);
 
+        //decalring shared prefs
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("Player Name").commit();
+        editor.remove("Player Name").commit(); //removing old phone number/email sharepref on startup.
 
-
-        //private FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference myRef = database.getReference("message");
-
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        // setSupportActionBar(toolbar);
-
-
+        //flotaing action bar, probs not needed
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabBookMark);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,88 +57,29 @@ public class bookmark_page extends AppCompatActivity {
 
         });
 
+        //declaring views
         sv= (SearchView) findViewById(R.id.bookSearchView);
         rv= (RecyclerView) findViewById(R.id.myRecyclerBookMark);
 
-        //SET ITS PROPETRIES
+        //setting rv properties
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setItemAnimator(new DefaultItemAnimator());
 
+        //setting recycler views adapter ( of type MyAdapter, which is custom made)
         rv.setAdapter(adapter);
 
+        //getting bookmarked houses database and adding to arraylist
         DatabaseReference refp1 = database.getReference("Bookmarked Houses");
         refp1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                playerList.clear();
+                playerList.clear();//clearing current list
 
-
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {//loop to get all values and add to playerList
                     Player p = postSnapshot.getValue(Player.class);
-                    //p.setName(name);
-                    //p.setPos("Midfielder");
-                    //p.setImg(R.drawable.herera);
                     playerList.add(p);
-/*
-                    for(Player p:playersList) {
-                        if(p.getName().equals(p.getName())) {
-                            p.setName(p.getName());
-                            p.setPhone(p.getPhone());
-                            p.setPos(p.getPos());
-                            p.setImg(p.getImg());
-                            p.setBookmarked(p.getBookmarked());
-                        }
-                    }*/
-
-                    //String imgName2 = "@drawable/carrick";
-                    //int image = getResources().getIdentifier(imgName2, null, getPackageName());
-                    //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +imgName2+"<<<<<<<<<<<<<<<<<<<<<<<<");
-                    //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +image+"<<<<<<<<<<<<<<<<<<<<<<<<");
-
                 }
-                adapter.notifyDataSetChanged();
-
-
-               /* Player p=new Player();
-                p.setName(name);
-                p.setPos("Midfielder");
-                p.setImg(R.drawable.herera);
-                players.add(p);
-
-                p=new Player();
-                p.setName("David De Geaa");
-                p.setPos("Goalkeeper");
-                p.setImg(R.drawable.degea);
-                players.add(p);
-
-                p=new Player();
-                p.setName("Michael Carrick");
-                p.setPos("Midfielder");
-                p.setImg(R.drawable.carrick);
-                players.add(p);
-
-                p=new Player();
-                p.setName("Juan Mata");
-                p.setPos("Playmaker");
-                p.setImg(R.drawable.mata);
-                players.add(p);
-
-                p=new Player();
-                p.setName("Diego Costa");
-                p.setPos("Striker");
-                p.setImg(R.drawable.costa);
-                players.add(p);
-
-                p=new Player();
-                p.setName("Oscar");
-                p.setPos("Playmaker");
-                p.setImg(R.drawable.oscar);
-                players.add(p);*/
-                // p.getimg;
-                //int image = getApplicationContext().getResources().getIdentifier(imgName, null, getApplicationContext().getPackageName());
-
-
+                adapter.notifyDataSetChanged(); //refreshing adapter with updated list values??
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -153,11 +87,7 @@ public class bookmark_page extends AppCompatActivity {
             }
         });
 
-        //ADAPTER
-        //final MyAdapter adapter=new MyAdapter(this,players);
-        //rv.setAdapter(adapter);
-
-        //SEARCH
+        //setting filter to sv (search view) on typing
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -172,8 +102,7 @@ public class bookmark_page extends AppCompatActivity {
             }
         });
 
-
-
+        //bottom navigation bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -201,120 +130,8 @@ public class bookmark_page extends AppCompatActivity {
                 }
                 return true;
             }
-        });
-    }
+        });//end of bottom nav bar
 
-    /*private void savePreferences(String key, boolean value) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(key, value);
-        editor.commit();
-    }*/
+    }//end of oncreate
 
-/*
-    public String AccessDatabase(String playerNum){
-
-        DatabaseReference refp1 = database.getReference("p1");
-        refp1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String name = dataSnapshot.getValue(String.class);
-                Toast.makeText(getApplicationContext(),"loading message:"+playerName,Toast.LENGTH_SHORT).show();
-
-                ArrayList<Player> players=new ArrayList<>();
-
-                Player p=new Player();
-                p.setName(name);
-                p.setPos("Midfielder");
-                p.setImg(R.drawable.herera);
-                players.add(p);
-
-                p=new Player();
-                p.setName("David De Geaa");
-                p.setPos("Goalkeeper");
-                p.setImg(R.drawable.degea);
-                players.add(p);
-
-                p=new Player();
-                p.setName("Michael Carrick");
-                p.setPos("Midfielder");
-                p.setImg(R.drawable.carrick);
-                players.add(p);
-
-                p=new Player();
-                p.setName("Juan Mata");
-                p.setPos("Playmaker");
-                p.setImg(R.drawable.mata);
-                players.add(p);
-
-                p=new Player();
-                p.setName("Diego Costa");
-                p.setPos("Striker");
-                p.setImg(R.drawable.costa);
-                players.add(p);
-
-                p=new Player();
-                p.setName("Oscar");
-                p.setPos("Playmaker");
-                p.setImg(R.drawable.oscar);
-                players.add(p);
-
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
-            }
-        });
-        return playerName;
-    }*/
-
-    public void getName(String Name){
-        playerName=Name;
-    }
-
-
-
-
-      /*  ArrayList<Player> players=new ArrayList<>();
-
-        Player p=new Player();
-        p.setName(playerName);
-        p.setPos("Midfielder");
-        p.setImg(R.drawable.herera);
-        players.add(p);
-
-        p=new Player();
-        p.setName("David De Geaa");
-        p.setPos("Goalkeeper");
-        p.setImg(R.drawable.degea);
-        players.add(p);
-
-        p=new Player();
-        p.setName("Michael Carrick");
-        p.setPos("Midfielder");
-        p.setImg(R.drawable.carrick);
-        players.add(p);
-
-        p=new Player();
-        p.setName("Juan Mata");
-        p.setPos("Playmaker");
-        p.setImg(R.drawable.mata);
-        players.add(p);
-
-        p=new Player();
-        p.setName("Diego Costa");
-        p.setPos("Striker");
-        p.setImg(R.drawable.costa);
-        players.add(p);
-
-        p=new Player();
-        p.setName("Oscar");
-        p.setPos("Playmaker");
-        p.setImg(R.drawable.oscar);
-        players.add(p);*/
-
-
-
-}
+}//end of code
