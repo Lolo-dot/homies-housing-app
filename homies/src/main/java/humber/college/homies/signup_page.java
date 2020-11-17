@@ -34,6 +34,7 @@ public class signup_page extends AppCompatActivity {
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
     ProgressBar progressBar;
+    boolean validation;
 
  /*   private static final int SIZE = 128;
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1"; */
@@ -53,7 +54,6 @@ public class signup_page extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,9 +62,7 @@ public class signup_page extends AppCompatActivity {
                 String phone = mPassword.getText().toString().trim();
                 final String password = mPassword.getText().toString().trim();
                 String confirmPassword = mConfirmPassword.getText().toString().trim();
-                boolean validation = true;
-                DatabaseReference myRef = null;
-                Query query;
+                validation = true;
 
                 if(username.length() == 0){
                     mUsername.requestFocus();
@@ -115,19 +113,34 @@ public class signup_page extends AppCompatActivity {
                 }
 
                 if(validation){
-                 //   myRef = database.getReference("USER").child(username);
-                    myRef = database.getReference("USER").child(username).child("Password");
-                    myRef.setValue(password);
-               //     myRef = database.getReference("USER").child("Username").child("Email");
+                   final DatabaseReference myRef = database.getReference("USER/"+username);
+                   final signupData data = new signupData(username, password, email, phone);
+                   final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("USER");
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child(username).exists()){
+                                mUsername.requestFocus();
+                                mUsername.setError(getString(R.string.Error5));
+                                validation = false;
+                            }else{
+                                myRef.setValue(data);
+                            }
+                        }
 
-                    Intent intent = new Intent(view.getContext(), edit_profile_page.class);
-                    startActivityForResult(intent, 0);
-                 //   Toast.makeText(this)
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
 
+                if(validation){
+                    Intent intent = new Intent(view.getContext(), edit_profile_page.class);
+                    startActivityForResult(intent, 0);
+                }
             }
         });
-
     }
 
     /*public static String HashFunction(String password){
