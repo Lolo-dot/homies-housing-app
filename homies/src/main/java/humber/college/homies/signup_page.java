@@ -72,11 +72,6 @@ public class signup_page extends AppCompatActivity {
                     mUsername.setError(getString(R.string.Error2));
                     validation = false;
                 }
-                else if (usernameExists(username)){
-                    mUsername.requestFocus();
-                    mUsername.setError(getString(R.string.Error5));
-                    validation = false;
-                }
 
                 if(email.length() == 0){
                     mEmail.requestFocus();
