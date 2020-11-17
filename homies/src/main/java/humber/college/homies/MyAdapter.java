@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
 
     //DATA BOUND TO VIEWS
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, int position) {
 
         //BIND DATA
         String imgName = players.get(position).getImg();
@@ -66,25 +67,60 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
         holder.img.setImageResource(image);
 
 
+            if(players.get(position).getBookmarked()) {
+                holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_house);
+            }else {
+                holder.bookmarkbutton.setImageResource(R.drawable.unbookmarked_house);
+            }
+
+
+
+
         //IMPLEMENT CLICK LISTENET
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-               // Snackbar.make(v,players.get(pos).getPhone(),Snackbar.LENGTH_SHORT).show();
-                savePreferences("Player Name",players.get(pos).getPhone());
 
-                //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +objName+"<<<<<<<<<<<<<<<<<<<<<<<<");
+                switch (v.getId()) {
+                    case R.id.contactButton:
+                        Toast.makeText(c, players.get(pos).getName()+"'s Number: "+players.get(pos).getPhone(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.bookmarkButton:
+                        if(players.get(pos).getBookmarked()) {
+                            //if currently true, set to false and un bookmark
+                            refBookmarkedHouses.child("players").child(players.get(pos).getName()).child("bookmarked").setValue(false);
+                            holder.bookmarkbutton.setImageResource(R.drawable.unbookmarked_house);
+                            //remove from bookmarks
+                            refBookmarkedHouses.child("Bookmarked Houses").child(players.get(pos).getName()).removeValue();
+                        }else {
+                            //if currently false, set to true and bookmark
+                            refBookmarkedHouses.child("players").child(players.get(pos).getName()).child("bookmarked").setValue(true);
+                            holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_house);
 
-                Player p = new Player(players.get(pos).getName(), players.get(pos).getPos(),players.get(pos).getImg(),players.get(pos).getPhone());
-                //Player pnew = new Player ("Anderson", "Striker","@drawable/herera","696 123 4567");
-                refBookmarkedHouses.child("Bookmarked Houses").child(players.get(pos).getName()).setValue(p);
-                //savetoDB();
-                //refBookmarkedHouses.child("alanisawesome").setValueAsync(new User("June 23, 1912", "Alan Turing"));
+                            Player p = new Player(players.get(pos).getName(), players.get(pos).getPos(),players.get(pos).getImg(),players.get(pos).getPhone(),players.get(pos).getBookmarked());
+                            refBookmarkedHouses.child("Bookmarked Houses").child(players.get(pos).getName()).setValue(p);
 
-                //add go to messages intent,
+                        }
+                        //Toast.makeText(c, "bookmark", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    // Snackbar.make(v,players.get(pos).getPhone(),Snackbar.LENGTH_SHORT).show();
+                    //savePreferences("Player Name",players.get(pos).getPhone());
+
+                    //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +objName+"<<<<<<<<<<<<<<<<<<<<<<<<");
+                    //Player p = new Player(players.get(pos).getName(), players.get(pos).getPos(),players.get(pos).getImg(),players.get(pos).getPhone());
+                    //Player pnew = new Player ("Anderson", "Striker","@drawable/herera","696 123 4567");
+
+                    //refBookmarkedHouses.child("Bookmarked Houses").child(players.get(pos).getName()).setValue(p);
+
+                    //savetoDB();
+                    //refBookmarkedHouses.child("alanisawesome").setValueAsync(new User("June 23, 1912", "Alan Turing"));
+
+                    //add go to messages intent,
+                }
             }
-        });
 
+        });
     }
     /*public void savetoDB(){
 

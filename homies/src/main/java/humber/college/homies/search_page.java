@@ -33,9 +33,9 @@ public class search_page extends AppCompatActivity {
     SearchView sv;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     public String playerName;
-    public ArrayList<Player> players=new ArrayList<>();
+    public ArrayList<Player> playersList=new ArrayList<>();
     RecyclerView rv;
-    MyAdapter adapter=new MyAdapter(this,players);
+    MyAdapter adapter=new MyAdapter(this,playersList);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,8 @@ public class search_page extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("Player Name").commit();
+
+
 
 
         //private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -68,8 +70,11 @@ public class search_page extends AppCompatActivity {
         rv= (RecyclerView) findViewById(R.id.myRecycler);
 
         //SET ITS PROPETRIES
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rv.setItemAnimator(new DefaultItemAnimator());
+
+        rv.setAdapter(adapter);
+
 
         DatabaseReference refp1 = database.getReference("players");
         refp1.addValueEventListener(new ValueEventListener() {
@@ -80,13 +85,27 @@ public class search_page extends AppCompatActivity {
                 //String name = dataSnapshot.getValue(String.class);
                 //Toast.makeText(getApplicationContext(),"loading message:"+playerName,Toast.LENGTH_SHORT).show();
 
+                //players.clear();
+                playersList.clear();
+
+
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
 
                     Player p = postSnapshot.getValue(Player.class);
                     //p.setName(name);
                     //p.setPos("Midfielder");
                     //p.setImg(R.drawable.herera);
-                    players.add(p);
+                    playersList.add(p);
+/*
+                    for(Player p:playersList) {
+                        if(p.getName().equals(p.getName())) {
+                            p.setName(p.getName());
+                            p.setPhone(p.getPhone());
+                            p.setPos(p.getPos());
+                            p.setImg(p.getImg());
+                            p.setBookmarked(p.getBookmarked());
+                        }
+                    }*/
 
                     //String imgName2 = "@drawable/carrick";
                     //int image = getResources().getIdentifier(imgName2, null, getPackageName());
@@ -94,6 +113,7 @@ public class search_page extends AppCompatActivity {
                     //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" +image+"<<<<<<<<<<<<<<<<<<<<<<<<");
 
                 }
+                adapter.notifyDataSetChanged();
 
                /* Player p=new Player();
                 p.setName(name);
@@ -133,7 +153,7 @@ public class search_page extends AppCompatActivity {
                // p.getimg;
                 //int image = getApplicationContext().getResources().getIdentifier(imgName, null, getApplicationContext().getPackageName());
 
-                rv.setAdapter(adapter);
+
             }
             @Override
             public void onCancelled(DatabaseError error) {

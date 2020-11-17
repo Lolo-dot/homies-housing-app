@@ -6,15 +6,17 @@ public class Player {
     public String pos;
     public String img;
     public String phone;
+    public Boolean bookmarked;
 
     public Player(){
 
     }
-    public Player(String name, String pos, String img, String phone){
+    public Player(String name, String pos, String img, String phone, Boolean bookmarked){
         this.name=name;
         this.pos=pos;
         this.img=img;
         this.phone=phone;
+        this.bookmarked=bookmarked;
     }
 
     public String getName() {
@@ -48,5 +50,14 @@ public class Player {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public Boolean getBookmarked() {
+        return bookmarked;
+    }
+
+    public void setBookmarked(Boolean  bookmarked) {
+        this.bookmarked = bookmarked;
+    }
+
 
 }
