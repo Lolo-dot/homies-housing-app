@@ -74,8 +74,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
             }
 
 
-
-
         //IMPLEMENT CLICK LISTENET
         holder.setItemClickListener(new ItemClickListener() {
             @Override
@@ -83,7 +81,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
 
                 switch (v.getId()) {
                     case R.id.contactButton:
+                        savePreferences("Player Name",players.get(pos).getPhone());
                         Toast.makeText(c, players.get(pos).getName()+"'s Number: "+players.get(pos).getPhone(), Toast.LENGTH_SHORT).show();
+                        //add intent to go to messages here
                         break;
                     case R.id.bookmarkButton:
                         if(players.get(pos).getBookmarked()) {
@@ -97,7 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
                             refBookmarkedHouses.child("players").child(players.get(pos).getName()).child("bookmarked").setValue(true);
                             holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_house);
 
-                            Player p = new Player(players.get(pos).getName(), players.get(pos).getPos(),players.get(pos).getImg(),players.get(pos).getPhone(),players.get(pos).getBookmarked());
+                            Player p = new Player(players.get(pos).getName(), players.get(pos).getPos(),players.get(pos).getImg(),players.get(pos).getPhone(),true);
                             refBookmarkedHouses.child("Bookmarked Houses").child(players.get(pos).getName()).setValue(p);
 
                         }

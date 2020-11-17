@@ -89,10 +89,10 @@ public class message_page extends AppCompatActivity {
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
         //DatabaseReference myRef = database.getReference("testmessage");
         //myRef.setValue("Hello, World!");
-        DatabaseReference myRef = database.getReference("p1");
-        myRef.setValue(value);
+        DatabaseReference myRefmessages = database.getReference("Atestmessage");
+        myRefmessages.setValue(value);
         //Toast.makeText(getApplicationContext(),"pulling "+myRef.toString()+" to FireBase!",Toast.LENGTH_SHORT).show();
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRefmessages.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
