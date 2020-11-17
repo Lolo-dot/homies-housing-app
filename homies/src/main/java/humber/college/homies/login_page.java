@@ -63,11 +63,11 @@ public class login_page extends AppCompatActivity {
                               }
                               else{
                                     mPassword.requestFocus();
-                                    mPassword.setError("USERNAME AND PASSWORD DO NOT MATCH");
+                                    mPassword.setError(getString(R.string.Error6));
                                 }
                             }else{
                                 mUsername.requestFocus();
-                                mUsername.setError("USERNAME DOES NOT EXIST");
+                                mUsername.setError(getString(R.string.Error7));
                             }
                         }
 
