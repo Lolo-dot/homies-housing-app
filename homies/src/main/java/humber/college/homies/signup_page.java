@@ -50,8 +50,6 @@ public class signup_page extends AppCompatActivity {
         mPassword = findViewById(R.id.signupPassword);
         mConfirmPassword = findViewById(R.id.signupConfirmPassword);
         button = findViewById(R.id.signupButton);
-        progressBar = findViewById(R.id.signupProgressBar);
-        progressBar.setVisibility(View.INVISIBLE);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         button.setOnClickListener(new View.OnClickListener() {

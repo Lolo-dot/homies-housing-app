@@ -44,4 +44,5 @@
     <string name="Error3">THE PASSWORDS DO NOT MATCH</string>
     <string name="Error4">PASSWORD NEEDS TO CONTAIN MINIMUM 6 CHARACTERS</string>
     <string name="Error5">USERNAME ALREADY TAKEN</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
 </resources>
