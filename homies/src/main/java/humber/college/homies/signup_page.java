@@ -34,7 +34,6 @@ public class signup_page extends AppCompatActivity {
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
     ProgressBar progressBar;
-    int userCount;
 
  /*   private static final int SIZE = 128;
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1"; */
@@ -152,8 +151,8 @@ public class signup_page extends AppCompatActivity {
         }
     }*/
 
-    public boolean usernameExists(String username){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("USER/"+username);
+    public boolean usernameExists(String username) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("USER/" + username);
         return (reference != null);
     }
 
