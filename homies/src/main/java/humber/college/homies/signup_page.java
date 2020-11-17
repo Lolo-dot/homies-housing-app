@@ -35,8 +35,6 @@ public class signup_page extends AppCompatActivity {
     Button  button;
     boolean validation;
 
- /*   private static final int SIZE = 128;
-    private static final String ALGORITHM = "PBKDF2WithHmacSHA1"; */
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

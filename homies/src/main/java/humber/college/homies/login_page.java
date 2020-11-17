@@ -5,8 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class login_page extends AppCompatActivity {
 
@@ -21,12 +29,13 @@ public class login_page extends AppCompatActivity {
         mUsername = findViewById(R.id.loginUserName);
         mPassword = findViewById(R.id.loginPassword);
         button = findViewById(R.id.loginButton);
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = mUsername.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
+                final String username = mUsername.getText().toString().trim();
+                final String password = mPassword.getText().toString().trim();
                 boolean validation = true;
 
                 if(username.length() == 0){
@@ -42,21 +51,36 @@ public class login_page extends AppCompatActivity {
                 }
 
                 if(validation){
-                    Intent intent = new Intent(view.getContext(), search_page.class);
-                    startActivity(intent);
+                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("USER");
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child(username).exists()){
+                              signupData data = snapshot.child(username).getValue(signupData.class);
+                              if(data.getPassword().equals(password)){
+                                  Intent intent = new Intent(getApplicationContext(), search_page.class);
+                                  startActivity(intent);
+                              }
+                              else{
+                                    mPassword.requestFocus();
+                                    mPassword.setError("USERNAME AND PASSWORD DO NOT MATCH");
+                                }
+                            }else{
+                                mUsername.requestFocus();
+                                mUsername.setError("USERNAME DOES NOT EXIST");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
         });
 
     }
-
-   /* public void Go_To_Search(View view){
-
-        if((validationName())&&(validationPword())) {
-            Intent intent = new Intent(this, search_page.class);
-            startActivity(intent);
-        }
-    }*/
 
     public void Go_To_Signup(View view){
         Intent intent = new Intent(this, signup_page.class);
