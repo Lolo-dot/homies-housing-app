@@ -55,7 +55,7 @@ public class Profile_page extends AppCompatActivity {
                     TextView textview4 = findViewById(R.id.Roommates);
                     textview4.setText("Roommates: " +data.getRoomMates());
                     TextView textview5 = findViewById(R.id.Description);
-                    textview5.setText("Description :" +data.getDescription());
+                    textview5.setText(data.getDescription());
                 }else{
 
                 }

@@ -1,5 +1,6 @@
 package humber.college.homies;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,7 +42,7 @@ public class login_page extends AppCompatActivity {
         mPassword = findViewById(R.id.loginPassword);
         button = findViewById(R.id.loginButton);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+        preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
         checkNightModeActivated();
 
         button.setOnClickListener(new View.OnClickListener() {
