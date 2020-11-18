@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +27,11 @@ public class login_page extends AppCompatActivity {
     Button button;
     SharedPreferences USR;
 
+
+    public static final String MYPREFERENCES = "nightModePrefs";
+    public static final String KEY_ISNIGHTMODE = "isNightMode";
+    SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -34,6 +41,8 @@ public class login_page extends AppCompatActivity {
         mPassword = findViewById(R.id.loginPassword);
         button = findViewById(R.id.loginButton);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        checkNightModeActivated();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +101,7 @@ public class login_page extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.Exit_Confirmation);
         builder.setCancelable(true);
 
@@ -109,6 +118,15 @@ public class login_page extends AppCompatActivity {
     public void Go_To_Signup(View view){
         Intent intent = new Intent(this, signup_page.class);
         startActivity(intent);
+    }
+
+    public void checkNightModeActivated(){
+        if(preferences.getBoolean(KEY_ISNIGHTMODE, false)){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
 }
