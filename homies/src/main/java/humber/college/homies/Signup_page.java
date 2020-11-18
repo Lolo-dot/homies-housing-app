@@ -1,44 +1,25 @@
 package humber.college.homies;
 
-import android.content.ClipData;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
-import java.util.Random;
-
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-
-public class signup_page extends AppCompatActivity {
+public class Signup_page extends AppCompatActivity {
 
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
@@ -119,7 +100,7 @@ public class signup_page extends AppCompatActivity {
 
                 if(validation){
                    final DatabaseReference myRef = database.getReference("USER/"+username);
-                   final signupData data = new signupData(username, password, email, phone);
+                   final SignupData data = new SignupData(username, password, email, phone);
                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("USER");
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -166,7 +147,7 @@ public class signup_page extends AppCompatActivity {
 
 
     public void Go_To_Login(View view){
-        Intent intent = new Intent(this, login_page.class);
+        Intent intent = new Intent(this, Login_page.class);
         startActivity(intent);
     }
 }

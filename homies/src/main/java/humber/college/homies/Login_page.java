@@ -5,11 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -22,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class login_page extends AppCompatActivity {
+public class Login_page extends AppCompatActivity {
 
     EditText mUsername, mPassword;
     Button button;
@@ -70,7 +71,7 @@ public class login_page extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.child(username).exists()){
-                              signupData data = snapshot.child(username).getValue(signupData.class);
+                              SignupData data = snapshot.child(username).getValue(SignupData.class);
                               if(data.getPassword().equals(password)){
                                   USR = getSharedPreferences("spDATABASE",0);
                                   SharedPreferences.Editor editor = USR.edit();
@@ -117,7 +118,7 @@ public class login_page extends AppCompatActivity {
     }
 
     public void Go_To_Signup(View view){
-        Intent intent = new Intent(this, signup_page.class);
+        Intent intent = new Intent(this, Signup_page.class);
         startActivity(intent);
     }
 
@@ -130,4 +131,22 @@ public class login_page extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.settings_item:
+                Intent intent = new Intent(this, Settings_page.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

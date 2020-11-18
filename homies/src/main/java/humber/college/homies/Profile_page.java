@@ -45,7 +45,7 @@ public class Profile_page extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child(username).exists()){
-                    profileData data = snapshot.child(username).getValue(profileData.class);
+                    ProfileData data = snapshot.child(username).getValue(ProfileData.class);
                     TextView textview = findViewById(R.id.UserName);
                     textview.setText("Name: " +data.getUsername());
                     TextView textview2 = findViewById(R.id.Age);
