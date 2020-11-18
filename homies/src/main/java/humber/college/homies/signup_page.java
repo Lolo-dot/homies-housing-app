@@ -45,11 +45,6 @@ public class signup_page extends AppCompatActivity {
     boolean validation;
     public RelativeLayout layout1;
 
-    public static final String MYPREFERENCES = "nightModePrefs";
-    public static final String KEY_ISNIGHTMODE = "isNightMode";
-    SharedPreferences  preferences;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
