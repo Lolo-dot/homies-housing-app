@@ -47,4 +47,6 @@
     <string name="enter_phone_number">Enter Phone Number</string>
     <string name="Error6">USERNAME AND PASSWORD DO NOT MATCH</string>
     <string name="Error7">USERNAME DOES NOT EXIST</string>
+    <string name="Exit_Confirmation">Are you sure you want to exit the application?</string>
+    <string name="Yes">Yes</string>
 </resources>
