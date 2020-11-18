@@ -71,7 +71,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
             public void onItemClick(View v, int pos) {
                 switch (v.getId()) {
                     case R.id.contactButton://saving email and phone to go to messages page
-                        savePreferences("House Name",houses.get(pos).getPhone());
+                        savePreferences("phone_number",houses.get(pos).getPhone());
                         Toast.makeText(c, houses.get(pos).getName()+"'s Number: "+houses.get(pos).getPhone(), Toast.LENGTH_SHORT).show();
                         //add intent to go to messages here*************
                         break;

@@ -61,7 +61,7 @@ public class Profile_page extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.m:
-                        intent = new Intent(getBaseContext(), message_page.class);
+                        intent = new Intent(getBaseContext(), Message_page.class);
                         startActivity(intent);
                         break;
                     case R.id.b:

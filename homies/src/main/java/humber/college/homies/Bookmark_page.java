@@ -44,7 +44,7 @@ public class Bookmark_page extends AppCompatActivity {
         //decalring shared prefs
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("house Name").commit(); //removing old phone number/email sharepref on startup.
+        editor.remove("phone_number").commit(); //removing old phone number/email sharepref on startup.
 
         //flotaing action bar, probs not needed
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabBookMark);
@@ -114,7 +114,7 @@ public class Bookmark_page extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.m:
-                        intent = new Intent(getBaseContext(), message_page.class);
+                        intent = new Intent(getBaseContext(), Message_page.class);
                         startActivity(intent);
                         break;
                     case R.id.b:

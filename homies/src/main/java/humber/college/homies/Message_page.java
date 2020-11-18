@@ -7,20 +7,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class message_page extends AppCompatActivity {
+public class Message_page extends AppCompatActivity {
     public Button writeToDB;
-    public EditText edBox;
-    public TextView textBox;
+    public String num;
     //public TextView textPrefs;
 
     @Override
@@ -30,10 +28,9 @@ public class message_page extends AppCompatActivity {
 
         writeToDB = (Button) findViewById(R.id.btWriteToDatabase);
         writeToDB.setOnClickListener(onClickWrite);
-        textBox = (TextView)findViewById(R.id.tvMessages);
         //textPrefs = (TextView)findViewById(R.id.tvPrefs);
 
-       // textPrefs.setText(loadSavedPreferences()); //set to laod phone numebr and email
+        // textPrefs.setText(loadSavedPreferences()); //set to laod phone numebr and email
 
         //edBox=(EditText)findViewById(R.id.edMessages);
 
@@ -48,7 +45,7 @@ public class message_page extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.m:
-                        intent = new Intent(getBaseContext(), message_page.class);
+                        intent = new Intent(getBaseContext(), Message_page.class);
                         startActivity(intent);
                         break;
                     case R.id.b:
@@ -67,26 +64,24 @@ public class message_page extends AppCompatActivity {
         });
 
 
+        // Code for updating buttons text
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        num = sharedPreferences.getString("phone_number", null);
+        writeToDB.setText(num);
+
     }//end of oncreate
 
-    //save loaded rpeferences for phone number and email
-    private String loadSavedPreferences() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        //loading preferences
-        String houseName = sharedPreferences.getString("House Name", null);
-        return houseName;
-    }
 
     //onclick lsitener for button
     public View.OnClickListener onClickWrite= new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //String data= edBox.getText().toString();
-            String number = loadSavedPreferences();
-            textBox.setText(number);
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+num));
+            startActivity(intent);
         }
     };
+
+
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
