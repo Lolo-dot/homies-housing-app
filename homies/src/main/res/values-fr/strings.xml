@@ -60,4 +60,5 @@
     <string name="action_snack_bar">Action</string>
     <string name="database_ref_search_gae">Houses</string>
     <string name="on_cancel_search_page_error">a pas réussi à obtenir de la valeur</string>
+    <string name="message_page_error">Veuillez autoriser les autorisations dappel</string>
 </resources>

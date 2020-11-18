@@ -1,14 +1,14 @@
 package humber.college.homies;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +21,7 @@ public class login_page extends AppCompatActivity {
 
     EditText mUsername, mPassword;
     Button button;
+    SharedPreferences USR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -59,6 +60,10 @@ public class login_page extends AppCompatActivity {
                             if(snapshot.child(username).exists()){
                               signupData data = snapshot.child(username).getValue(signupData.class);
                               if(data.getPassword().equals(password)){
+                                  USR = getSharedPreferences("spDATABASE",0);
+                                  SharedPreferences.Editor editor = USR.edit();
+                                  editor.putString("usernameStorage", username);
+                                  editor.apply();
                                   Intent intent = new Intent(getApplicationContext(), Search_page.class);
                                   startActivity(intent);
                               }
@@ -81,22 +86,6 @@ public class login_page extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(login_page.this);
-        builder.setMessage(R.string.Exit_Confirmation);
-        builder.setCancelable(true);
-
-        builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finishAffinity();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
     public void Go_To_Signup(View view){
