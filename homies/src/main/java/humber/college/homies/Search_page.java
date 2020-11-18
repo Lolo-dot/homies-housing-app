@@ -51,8 +51,8 @@ public class Search_page extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, getString(R.string.snack_bar_value), Snackbar.LENGTH_LONG)
+                        .setAction(getString(R.string.action_snack_bar), null).show();
             }
 
         });
@@ -69,7 +69,7 @@ public class Search_page extends AppCompatActivity {
         rv.setAdapter(adapter);
 
         //databse for houses catalog. updates houselist and refreshes adapter using hosuelist
-        DatabaseReference refp1 = database.getReference("Houses");
+        DatabaseReference refp1 = database.getReference(getString(R.string.database_ref_search_gae));
         refp1.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -84,7 +84,7 @@ public class Search_page extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError error) {
-                Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.on_cancel_search_page_error),Toast.LENGTH_SHORT).show();
             }
         });
 

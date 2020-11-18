@@ -49,4 +49,15 @@
     <string name="Error7">USERNAME DOES NOT EXIST</string>
     <string name="Exit_Confirmation">Are you sure you want to exit the application?</string>
     <string name="Yes">Yes</string>
+    <string name="number_key_pref">phone_number</string>
+    <string name="bookmark_path_page_database">Maisons marquées</string>
+    <string name="toast_onCanceled_bookmark">a pas réussi à obtenir de la valeur</string>
+    <string name="money_sign">$</string>
+    <string name="back_press_tit">Sortie</string>
+    <string name="back_pres_post">Oui</string>
+    <string name="back_pres_neg">Non</string>
+    <string name="snack_bar_value">Remplacez par votre propre action</string>
+    <string name="action_snack_bar">Action</string>
+    <string name="database_ref_search_gae">Houses</string>
+    <string name="on_cancel_search_page_error">a pas réussi à obtenir de la valeur</string>
 </resources>

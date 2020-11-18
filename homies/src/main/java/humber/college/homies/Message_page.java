@@ -66,7 +66,7 @@ public class Message_page extends AppCompatActivity {
 
         // Code for updating buttons text
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        num = sharedPreferences.getString("phone_number", null);
+        num = sharedPreferences.getString(getString(R.string.number_key_pref), null);
         writeToDB.setText(num);
 
     }//end of oncreate

@@ -53,4 +53,11 @@
     <string name="back_press_tit">Exit</string>
     <string name="back_pres_post">Yes</string>
     <string name="back_pres_neg">No</string>
+    <string name="number_key_pref">phone_number</string>
+    <string name="snack_bar_value">Replace with your own action</string>
+    <string name="action_snack_bar">Action</string>
+    <string name="bookmark_path_page_database">Bookmarked Houses</string>
+    <string name="toast_onCanceled_bookmark">failed to get value</string>
+    <string name="database_ref_search_gae">Houses</string>
+    <string name="on_cancel_search_page_error">failed to get value</string>
 </resources>
