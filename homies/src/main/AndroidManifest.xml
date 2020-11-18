@@ -14,8 +14,8 @@
         <activity android:name=".profile_page"></activity>
         <activity android:name=".signup_page"></activity>
         <activity android:name=".edit_profile_page"></activity>
-        <activity android:name=".login_page"></activity>
-        <activity android:name=".search_page">
+        <activity android:name=".search_page"></activity>
+        <activity android:name=".login_page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
