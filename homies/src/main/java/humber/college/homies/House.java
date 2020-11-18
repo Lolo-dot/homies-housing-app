@@ -1,6 +1,6 @@
 package humber.college.homies;
 
-public class Player {
+public class House {
 
     public String name;
     public String pos;
@@ -9,9 +9,9 @@ public class Player {
     public Boolean bookmarked;
 
     //needed for java beans and firebase getting/setting to read/write objects
-    public Player(){
+    public House(){
     }
-    public Player(String name, String pos, String img, String phone, Boolean bookmarked){
+    public House(String name, String pos, String img, String phone, Boolean bookmarked){
         this.name=name;
         this.pos=pos;
         this.img=img;

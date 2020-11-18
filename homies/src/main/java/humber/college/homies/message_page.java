@@ -27,10 +27,7 @@ public class message_page extends AppCompatActivity {
     public Button writeToDB;
     public EditText edBox;
     public TextView textBox;
-    public TextView textPrefs;
-
-    private FirebaseDatabase database;
-   // private DatabaseReference myRef;
+    //public TextView textPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +37,11 @@ public class message_page extends AppCompatActivity {
         writeToDB = (Button) findViewById(R.id.btWriteToDatabase);
         writeToDB.setOnClickListener(onClickWrite);
         textBox = (TextView)findViewById(R.id.tvMessages);
-        textPrefs = (TextView)findViewById(R.id.tvPrefs);
+        //textPrefs = (TextView)findViewById(R.id.tvPrefs);
 
-        textPrefs.setText(loadSavedPreferences());
+       // textPrefs.setText(loadSavedPreferences()); //set to laod phone numebr and email
 
-        edBox=(EditText)findViewById(R.id.edMessages);
-
-        //FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
-        database = FirebaseDatabase.getInstance();
-        //myRef.setValue("Hello, World!");
-
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference myRef = database.getReference("message");
-
-       // myRefTest.setValue("Hello, World!");
+        //edBox=(EditText)findViewById(R.id.edMessages);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -83,51 +71,29 @@ public class message_page extends AppCompatActivity {
                 return true;
             }
         });
-    }
+    }//end of oncreate
 
-    public void testFireBaseWrite(String value){
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference myRef = database.getReference("testmessage");
-        //myRef.setValue("Hello, World!");
-        DatabaseReference myRefmessages = database.getReference("Atestmessage");
-        myRefmessages.setValue(value);
-        //Toast.makeText(getApplicationContext(),"pulling "+myRef.toString()+" to FireBase!",Toast.LENGTH_SHORT).show();
-        myRefmessages.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                changetv(value);
-                Toast.makeText(getApplicationContext(),"loading message:"+value,Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
+    //change textbox value (needs to be cleaned up /blended into anotehr fucntion
     public void changetv(String val){
         textBox.setText(val);
     }
 
+    //save loaded rpeferences for phone number and email
     private String loadSavedPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //loading preferences
-        String playerName = sharedPreferences.getString("Player Name", null);
-        return playerName;
+        String houseName = sharedPreferences.getString("House Name", null);
+        return houseName;
     }
 
-
+    //onclick lsitener for button
     public View.OnClickListener onClickWrite= new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String data= edBox.getText().toString();
-            //Toast.makeText(getApplicationContext(),"writing "+data+" to FireBase!",Toast.LENGTH_SHORT).show();
-            testFireBaseWrite(data);
+            //String data= edBox.getText().toString();
+            changetv(loadSavedPreferences());
         }
     };
 
-}
+}//end of code

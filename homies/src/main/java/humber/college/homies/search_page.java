@@ -32,10 +32,9 @@ public class search_page extends AppCompatActivity {
 
     SearchView sv;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public String playerName;
-    public ArrayList<Player> playersList=new ArrayList<>();
+    public ArrayList<House> housesList=new ArrayList<>();
     RecyclerView rv;
-    MyAdapter adapter=new MyAdapter(this,playersList);
+    MyAdapter adapter=new MyAdapter(this,housesList);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class search_page extends AppCompatActivity {
         //shared pref delcarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("Player Name").commit(); //removing old shared pref of phone number/email
+        editor.remove("House Name").commit(); //removing old shared pref of phone number/email
 
         //floating action circle/bar. probs not needed
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -70,18 +69,18 @@ public class search_page extends AppCompatActivity {
         rv.setAdapter(adapter);
 
         //databse for houses catalog. updates houselist and refreshes adapter using hosuelist
-        DatabaseReference refp1 = database.getReference("players");
+        DatabaseReference refp1 = database.getReference("Houses");
         refp1.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                playersList.clear();
+                housesList.clear();
 
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) { //loop to get all data from children of houses catalog
-                    Player p = postSnapshot.getValue(Player.class); //assigning object from database to new Player p
-                    playersList.add(p); //adding new Player p to list
+                    House p = postSnapshot.getValue(House.class); //assigning object from database to new House p
+                    housesList.add(p); //adding new house p to list
                 }
-                adapter.notifyDataSetChanged(); //refreshes adapters player list
+                adapter.notifyDataSetChanged(); //refreshes adapters house list
             }
             @Override
             public void onCancelled(DatabaseError error) {

@@ -32,9 +32,9 @@ public class bookmark_page extends AppCompatActivity {
 
     SearchView sv;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public ArrayList<Player> playerList=new ArrayList<>();
+    public ArrayList<House> houseList=new ArrayList<>();
     RecyclerView rv;
-    MyAdapter adapter=new MyAdapter(this,playerList);
+    MyAdapter adapter=new MyAdapter(this,houseList);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class bookmark_page extends AppCompatActivity {
         //decalring shared prefs
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("Player Name").commit(); //removing old phone number/email sharepref on startup.
+        editor.remove("house Name").commit(); //removing old phone number/email sharepref on startup.
 
         //flotaing action bar, probs not needed
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabBookMark);
@@ -73,11 +73,11 @@ public class bookmark_page extends AppCompatActivity {
         refp1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                playerList.clear();//clearing current list
+                houseList.clear();//clearing current list
 
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {//loop to get all values and add to playerList
-                    Player p = postSnapshot.getValue(Player.class);
-                    playerList.add(p);
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {//loop to get all values and add to houseList
+                    House p = postSnapshot.getValue(House.class);
+                    houseList.add(p);
                 }
                 adapter.notifyDataSetChanged(); //refreshing adapter with updated list values??
             }

@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/playerImage"
+            android:id="@+id/houseImage"
             android:padding="10dp"
             android:src="@drawable/herera" />
 
@@ -27,7 +27,7 @@
             android:id="@+id/nameTxt"
             android:padding="10dp"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/playerImage" />
+            android:layout_toRightOf="@+id/houseImage" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,13 +37,13 @@
             android:text="Position"
             android:id="@+id/posTxt"
             android:padding="10dp"
-            android:layout_toRightOf="@+id/playerImage" />
+            android:layout_toRightOf="@+id/houseImage" />
         <Button
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:id="@+id/contactButton"
             android:layout_below="@id/posTxt"
-            android:layout_toRightOf="@+id/playerImage"
+            android:layout_toRightOf="@+id/houseImage"
             android:padding="10dp"
             android:layout_marginTop="4dp"
             android:text="Contact"/>

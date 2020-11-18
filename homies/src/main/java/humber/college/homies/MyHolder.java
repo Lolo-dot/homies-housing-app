@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    //OUR VIEWS
     ImageView img;
     TextView nameTxt,posTxt;
     Button contactbutton;
@@ -18,36 +17,25 @@ public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
     ItemClickListener itemClickListener;
 
-
-
+    //holder with declaring values
     public MyHolder(View itemView) {
         super(itemView);
 
-        this.img= (ImageView) itemView.findViewById(R.id.playerImage);
+        this.img= (ImageView) itemView.findViewById(R.id.houseImage);
         this.nameTxt= (TextView) itemView.findViewById(R.id.nameTxt);
         this.posTxt= (TextView) itemView.findViewById(R.id.posTxt);
         this.bookmarkbutton=(ImageButton) itemView.findViewById(R.id.bookmarkButton);
         this.contactbutton=(Button) itemView.findViewById(R.id.contactButton);
 
-        //itemView.setOnClickListener(this);
+        //itemView.setOnClickListener(this); this is for the entire lsit item. might use in future to blowup more details about the house
         bookmarkbutton.setOnClickListener(this);
         contactbutton.setOnClickListener(this);
     }
-/*
-    public void OnClick(View v){
-        OnClickBookmark.itemClickListener.onBookmarkClick(v,getLayoutPosition());
-    }
 
-    public void OnClickContact(View v){
-        OnClickContact.itemClickListener.onContactClick(v,getLayoutPosition());
-    }
-*/
     @Override
     public void onClick(View v) {
         this.itemClickListener.onItemClick(v,getLayoutPosition());
-
     }
-
     public void setItemClickListener(ItemClickListener ic)
     {
         this.itemClickListener=ic;
