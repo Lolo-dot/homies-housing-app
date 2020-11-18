@@ -1,7 +1,8 @@
 package humber.college.homies;
 
-import android.content.ClipData;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
@@ -39,16 +40,15 @@ public class signup_page extends AppCompatActivity {
 
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
-    boolean validation, darkModeChecked = false;;
-    public RelativeLayout layout1;
+    boolean validation;
+    boolean isChecked = true;
+    SharedPreferences USR;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-      //  themeUtils.onActivityCreateSetTheme(this);
         setContentView(R.layout.signup_layout);
-
-        layout1 = findViewById(R.id.signupLayout);
 
         mUsername = findViewById(R.id.signupUserName);
         mEmail = findViewById(R.id.signupEmailAddress);
@@ -123,6 +123,9 @@ public class signup_page extends AppCompatActivity {
                                 mUsername.setError(getString(R.string.Error5));
                             }else{
                                 myRef.setValue(data);
+                                USR = getSharedPreferences("spDATABASE",0);
+                                SharedPreferences.Editor editor = USR.edit();
+                                editor.putString("usernameStorage", username);
                                 Intent intent = new Intent(getApplicationContext(), edit_profile_page.class);
                                 startActivityForResult(intent, 0);
                             }
@@ -138,32 +141,6 @@ public class signup_page extends AppCompatActivity {
         });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.darkModeItem:
-                item.setChecked(darkModeChecked);
-                if(darkModeChecked){
-                    layout1.setBackgroundColor(Color.BLACK);
-
-                 //   themeUtils.changeToTheme(this, themeUtils.BLACK);
-                } else{
-                 //   themeUtils.changeToTheme(this, themeUtils.DEFAULT);
-                }
-                darkModeChecked = !item.isChecked();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void Go_To_EditProfile(View view){
         Intent intent = new Intent(view.getContext(), edit_profile_page.class);

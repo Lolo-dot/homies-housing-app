@@ -4,17 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Profile_page extends AppCompatActivity {
+    SharedPreferences USR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_layout);
 
@@ -27,27 +35,35 @@ public class Profile_page extends AppCompatActivity {
         String profile_roommates = intent.getStringExtra("message4");
         String profile_description = intent.getStringExtra("message5");
 
-        if ((profile_name==null)|| (profile_name.equals(getString(R.string.editprofile_name))))
-            profile_name = getString(R.string.name);
-        if ((profile_age==null)||(profile_age.equals(getString(R.string.editprofile_age))))
-            profile_age = getString(R.string.age);
-        if ((profile_phone==null)||(profile_phone.equals(getString(R.string.editprofile_phone))))
-            profile_phone = getString(R.string.phone);
-        if ((profile_roommates==null)||(profile_roommates.equals(getString(R.string.editprofile_roomates))))
-            profile_roommates = getString(R.string.roommates);
-        if ((profile_description==null)||(profile_description.equals(getString(R.string.editprofile_description))))
-            profile_description = getString(R.string.description);
 
-        TextView textview = findViewById(R.id.UserName);
-        textview.setText(profile_name);
-        TextView textview2 = findViewById(R.id.Age);
-        textview2.setText(profile_age);
-        TextView textview3 = findViewById(R.id.Phone);
-        textview3.setText(profile_phone);
-        TextView textview4 = findViewById(R.id.Roommates);
-        textview4.setText(profile_roommates);
-        TextView textview5 = findViewById(R.id.Description);
-        textview5.setText(profile_description);
+        USR = getSharedPreferences("spDATABASE",0);
+        final String username = USR.getString("usernameStorage", "Nothing found");
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("PROFILES");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(username).exists()){
+                    profileData data = snapshot.child(username).getValue(profileData.class);
+                    TextView textview = findViewById(R.id.UserName);
+                    textview.setText("Name: " +data.getUsername());
+                    TextView textview2 = findViewById(R.id.Age);
+                    textview2.setText("Age: " +data.getAge());
+                    TextView textview3 = findViewById(R.id.Phone);
+                    textview3.setText("Phone: " +data.getPhoneNumber());
+                    TextView textview4 = findViewById(R.id.Roommates);
+                    textview4.setText("Roommates: " +data.getRoomMates());
+                    TextView textview5 = findViewById(R.id.Description);
+                    textview5.setText("Description :" +data.getDescription());
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_bar);
@@ -61,7 +77,7 @@ public class Profile_page extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.m:
-                        intent = new Intent(getBaseContext(), Message_page.class);
+                        intent = new Intent(getBaseContext(),  Message_page.class);
                         startActivity(intent);
                         break;
                     case R.id.b:
