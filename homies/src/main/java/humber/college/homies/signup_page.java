@@ -56,7 +56,6 @@ public class signup_page extends AppCompatActivity {
 
         setContentView(R.layout.signup_layout);
 
-        preferences = getSharedPreferences(MYPREFERENCES, MODE_PRIVATE);
 
         layout1 = findViewById(R.id.signupLayout);
 
@@ -158,47 +157,18 @@ public class signup_page extends AppCompatActivity {
         return true;
     }
 
- /*   @Override
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch(item.getItemId()){
-            case R.id.darkModeItem:
-            //    item.setChecked(darkModeChecked);
-                if(item.isChecked()){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    saveNightModeState(true);
-                    recreate();
-
-                   // layout1.setBackgroundColor(Color.BLACK);
-                 //   themeUtils.changeToTheme(this, themeUtils.BLACK);
-                } else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    saveNightModeState(false);
-                    recreate();
-                 //   themeUtils.changeToTheme(this, themeUtils.DEFAULT);
-                }
-            //    darkModeChecked = !item.isChecked();
+            case R.id.settings_item:
+                Intent intent = new Intent(this, Settings_page.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void saveNightModeState(boolean nightMode) {
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(KEY_ISNIGHTMODE, nightMode);
-        editor.apply();
-    }
-
-    public void checkNightModeActivated(){
-        MenuItem darkSwitch = findViewById(R.id.darkModeItem);
-        if(preferences.getBoolean(KEY_ISNIGHTMODE, false)){
-            darkSwitch.setChecked(true);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else{
- //           darkSwitch.setChecked(false);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    } */
 
     public void Go_To_Login(View view){
         Intent intent = new Intent(this, login_page.class);
