@@ -82,7 +82,7 @@ public class Login_page extends AppCompatActivity {
                               }
                               else{
                                     mPassword.requestFocus();
-                                    mPassword.setError(getString(R.string.Error6));
+                                    mPassword.setError(getString(R.string.Error3));
                                 }
                             }else{
                                 mUsername.requestFocus();
