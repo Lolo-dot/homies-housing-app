@@ -1,13 +1,19 @@
 package humber.college.homies;
 
+import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,13 +39,16 @@ public class signup_page extends AppCompatActivity {
 
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
-    boolean validation;
-
+    boolean validation, darkModeChecked = false;;
+    public RelativeLayout layout1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+      //  themeUtils.onActivityCreateSetTheme(this);
         setContentView(R.layout.signup_layout);
+
+        layout1 = findViewById(R.id.signupLayout);
 
         mUsername = findViewById(R.id.signupUserName);
         mEmail = findViewById(R.id.signupEmailAddress);
@@ -130,9 +139,30 @@ public class signup_page extends AppCompatActivity {
     }
 
 
-    public boolean usernameExists(String username) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("USER/" + username);
-        return (reference != null);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.darkModeItem:
+                item.setChecked(darkModeChecked);
+                if(darkModeChecked){
+                    layout1.setBackgroundColor(Color.BLACK);
+
+                 //   themeUtils.changeToTheme(this, themeUtils.BLACK);
+                } else{
+                 //   themeUtils.changeToTheme(this, themeUtils.DEFAULT);
+                }
+                darkModeChecked = !item.isChecked();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void Go_To_EditProfile(View view){
