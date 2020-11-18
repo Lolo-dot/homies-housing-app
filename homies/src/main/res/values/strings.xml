@@ -61,4 +61,7 @@
     <string name="database_ref_search_gae">Houses</string>
     <string name="on_cancel_search_page_error">failed to get value</string>
     <string name="message_page_error">Please allow the call permissions</string>
+    <string name="CallPermGranted">Call Permission Granted</string>
+    <string name="CallPermDenied">Call Permission Denied</string>
+    <string name="tel">tel:</string>
 </resources>

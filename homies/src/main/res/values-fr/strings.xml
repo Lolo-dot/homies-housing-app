@@ -61,4 +61,7 @@
     <string name="database_ref_search_gae">Houses</string>
     <string name="on_cancel_search_page_error">a pas réussi à obtenir de la valeur</string>
     <string name="message_page_error">Veuillez autoriser les autorisations dappel</string>
+    <string name="CallPermGranted">Autorisation d\'appel accordée</string>
+    <string name="CallPermDenied">Autorisation d\'appel refusée</string>
+    <string name="tel">tel:</string>
 </resources>

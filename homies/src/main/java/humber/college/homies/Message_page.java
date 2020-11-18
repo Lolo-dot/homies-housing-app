@@ -114,12 +114,12 @@ public class Message_page extends AppCompatActivity {
         if (requestCode == CALL_PERMISSION_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(Message_page.this, "Call Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Message_page.this, (R.string.CallPermGranted), Toast.LENGTH_SHORT).show();
                 txt_error.setVisibility(View.INVISIBLE);
                 writeToDB.setVisibility(View.VISIBLE);
                 call_approve = true;
             } else {
-                Toast.makeText(Message_page.this, "Call Permission Denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Message_page.this, (R.string.CallPermDenied), Toast.LENGTH_SHORT).show();
                 txt_error.setVisibility(View.VISIBLE);
                 writeToDB.setVisibility(View.INVISIBLE);
                 call_approve = false;
@@ -134,7 +134,7 @@ public class Message_page extends AppCompatActivity {
             // Code for requesting and checking permissions
             checkPermission(Manifest.permission.CALL_PHONE, CALL_PERMISSION_CODE);
             if (call_approve){
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+num));
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(getString(R.string.tel)+num));
                 startActivity(intent);
             }
         }
