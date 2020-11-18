@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -60,7 +59,7 @@ public class login_page extends AppCompatActivity {
                             if(snapshot.child(username).exists()){
                               signupData data = snapshot.child(username).getValue(signupData.class);
                               if(data.getPassword().equals(password)){
-                                  Intent intent = new Intent(getApplicationContext(), search_page.class);
+                                  Intent intent = new Intent(getApplicationContext(), Search_page.class);
                                   startActivity(intent);
                               }
                               else{

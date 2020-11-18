@@ -1,16 +1,11 @@
 package humber.college.homies;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class edit_profile_page extends AppCompatActivity {
 
@@ -36,7 +31,7 @@ public class edit_profile_page extends AppCompatActivity {
         EditText edittext5 = (EditText)findViewById(R.id.Description);
         String txt_description = getString(R.string.editprofile_description)+edittext5.getText().toString();
 
-        Intent intent = new Intent(view.getContext(), profile_page.class);
+        Intent intent = new Intent(view.getContext(), Profile_page.class);
         intent.putExtra("message1", txt_username);
         intent.putExtra("message2", txt_age);
         intent.putExtra("message3", txt_phone);

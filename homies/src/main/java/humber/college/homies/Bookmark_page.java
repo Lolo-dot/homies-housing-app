@@ -3,7 +3,6 @@ package humber.college.homies;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ToolbarWidgetWrapper;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class bookmark_page extends AppCompatActivity {
+public class Bookmark_page extends AppCompatActivity {
 
     SearchView sv;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -41,7 +39,7 @@ public class bookmark_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testbookmark_layout);
+        setContentView(R.layout.bookmark_layout);
 
         //decalring shared prefs
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -112,7 +110,7 @@ public class bookmark_page extends AppCompatActivity {
                 Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.s:
-                        intent = new Intent(getBaseContext(), search_page.class);
+                        intent = new Intent(getBaseContext(), Search_page.class);
                         startActivity(intent);
                         break;
                     case R.id.m:
@@ -120,11 +118,11 @@ public class bookmark_page extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.b:
-                        intent = new Intent(getBaseContext(), bookmark_page.class);
+                        intent = new Intent(getBaseContext(), Bookmark_page.class);
                         startActivity(intent);
                         break;
                     case R.id.p:
-                        intent = new Intent(getBaseContext(), profile_page.class);
+                        intent = new Intent(getBaseContext(), Profile_page.class);
                         startActivity(intent);
                         break;
                     default:

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class profile_page extends AppCompatActivity {
+public class Profile_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class profile_page extends AppCompatActivity {
                 Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.s:
-                        intent = new Intent(getBaseContext(), search_page.class);
+                        intent = new Intent(getBaseContext(), Search_page.class);
                         startActivity(intent);
                         break;
                     case R.id.m:
@@ -65,11 +65,11 @@ public class profile_page extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.b:
-                        intent = new Intent(getBaseContext(), bookmark_page.class);
+                        intent = new Intent(getBaseContext(), Bookmark_page.class);
                         startActivity(intent);
                         break;
                     case R.id.p:
-                        intent = new Intent(getBaseContext(), profile_page.class);
+                        intent = new Intent(getBaseContext(), Profile_page.class);
                         startActivity(intent);
                         break;
                     default:

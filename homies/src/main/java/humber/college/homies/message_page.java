@@ -13,17 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Logger;
-import com.google.firebase.database.ValueEventListener;
 
 public class message_page extends AppCompatActivity {
     public Button writeToDB;
@@ -52,7 +44,7 @@ public class message_page extends AppCompatActivity {
                 Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.s:
-                        intent = new Intent(getBaseContext(), search_page.class);
+                        intent = new Intent(getBaseContext(), Search_page.class);
                         startActivity(intent);
                         break;
                     case R.id.m:
@@ -60,11 +52,11 @@ public class message_page extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.b:
-                        intent = new Intent(getBaseContext(), bookmark_page.class);
+                        intent = new Intent(getBaseContext(), Bookmark_page.class);
                         startActivity(intent);
                         break;
                     case R.id.p:
-                        intent = new Intent(getBaseContext(), profile_page.class);
+                        intent = new Intent(getBaseContext(), Profile_page.class);
                         startActivity(intent);
                         break;
                     default:
@@ -76,11 +68,6 @@ public class message_page extends AppCompatActivity {
 
 
     }//end of oncreate
-
-    //change textbox value (needs to be cleaned up /blended into anotehr fucntion
-    public void changetv(String val){
-        textBox.setText(val);
-    }
 
     //save loaded rpeferences for phone number and email
     private String loadSavedPreferences() {
@@ -96,7 +83,8 @@ public class message_page extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             //String data= edBox.getText().toString();
-            changetv(loadSavedPreferences());
+            String number = loadSavedPreferences();
+            textBox.setText(number);
         }
     };
     @Override
