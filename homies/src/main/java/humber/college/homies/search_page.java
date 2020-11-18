@@ -1,12 +1,14 @@
 package humber.college.homies;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ToolbarWidgetWrapper;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -134,5 +136,25 @@ public class search_page extends AppCompatActivity {
         });//end of bottom nav bar
 
     }// end of oncreate
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.back_press_tit))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.back_pres_post), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity();
+                    }
+                })
+                .setNegativeButton(getString(R.string.back_pres_neg), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do nothing
+                        return;
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 }//end of code
