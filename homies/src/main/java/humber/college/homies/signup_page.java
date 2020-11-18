@@ -2,6 +2,7 @@ package humber.college.homies;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
@@ -14,10 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,14 +42,21 @@ public class signup_page extends AppCompatActivity {
 
     EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
     Button  button;
-    boolean validation, darkModeChecked = false;;
+    boolean validation;
     public RelativeLayout layout1;
+
+    public static final String MYPREFERENCES = "nightModePrefs";
+    public static final String KEY_ISNIGHTMODE = "isNightMode";
+    SharedPreferences  preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-      //  themeUtils.onActivityCreateSetTheme(this);
+
         setContentView(R.layout.signup_layout);
+
+        preferences = getSharedPreferences(MYPREFERENCES, MODE_PRIVATE);
 
         layout1 = findViewById(R.id.signupLayout);
 
@@ -57,6 +67,8 @@ public class signup_page extends AppCompatActivity {
         mConfirmPassword = findViewById(R.id.signupConfirmPassword);
         button = findViewById(R.id.signupButton);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,35 +158,48 @@ public class signup_page extends AppCompatActivity {
         return true;
     }
 
-    @Override
+ /*   @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch(item.getItemId()){
             case R.id.darkModeItem:
-                item.setChecked(darkModeChecked);
-                if(darkModeChecked){
-                    layout1.setBackgroundColor(Color.BLACK);
+            //    item.setChecked(darkModeChecked);
+                if(item.isChecked()){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    saveNightModeState(true);
+                    recreate();
 
+                   // layout1.setBackgroundColor(Color.BLACK);
                  //   themeUtils.changeToTheme(this, themeUtils.BLACK);
                 } else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    saveNightModeState(false);
+                    recreate();
                  //   themeUtils.changeToTheme(this, themeUtils.DEFAULT);
                 }
-                darkModeChecked = !item.isChecked();
+            //    darkModeChecked = !item.isChecked();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void Go_To_EditProfile(View view){
-        Intent intent = new Intent(view.getContext(), edit_profile_page.class);
-        startActivityForResult(intent, 0);
+    private void saveNightModeState(boolean nightMode) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(KEY_ISNIGHTMODE, nightMode);
+        editor.apply();
     }
 
-    public void Go_To_Search(View view) {
-    }
+    public void checkNightModeActivated(){
+        MenuItem darkSwitch = findViewById(R.id.darkModeItem);
+        if(preferences.getBoolean(KEY_ISNIGHTMODE, false)){
+            darkSwitch.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+ //           darkSwitch.setChecked(false);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    } */
 
-    public void Go_To_Signup(View view) {
-    }
     public void Go_To_Login(View view){
         Intent intent = new Intent(this, login_page.class);
         startActivity(intent);

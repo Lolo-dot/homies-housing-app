@@ -5,4 +5,12 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="loginBackground">#FF1100</color>
     <color name="defaultBackground">#FFFFFF</color>
+
+    <color name="colorPrimaryNight">#212121</color>
+    <color name="colorPrimaryDarkNight">#141d26</color>
+    <color name="colorAccentNight">#ffffff</color>
+
+    <color name="primaryTitleColor">#212121</color>
+    <color name="primaryTitleColorNight">#FFFFFF</color>
+
 </resources>
