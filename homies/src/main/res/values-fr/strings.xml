@@ -50,7 +50,7 @@
     <string name="Exit_Confirmation">Are you sure you want to exit the application?</string>
     <string name="Yes">Yes</string>
     <string name="number_key_pref">phone_number</string>
-    <string name="bookmark_path_page_database">Maisons marquées</string>
+    <string name="bookmark_path_page_database">Bookmarked Houses</string>
     <string name="toast_onCanceled_bookmark">a pas réussi à obtenir de la valeur</string>
     <string name="money_sign">$</string>
     <string name="back_press_tit">Sortie</string>
@@ -64,4 +64,6 @@
     <string name="CallPermGranted">Autorisation d\'appel accordée</string>
     <string name="CallPermDenied">Autorisation d\'appel refusée</string>
     <string name="tel">tel:</string>
+    <string name="contact_via">Contactez via:</string>
+    <string name="nothing_to_show">Rien à montrer!</string>
 </resources>

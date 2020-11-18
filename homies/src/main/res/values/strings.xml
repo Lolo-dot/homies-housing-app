@@ -64,4 +64,6 @@
     <string name="CallPermGranted">Call Permission Granted</string>
     <string name="CallPermDenied">Call Permission Denied</string>
     <string name="tel">tel:</string>
+    <string name="contact_via">Contact Via:</string>
+    <string name="nothing_to_show">Nothing to show!</string>
 </resources>

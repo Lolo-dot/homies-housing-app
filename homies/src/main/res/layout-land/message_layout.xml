@@ -10,7 +10,7 @@
         android:id="@+id/tvMessages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contact Via:"
+        android:text="@string/contact_via"
         android:textSize="50dp"
         android:textStyle="bold"
         android:textColor="#FF5722"
