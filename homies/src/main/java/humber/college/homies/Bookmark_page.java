@@ -44,15 +44,15 @@ public class Bookmark_page extends AppCompatActivity {
         //decalring shared prefs
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("phone_number").commit(); //removing old phone number/email sharepref on startup.
+        editor.remove(getString(R.string.number_key_pref)).commit(); //removing old phone number/email sharepref on startup.
 
         //flotaing action bar, probs not needed
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabBookMark);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, getString(R.string.snack_bar_value), Snackbar.LENGTH_LONG)
+                        .setAction(R.string.action_snack_bar, null).show();
             }
 
         });
@@ -69,7 +69,7 @@ public class Bookmark_page extends AppCompatActivity {
         rv.setAdapter(adapter);
 
         //getting bookmarked houses database and adding to arraylist
-        DatabaseReference refp1 = database.getReference("Bookmarked Houses");
+        DatabaseReference refp1 = database.getReference(getString(R.string.bookmark_path_page_database));
         refp1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -83,7 +83,7 @@ public class Bookmark_page extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError error) {
-                Toast.makeText(getApplicationContext(),"failed to get value",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.toast_onCanceled_bookmark),Toast.LENGTH_SHORT).show();
             }
         });
 
