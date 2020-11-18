@@ -1,6 +1,7 @@
 package humber.college.homies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
@@ -72,8 +73,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
                 switch (v.getId()) {
                     case R.id.contactButton://saving email and phone to go to messages page
                         savePreferences("phone_number",houses.get(pos).getPhone());
-                        Toast.makeText(c, houses.get(pos).getName()+"'s Number: "+houses.get(pos).getPhone(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(c, houses.get(pos).getName()+"'s Number: "+houses.get(pos).getPhone(), Toast.LENGTH_SHORT).show();
                         //add intent to go to messages here*************
+                        Intent intent = new Intent(c.getApplicationContext(), Message_page.class);
+                        c.startActivity(intent);
                         break;
                     case R.id.bookmarkButton://setting bookmark true or not, with database writes and reads
 
