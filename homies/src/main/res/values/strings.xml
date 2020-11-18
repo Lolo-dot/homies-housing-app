@@ -47,4 +47,5 @@
     <string name="enter_phone_number">Enter Phone Number</string>
     <string name="Error6">USERNAME AND PASSWORD DO NOT MATCH</string>
     <string name="Error7">USERNAME DOES NOT EXIST</string>
+    <string name="money_sign">$</string>
 </resources>

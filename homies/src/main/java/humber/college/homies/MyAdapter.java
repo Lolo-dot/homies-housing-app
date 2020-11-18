@@ -54,7 +54,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
         int image = c.getApplicationContext().getResources().getIdentifier(imgName, null, c.getApplicationContext().getPackageName());
 
         //binding data to views
-        holder.posTxt.setText(houses.get(position).getPos());
+        holder.posTxt.setText(c.getString(R.string.money_sign)+houses.get(position).getPos());
         holder.nameTxt.setText(houses.get(position).getName());
         holder.img.setImageResource(image);
 
