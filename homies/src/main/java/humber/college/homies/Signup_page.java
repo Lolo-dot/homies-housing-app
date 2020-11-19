@@ -1,6 +1,7 @@
 package humber.college.homies;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +26,7 @@ public class Signup_page extends AppCompatActivity {
     Button  button;
     boolean validation;
     public RelativeLayout layout1;
+    SharedPreferences USR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -110,6 +112,10 @@ public class Signup_page extends AppCompatActivity {
                                 mUsername.setError(getString(R.string.Error5));
                             }else{
                                 myRef.setValue(data);
+                                USR = getSharedPreferences("spDATABASE",0);
+                                SharedPreferences.Editor editor = USR.edit();
+                                editor.putString("usernameStorage", username);
+                                editor.apply();
                                 Intent intent = new Intent(getApplicationContext(), edit_profile_page.class);
                                 startActivityForResult(intent, 0);
                             }
