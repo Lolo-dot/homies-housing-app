@@ -49,6 +49,7 @@ public class Bookmark_page extends AppCompatActivity {
         editor.remove(getString(R.string.number_key_pref)).commit(); //removing old phone number/email sharepref on startup.
 
         //flotaing action bar, probs not needed
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabBookMark);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +58,7 @@ public class Bookmark_page extends AppCompatActivity {
                         .setAction(R.string.action_snack_bar, null).show();
             }
 
-        });
+        });*/
 
         //declaring views
         sv= (SearchView) findViewById(R.id.bookSearchView);

@@ -47,13 +47,13 @@ public class Profile_page extends AppCompatActivity {
                 if(snapshot.child(username).exists()){
                     ProfileData data = snapshot.child(username).getValue(ProfileData.class);
                     TextView textview = findViewById(R.id.UserName);
-                    textview.setText("Name: " +data.getUsername());
+                    textview.setText(getString(R.string.profileName) +data.getUsername());
                     TextView textview2 = findViewById(R.id.Age);
-                    textview2.setText("Age: " +data.getAge());
+                    textview2.setText(getString(R.string.profileAge) +data.getAge());
                     TextView textview3 = findViewById(R.id.Phone);
-                    textview3.setText("Phone: " +data.getPhoneNumber());
+                    textview3.setText(getString(R.string.profilePhone) +data.getPhoneNumber());
                     TextView textview4 = findViewById(R.id.Roommates);
-                    textview4.setText("Roommates: " +data.getRoomMates());
+                    textview4.setText(getString(R.string.profileRoommates) +data.getRoomMates());
                     TextView textview5 = findViewById(R.id.Description);
                     textview5.setText(data.getDescription());
                 }else{

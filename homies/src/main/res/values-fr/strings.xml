@@ -65,4 +65,8 @@
     <string name="tel">tel:</string>
     <string name="contact_via">Contactez via:</string>
     <string name="nothing_to_show">Rien à montrer!</string>
+    <string name="profileName">"Nom: "</string>
+    <string name="profileAge">"Âge: "</string>
+    <string name="profilePhone">"Téléphone: "</string>
+    <string name="profileRoommates">"Colocataires: "</string>
 </resources>

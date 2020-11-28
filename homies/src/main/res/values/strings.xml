@@ -65,4 +65,8 @@
     <string name="tel">tel:</string>
     <string name="contact_via">Contact Via:</string>
     <string name="nothing_to_show">Nothing to show!</string>
+    <string name="profileName">"Name: "</string>
+    <string name="profileAge">"Age: "</string>
+    <string name="profilePhone">"Phone: "</string>
+    <string name="profileRoommates">"Roommates: "</string>
 </resources>

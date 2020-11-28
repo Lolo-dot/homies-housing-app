@@ -49,6 +49,7 @@ public class Search_page extends AppCompatActivity {
         editor.remove("House Name").commit(); //removing old shared pref of phone number/email
 
         //floating action circle/bar. probs not needed
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +58,7 @@ public class Search_page extends AppCompatActivity {
                         .setAction(getString(R.string.action_snack_bar), null).show();
             }
 
-        });
+        });*/
 
         //declaring views
         sv= (SearchView) findViewById(R.id.mSearch);
