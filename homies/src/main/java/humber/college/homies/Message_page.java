@@ -7,47 +7,49 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class Message_page extends AppCompatActivity {
-    public Button writeToDB;
     public String num;
-    private static final int CALL_PERMISSION_CODE = 101;
-    public TextView txt_error;
-    public boolean call_approve;
+    public String usr_msg;
+    public Button send_msg_btn;
+    public EditText get_msg;
+    public TextView disp_num;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_layout);
 
-        // Permissions code
-        call_approve = false;
-        writeToDB = (Button) findViewById(R.id.btWriteToDatabase);
-        writeToDB.setOnClickListener(onClickWrite);
-        txt_error = (TextView) findViewById(R.id.permission_error_message);
-
-        txt_error.setVisibility(View.INVISIBLE);
-        //textPrefs = (TextView)findViewById(R.id.tvPrefs);
-
-        // textPrefs.setText(loadSavedPreferences()); //set to laod phone numebr and email
-
-        //edBox=(EditText)findViewById(R.id.edMessages);
+        // Intializing the buttons and textfield
+        send_msg_btn = (Button) findViewById(R.id.send_msg);
+        get_msg = (EditText) findViewById(R.id.msg_box);
+        disp_num = (TextView) findViewById(R.id.dis_msg_num);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -78,67 +80,112 @@ public class Message_page extends AppCompatActivity {
             }
         });
 
-        checkPermission(Manifest.permission.CALL_PHONE, CALL_PERMISSION_CODE);
         // Code for updating buttons text
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         num = sharedPreferences.getString(getString(R.string.number_key_pref), null);
-        writeToDB.setText(num);
 
+        // Update Text for user
+        update_num();
 
+        // Code for sending message
+        send_msg_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                usr_msg = get_msg.getText().toString();
+                // Message to send message through button
+                if(validations(usr_msg)) {
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                        sendSMS(num, get_msg.getText().toString());
+                    } else {
+                        Toast.makeText(getApplicationContext(), get_msg.getText().toString(), Toast.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.msg_layout),R.string.msg_fail, Snackbar.LENGTH_SHORT).show();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 10);
+                        }
+                    }
+                }
+            }
+        });
     }//end of oncreate
 
 
-    // Function to check and request permission.
-    public void checkPermission(String permission, int requestCode)
-    {
-        if (ContextCompat.checkSelfPermission(Message_page.this, permission)
-                == PackageManager.PERMISSION_DENIED) {
 
-            // Requesting the permission
-            ActivityCompat.requestPermissions(Message_page.this,
-                    new String[] { permission },
-                    requestCode);
+    // Code for sending message
+    public boolean validations(String msg){
+        if(msg.length()==0)
+        {
+            get_msg.requestFocus();
+            get_msg.setError("FIELD CANNOT BE EMPTY");
+            return false;
+        }else if(msg.length()>160) {
+            get_msg.requestFocus();
+            get_msg.setError("Max Length 160");
+            return false;
         }
-        else {
-            txt_error.setVisibility(View.INVISIBLE);
-            call_approve = true;
-        }
+        return true;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == CALL_PERMISSION_CODE) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(Message_page.this, (R.string.CallPermGranted), Toast.LENGTH_SHORT).show();
-                txt_error.setVisibility(View.INVISIBLE);
-                writeToDB.setVisibility(View.VISIBLE);
-                call_approve = true;
-            } else {
-                Toast.makeText(Message_page.this, (R.string.CallPermDenied), Toast.LENGTH_SHORT).show();
-                txt_error.setVisibility(View.VISIBLE);
-                writeToDB.setVisibility(View.INVISIBLE);
-                call_approve = false;
-            }
-        }
+    public void update_num(){
+        // Setting up num for user
+        disp_num.setText("To: "+num);
     }
 
-        //onclick lsitener for buttoncall_approve
-    public View.OnClickListener onClickWrite= new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            // Code for requesting and checking permissions
-            checkPermission(Manifest.permission.CALL_PHONE, CALL_PERMISSION_CODE);
-            if (call_approve){
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(getString(R.string.tel)+num));
-                startActivity(intent);
+
+    protected void sendSMS(String phoneNo, String message) {
+        // TODO Auto-generated method stub
+        String SENT = "SMS_SENT";
+        String DELIVERED = "SMS_DELIVERED";
+
+        PendingIntent sentPI = PendingIntent.getBroadcast(this, 0,
+                new Intent(SENT), 0);
+
+        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0,
+                new Intent(DELIVERED), 0);
+
+        //---when the SMS has been sent---
+        registerReceiver(new BroadcastReceiver(){
+            @Override
+            public void onReceive(Context arg0, Intent arg1) {
+                switch (getResultCode())
+                {
+                    case Activity.RESULT_OK:
+                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_success, Snackbar.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_gen_fail, Snackbar.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_NO_SERVICE:
+                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_no_service, Snackbar.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_NULL_PDU:
+                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_null, Snackbar.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_RADIO_OFF:
+                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_radio_off, Snackbar.LENGTH_SHORT).show();
+                        break;
+                }
             }
-        }
-    };
+        }, new IntentFilter(SENT));
+
+        //---when the SMS has been delivered---
+        registerReceiver(new BroadcastReceiver(){
+            @Override
+            public void onReceive(Context arg0, Intent arg1) {
+                switch (getResultCode())
+                {
+                    case Activity.RESULT_OK:
+                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_delv, Snackbar.LENGTH_SHORT).show();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        Snackbar.make(findViewById(R.id.msg_layout), R.string.sms_not_del, Snackbar.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        }, new IntentFilter(DELIVERED));
+
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(phoneNo, null, message, sentPI, deliveredPI);
+    }
 
 
     @Override

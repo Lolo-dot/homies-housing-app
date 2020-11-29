@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/msg_layout">
 
 
     <TextView
@@ -11,36 +12,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/contact_via"
+        android:textColor="#FF5722"
         android:textSize="50dp"
         android:textStyle="bold"
-        android:textColor="#FF5722"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
-        android:id="@+id/permission_error_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/message_page_error"
-        android:textColor="#000"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        android:id="@+id/dis_msg_num"
+        android:layout_width="279dp"
+        android:layout_height="47dp"
+        android:textSize="30dp"
+        android:text="TO: "
+        app:layout_constraintBottom_toTopOf="@+id/msg_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btWriteToDatabase" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMessages" />
 
-    <Button
-        android:id="@+id/btWriteToDatabase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:textStyle="italic"
-        android:text="Phone Numeber"
+    <EditText
+        android:id="@+id/msg_box"
+        android:layout_width="294dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="80dp"
+        android:hint="Enter Message max 200 words"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMessages" />
+
+    <Button
+        android:id="@+id/send_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:text="Send Message"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msg_box"
+        app:layout_constraintVertical_bias="0.034" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

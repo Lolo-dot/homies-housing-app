@@ -69,4 +69,12 @@
     <string name="profileAge">"Age: "</string>
     <string name="profilePhone">"Phone: "</string>
     <string name="profileRoommates">"Roommates: "</string>
+    <string name="msg_fail">Message Sent Failed</string>
+    <string name="msg_success">Message Sent</string>
+    <string name="msg_gen_fail">Generic failure</string>
+    <string name="msg_no_service">No service</string>
+    <string name="msg_null">Null PDU</string>
+    <string name="msg_radio_off">Radio off</string>
+    <string name="msg_delv">SMS delivered</string>
+    <string name="sms_not_del">SMS not delivered</string>
 </resources>
