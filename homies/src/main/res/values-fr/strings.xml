@@ -77,4 +77,7 @@
     <string name="msg_radio_off">Radio off</string>
     <string name="msg_delv">SMS delivered</string>
     <string name="sms_not_del">SMS not delivered</string>
+    <string name="Error_Phone">ENTRER UN NUMÉRO DE TÉLÉPHONE VALIDE</string>
+    <string name="signup_exit_confirmation">Voulez-vous vraiment quitter la page d\'inscription? Tous les progrès seront perdus</string>
+    <string name="nothing_found">Rien n\'a été trouvé</string>
 </resources>

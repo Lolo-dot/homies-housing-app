@@ -1,5 +1,6 @@
 package humber.college.homies;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -76,6 +78,11 @@ public class Signup_page extends AppCompatActivity {
                 if(phone.length() == 0){
                     mPhone.requestFocus();
                     mPhone.setError(getString(R.string.Error1));
+                    validation = false;
+                }
+                else if((phone.length() < 10) || (phone.length() > 13)){
+                    mPhone.requestFocus();
+                    mPhone.setError(getString(R.string.Error_Phone));
                     validation = false;
                 }
                 if(password.length() == 0){
@@ -151,6 +158,38 @@ public class Signup_page extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        final String username = mUsername.getText().toString().trim();
+        String email = mEmail.getText().toString().trim();
+        String phone = mPassword.getText().toString().trim();
+        final String password = mPassword.getText().toString().trim();
+        String confirmPassword = mConfirmPassword.getText().toString().trim();
+        if((username.length() > 0) || (email.length() > 0) || (phone.length() > 0) || (password.length() > 0) || (confirmPassword.length() > 0)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.signup_exit_confirmation);
+            builder.setCancelable(true);
+
+            builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finishAffinity();
+                }
+            });
+            builder.setNegativeButton(getString(R.string.back_pres_neg), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    //do nothing
+                    return;
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+        else{
+            Intent intent = new Intent(this, Login_page.class);
+            startActivity(intent);
+        }
+    }
 
     public void Go_To_Login(View view){
         Intent intent = new Intent(this, Login_page.class);

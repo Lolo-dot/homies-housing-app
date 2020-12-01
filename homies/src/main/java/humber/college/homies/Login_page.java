@@ -113,6 +113,12 @@ public class Login_page extends AppCompatActivity {
                 finishAffinity();
             }
         });
+        builder.setNegativeButton(getString(R.string.back_pres_neg), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do nothing
+                        return;
+                    }
+                });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

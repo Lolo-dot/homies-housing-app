@@ -39,7 +39,7 @@ public class Profile_page extends AppCompatActivity {
 
 
         USR = getSharedPreferences("spDATABASE",0);
-        final String username = USR.getString("usernameStorage", "Nothing found");
+        final String username = USR.getString("usernameStorage", getString(R.string.nothing_found));
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("PROFILES");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
