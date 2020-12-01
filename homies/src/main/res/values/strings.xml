@@ -81,4 +81,5 @@
     <string name="signup_exit_confirmation">Are you sure you want to leave the signup page? All progress will be lost</string>
     <string name="nothing_found">Nothing found</string>
     <string name="Authentication_Failed">Authentication Failed.</string>
+    <string name="Nothing_Found">Nothing found</string>
 </resources>

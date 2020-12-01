@@ -57,7 +57,7 @@ public class edit_profile_page extends AppCompatActivity {
         String txt_description = edittext5.getText().toString();
 
         USR = getSharedPreferences("spDATABASE",0);
-        final String username = USR.getString("usernameStorage", "Nothing found");
+        final String username = USR.getString("usernameStorage", getString(R.string.Nothing_Found));
         final ProfileData data = new ProfileData(txt_username, txt_age, txt_phone, txt_roommates,txt_description);
         final DatabaseReference myRef2 = database.getReference("PROFILES/"+username);
         myRef2.setValue(data);
