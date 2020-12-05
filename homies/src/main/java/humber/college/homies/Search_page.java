@@ -3,6 +3,7 @@ package humber.college.homies;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,10 +13,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -30,21 +33,22 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Search_page extends AppCompatActivity {
+public class Search_page extends Fragment {
 
     SearchView sv;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public ArrayList<House> housesList=new ArrayList<>();
+    public ArrayList<House> housesList = new ArrayList<>();
     RecyclerView rv;
-    MyAdapter adapter=new MyAdapter(this,housesList);
+    MyAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.searchlayout);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.content_main, container, false);
+
+        adapter = new MyAdapter(getContext(), housesList);
 
         //shared pref delcarations
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("House Name").commit(); //removing old shared pref of phone number/email
 
@@ -61,11 +65,11 @@ public class Search_page extends AppCompatActivity {
         });*/
 
         //declaring views
-        sv= (SearchView) findViewById(R.id.mSearch);
-        rv= (RecyclerView) findViewById(R.id.myRecycler);
+        sv = (SearchView) view.findViewById(R.id.mSearch);
+        rv = (RecyclerView) view.findViewById(R.id.myRecycler);
 
         //setting recycler view properties (animations and using linear layout
-        rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setItemAnimator(new DefaultItemAnimator());
 
         //setting adapter to recylcer view, of custome type  MyAdapter
@@ -85,9 +89,10 @@ public class Search_page extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged(); //refreshes adapters house list
             }
+
             @Override
             public void onCancelled(DatabaseError error) {
-                Toast.makeText(getApplicationContext(), getString(R.string.on_cancel_search_page_error),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.on_cancel_search_page_error), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -106,75 +111,6 @@ public class Search_page extends AppCompatActivity {
             }
         });
 
-        //bottom navigationbar
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent = null;
-                switch (item.getItemId()) {
-                    case R.id.s:
-                        intent = new Intent(getBaseContext(), Search_page.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.m:
-                        intent = new Intent(getBaseContext(), Message_page.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.b:
-                        intent = new Intent(getBaseContext(), Bookmark_page.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.p:
-                        intent = new Intent(getBaseContext(), Profile_page.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });//end of bottom nav bar
-
+        return view;
     }// end of oncreate
-
-    @Override
-    public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.back_press_tit))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.back_pres_post), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finishAffinity();
-                    }
-                })
-                .setNegativeButton(getString(R.string.back_pres_neg), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //do nothing
-                        return;
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.settings_item:
-                Intent intent = new Intent(this, Settings_page.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-}//end of code
+}

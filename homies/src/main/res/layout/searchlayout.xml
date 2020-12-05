@@ -15,7 +15,13 @@
         android:layout_marginTop="80dp"
         android:layout_gravity="center_horizontal"/>
 
-    <include layout="@layout/content_main" />
+    <!--<include layout="@layout/content_main" />-->
+    <FrameLayout
+        android:id="@+id/fragmentContent"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        />
 
 
     <RelativeLayout

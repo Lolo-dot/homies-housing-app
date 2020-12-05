@@ -9,20 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Settings_page"></activity>
-        <activity android:name=".Bookmark_page" />
+        <activity android:name=".Settings_page"/>
+        <!--<activity android:name=".Bookmark_page" />-->
         <activity android:name=".Message_page" />
+        <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Profile_page" />
         <activity android:name=".Signup_page" />
         <activity android:name=".edit_profile_page" />
         <activity android:name=".Search_page" />
-        <activity android:name=".Login_page">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Login_page"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
     </application>
 
 </manifest>
