@@ -118,8 +118,9 @@ public class Profile_page extends AppCompatActivity {
     }
 
     public void Go_To_EditProfile(View view){
-        Intent intent = new Intent(view.getContext(), edit_profile_page.class);
-        startActivityForResult(intent, 0);
+        Intent intent = new Intent(this, edit_profile_page.class);
+        //startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 
 }

@@ -23,14 +23,18 @@ public class edit_profile_page extends AppCompatActivity {
     SharedPreferences USR;
     private FirebaseAuth mAuth;
 
-    EditText edittext1 = (EditText)findViewById(R.id.UserName);
-    EditText edittext3 = (EditText)findViewById(R.id.Phone);
+    EditText edittext1;
+    EditText edittext3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_layout);
 
+        edittext1 = (EditText)findViewById(R.id.EditUserName);
+        edittext3 = (EditText)findViewById(R.id.Phone);
+
+        mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
             edittext1.setText(user.getDisplayName());

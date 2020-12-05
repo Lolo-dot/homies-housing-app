@@ -17,7 +17,7 @@
         android:contentDescription="@string/todo" />
 
     <EditText
-        android:id="@+id/UserName"
+        android:id="@+id/EditUserName"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/profilePic"
@@ -33,7 +33,7 @@
         android:id="@+id/Age"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/UserName"
+        android:layout_below="@id/EditUserName"
         android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
