@@ -11,6 +11,17 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="humber.college.homies.Search_page">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="75dp"
+        android:text="@string/nothing_to_show"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -21,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:queryHint="Search Houses"
-
+            android:iconifiedByDefault="false"
             />
 
         <androidx.recyclerview.widget.RecyclerView

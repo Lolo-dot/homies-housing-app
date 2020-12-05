@@ -8,17 +8,6 @@
     android:fitsSystemWindows="true"
     tools:context="humber.college.homies.Search_page">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="75dp"
-        android:text="@string/nothing_to_show"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <!--<include layout="@layout/content_main" />-->
     <FrameLayout
         android:id="@+id/fragmentContent"

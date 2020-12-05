@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Fragment searchFrag = new Search_page();
         final Fragment BookmarkFrag = new Bookmark_page();
+        final Fragment profileFrag = new Profile_page();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
@@ -93,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
                                 .replace(R.id.fragmentContent, BookmarkFrag, null).addToBackStack(null).commit();
                         break;
                     case R.id.p:
-                        intent = new Intent(getBaseContext(), Profile_page.class);
-                        startActivity(intent);
+                        getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
+                                .replace(R.id.fragmentContent, profileFrag, null).addToBackStack(null).commit();
                         break;
                     default:
                         break;
@@ -104,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
         });//end of bottom nav bar
 
     }// end of oncreate
+
+    public void Go_To_EditProfile(View view){
+        Intent intent = new Intent(this, edit_profile_page.class);
+        //startActivityForResult(intent, 0);
+        startActivity(intent);
+    }
 
     @Override
     public void onBackPressed() {

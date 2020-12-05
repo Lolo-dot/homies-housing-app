@@ -12,6 +12,17 @@
     tools:context="humber.college.homies.Bookmark_page"
     tools:showIn="@layout/bookmark_content_main">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="75dp"
+        android:text="@string/nothing_to_show"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -21,7 +32,8 @@
             android:id="@+id/bookSearchView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:queryHint="Search Saved Houses" />
+            android:queryHint="Search Saved Houses"
+            android:iconifiedByDefault="false"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myRecyclerBookMark"
