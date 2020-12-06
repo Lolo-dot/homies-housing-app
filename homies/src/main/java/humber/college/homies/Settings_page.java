@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ public class Settings_page extends AppCompatActivity {
     SharedPreferences preferences;
     boolean vali_normal_login;
     boolean vali_face_login;
+    Button log_out_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,19 @@ public class Settings_page extends AppCompatActivity {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         isLoggedIn = accessToken != null && !accessToken.isExpired();
         USR = getSharedPreferences("spDATABASE",0);
+
+        log_out_btn = (Button) findViewById(R.id.normal_logout_btn);
+        log_out_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                USR = getSharedPreferences("spDATABASE",0);
+                SharedPreferences.Editor editor = USR.edit();
+                editor.putBoolean("logbool",false);
+                editor.commit();
+                Intent intent = new Intent(getApplicationContext(), Login_page.class);
+                startActivity(intent);
+            }
+        });
 
 
         // If user pressed log out

@@ -91,11 +91,15 @@ public class Login_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
 
-        // Facebook API Code
+        // Checking if user is already logged in through our normal login method
         USR = getSharedPreferences("spDATABASE",0);
-        SharedPreferences.Editor editor = USR.edit();
-        editor.putBoolean("logbool",false);
-        editor.commit();
+        if(USR.getBoolean("logbool",false)){
+            Toast.makeText(getApplicationContext(),"Login Successfull",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+
+        // Facebook API Code
         //FacebookSdk.sdkInitialize(getApplicationContext());
         //AppEventsLogger.activateApp(this);
         loginButton = (LoginButton) findViewById(R.id.facebook_login_button);
