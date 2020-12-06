@@ -51,10 +51,18 @@ public class MainActivity extends AppCompatActivity {
         final Fragment bookmarkFrag = new Bookmark_page();
         final Fragment profileFrag = new Profile_page();
         final Fragment messageFrag = new Message_page();
-        if (savedInstanceState == null) {
+        if(getIntent().getStringExtra("openFragment")!=null) {
+            if (getIntent().getStringExtra("openFragment").equals("MessageFrag")) {
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .add(R.id.fragmentContent, messageFrag, null)
+                        .commit();
+            }
+        }
+        else if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragmentContent, bookmarkFrag, null)
+                    .add(R.id.fragmentContent, searchFrag, null)
                     .commit();
         }
 

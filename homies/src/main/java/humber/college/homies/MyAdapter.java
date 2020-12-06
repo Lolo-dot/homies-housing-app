@@ -75,7 +75,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
                         savePreferences("phone_number",houses.get(pos).getPhone());
                         //Toast.makeText(c, houses.get(pos).getName()+"'s Number: "+houses.get(pos).getPhone(), Toast.LENGTH_SHORT).show();
                         //add intent to go to messages here*************
-                        Intent intent = new Intent(c.getApplicationContext(), Message_page.class);
+                        Intent intent = new Intent(c.getApplicationContext(), MainActivity.class);
+                        intent.putExtra("openFragment","MessageFrag");
                         c.startActivity(intent);
                         break;
                     case R.id.bookmarkButton://setting bookmark true or not, with database writes and reads
