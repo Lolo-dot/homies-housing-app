@@ -48,12 +48,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.searchlayout);
 
         final Fragment searchFrag = new Search_page();
-        final Fragment BookmarkFrag = new Bookmark_page();
+        final Fragment bookmarkFrag = new Bookmark_page();
         final Fragment profileFrag = new Profile_page();
+        final Fragment messageFrag = new Message_page();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragmentContent, BookmarkFrag, null)
+                    .add(R.id.fragmentContent, bookmarkFrag, null)
                     .commit();
         }
 
@@ -80,19 +81,18 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.s:
                         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
                                 .replace(R.id.fragmentContent, searchFrag, null).addToBackStack(null).commit();
                         break;
                     case R.id.m:
-                        intent = new Intent(getBaseContext(), Message_page.class);
-                        startActivity(intent);
+                        getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
+                                .replace(R.id.fragmentContent, messageFrag, null).addToBackStack(null).commit();
                         break;
                     case R.id.b:
                         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
-                                .replace(R.id.fragmentContent, BookmarkFrag, null).addToBackStack(null).commit();
+                                .replace(R.id.fragmentContent, bookmarkFrag, null).addToBackStack(null).commit();
                         break;
                     case R.id.p:
                         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)

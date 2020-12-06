@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.app.Activity;
@@ -21,10 +22,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,7 +36,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-public class Message_page extends AppCompatActivity {
+public class Message_page extends Fragment {
     public String num;
     public String usr_msg;
     public Button send_msg_btn;
@@ -42,46 +45,16 @@ public class Message_page extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.message_layout);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.message_layout, container, false);
 
         // Intializing the buttons and textfield
-        send_msg_btn = (Button) findViewById(R.id.send_msg);
-        get_msg = (EditText) findViewById(R.id.msg_box);
-        disp_num = (TextView) findViewById(R.id.dis_msg_num);
-
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent = null;
-                switch (item.getItemId()) {
-                    case R.id.s:
-                        intent = new Intent(getBaseContext(), Search_page.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.m:
-                        intent = new Intent(getBaseContext(), Message_page.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.b:
-                        intent = new Intent(getBaseContext(), Bookmark_page.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.p:
-                        intent = new Intent(getBaseContext(), Profile_page.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
+        send_msg_btn = (Button) view.findViewById(R.id.send_msg);
+        get_msg = (EditText) view.findViewById(R.id.msg_box);
+        disp_num = (TextView) view.findViewById(R.id.dis_msg_num);
 
         // Code for updating buttons text
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         num = sharedPreferences.getString(getString(R.string.number_key_pref), null);
 
         // Update Text for user
@@ -94,11 +67,11 @@ public class Message_page extends AppCompatActivity {
                 usr_msg = get_msg.getText().toString();
                 // Message to send message through button
                 if(validations(usr_msg)) {
-                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                         sendSMS(num, get_msg.getText().toString());
                     } else {
-                        Toast.makeText(getApplicationContext(), get_msg.getText().toString(), Toast.LENGTH_LONG).show();
-                        Snackbar.make(findViewById(R.id.msg_layout),R.string.msg_fail, Snackbar.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), get_msg.getText().toString(), Toast.LENGTH_LONG).show();
+                        Snackbar.make(getView().findViewById(R.id.msg_layout),R.string.msg_fail, Snackbar.LENGTH_SHORT).show();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 10);
                         }
@@ -106,6 +79,7 @@ public class Message_page extends AppCompatActivity {
                 }
             }
         });
+        return view;
     }//end of oncreate
 
 
@@ -136,48 +110,48 @@ public class Message_page extends AppCompatActivity {
         String SENT = "SMS_SENT";
         String DELIVERED = "SMS_DELIVERED";
 
-        PendingIntent sentPI = PendingIntent.getBroadcast(this, 0,
+        PendingIntent sentPI = PendingIntent.getBroadcast(getActivity(), 0,
                 new Intent(SENT), 0);
 
-        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0,
+        PendingIntent deliveredPI = PendingIntent.getBroadcast(getActivity(), 0,
                 new Intent(DELIVERED), 0);
 
         //---when the SMS has been sent---
-        registerReceiver(new BroadcastReceiver(){
+        getActivity().registerReceiver(new BroadcastReceiver(){
             @Override
             public void onReceive(Context arg0, Intent arg1) {
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_success, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getView().findViewById(R.id.msg_layout), R.string.msg_success, Snackbar.LENGTH_SHORT).show();
                         break;
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_gen_fail, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getView().findViewById(R.id.msg_layout), R.string.msg_gen_fail, Snackbar.LENGTH_SHORT).show();
                         break;
                     case SmsManager.RESULT_ERROR_NO_SERVICE:
-                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_no_service, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getView().findViewById(R.id.msg_layout), R.string.msg_no_service, Snackbar.LENGTH_SHORT).show();
                         break;
                     case SmsManager.RESULT_ERROR_NULL_PDU:
-                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_null, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getView().findViewById(R.id.msg_layout), R.string.msg_null, Snackbar.LENGTH_SHORT).show();
                         break;
                     case SmsManager.RESULT_ERROR_RADIO_OFF:
-                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_radio_off, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getView().findViewById(R.id.msg_layout), R.string.msg_radio_off, Snackbar.LENGTH_SHORT).show();
                         break;
                 }
             }
         }, new IntentFilter(SENT));
 
         //---when the SMS has been delivered---
-        registerReceiver(new BroadcastReceiver(){
+        getActivity().registerReceiver(new BroadcastReceiver(){
             @Override
             public void onReceive(Context arg0, Intent arg1) {
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        Snackbar.make(findViewById(R.id.msg_layout), R.string.msg_delv, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getView().findViewById(R.id.msg_layout), R.string.msg_delv, Snackbar.LENGTH_SHORT).show();
                         break;
                     case Activity.RESULT_CANCELED:
-                        Snackbar.make(findViewById(R.id.msg_layout), R.string.sms_not_del, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getView().findViewById(R.id.msg_layout), R.string.sms_not_del, Snackbar.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -187,43 +161,4 @@ public class Message_page extends AppCompatActivity {
         sms.sendTextMessage(phoneNo, null, message, sentPI, deliveredPI);
     }
 
-
-    @Override
-    public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.back_press_tit))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.back_pres_post), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finishAffinity();
-                    }
-                })
-                .setNegativeButton(getString(R.string.back_pres_neg), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //do nothing
-                        return;
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.settings_item:
-                Intent intent = new Intent(this, Settings_page.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }//end of code
