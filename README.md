@@ -7,5 +7,5 @@ the requirements that they have, and the students use filters to search for suit
 # Developer's Names and IDs
 i.	  Steven Vu: N01335381
 ii.	  Gurarshdeep Singh: N01325155
-iii.	Shermal Marasinghe: N01345430
+iii.  Shermal Marasinghe: N01345430
 iv.	  Elo: N01325054
