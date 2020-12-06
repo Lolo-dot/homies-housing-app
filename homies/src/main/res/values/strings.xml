@@ -82,6 +82,6 @@
     <string name="nothing_found">Nothing found</string>
     <string name="Authentication_Failed">Authentication Failed.</string>
     <string name="Nothing_Found">Nothing found</string>
-    <string name="facebook_app_id">299379161389975</string>
-    <string name="fb_login_protocol_scheme">fb299379161389975</string>
+    <string name="facebook_app_id">225356762278805</string>
+    <string name="fb_login_protocol_scheme">fb225356762278805</string>
 </resources>
