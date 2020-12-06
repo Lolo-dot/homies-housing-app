@@ -13,8 +13,11 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,9 +78,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
                         savePreferences("phone_number",houses.get(pos).getPhone());
                         //Toast.makeText(c, houses.get(pos).getName()+"'s Number: "+houses.get(pos).getPhone(), Toast.LENGTH_SHORT).show();
                         //add intent to go to messages here*************
-                        Intent intent = new Intent(c.getApplicationContext(), MainActivity.class);
-                        intent.putExtra("openFragment","MessageFrag");
-                        c.startActivity(intent);
+                        //Intent intent = new Intent(c.getApplicationContext(), MainActivity.class);
+                        //intent.putExtra("openFragment","MessageFrag");
+                        //c.startActivity(intent);
+                        BottomNavigationView bottomNavigationView = (BottomNavigationView) ((AppCompatActivity)c).findViewById(R.id.bottom_bar);
+                        bottomNavigationView.setSelectedItemId(R.id.m);
+                        final Fragment messageFrag = new Message_page();
+                        ((AppCompatActivity)c).getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
+                                .replace(R.id.fragmentContent, messageFrag, null).addToBackStack(null).commit();
                         break;
                     case R.id.bookmarkButton://setting bookmark true or not, with database writes and reads
 

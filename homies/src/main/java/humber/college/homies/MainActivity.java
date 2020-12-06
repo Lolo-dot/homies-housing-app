@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         .commit();
             }
         }
-        else if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
                     .add(R.id.fragmentContent, searchFrag, null)
