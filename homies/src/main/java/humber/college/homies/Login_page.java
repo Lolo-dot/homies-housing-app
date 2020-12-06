@@ -92,7 +92,10 @@ public class Login_page extends AppCompatActivity {
         setContentView(R.layout.login_layout);
 
         // Facebook API Code
-
+        USR = getSharedPreferences("spDATABASE",0);
+        SharedPreferences.Editor editor = USR.edit();
+        editor.putBoolean("logbool",false);
+        editor.commit();
         //FacebookSdk.sdkInitialize(getApplicationContext());
         //AppEventsLogger.activateApp(this);
         loginButton = (LoginButton) findViewById(R.id.facebook_login_button);
@@ -166,8 +169,9 @@ public class Login_page extends AppCompatActivity {
                                   USR = getSharedPreferences("spDATABASE",0);
                                   SharedPreferences.Editor editor = USR.edit();
                                   editor.putString("usernameStorage", username);
+                                  editor.putBoolean("logbool", true);
                                   editor.apply();
-                                  Intent intent = new Intent(getApplicationContext(), Search_page.class);
+                                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                   startActivity(intent);
                               }
                               else{
