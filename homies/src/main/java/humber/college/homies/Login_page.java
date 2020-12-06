@@ -102,6 +102,8 @@ public class Login_page extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Toast.makeText(getApplicationContext(),"Login Successfull",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -116,6 +118,11 @@ public class Login_page extends AppCompatActivity {
         });
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if(isLoggedIn){
+            Toast.makeText(getApplicationContext(),"Login Successfull",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
         // End of Facebook code
 
         mAuth = FirebaseAuth.getInstance();
