@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
