@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 public class Bookmark_page extends Fragment {
 
     SearchView sv;
+    Button but;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     public ArrayList<House> houseList = new ArrayList<>();
     RecyclerView rv;
@@ -69,6 +71,16 @@ public class Bookmark_page extends Fragment {
         //declaring views
         sv = (SearchView) view.findViewById(R.id.bookSearchView);
         rv = (RecyclerView) view.findViewById(R.id.myRecyclerBookMark);
+        but = (Button) view.findViewById(R.id.bookButton);
+
+        but.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                adapter.getFilter().filter("1300");
+            }
+        });
 
         //setting rv properties
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));// should be bookmark or this isntead of activity?

@@ -30,6 +30,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
     Context c;
     ArrayList<House> houses,filterList;
     CustomFilter filter;
+    //PriceFilter priceFilter;
 
     public FirebaseDatabase database = FirebaseDatabase.getInstance();
     public DatabaseReference refBookmarkedHouses = database.getReference();

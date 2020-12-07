@@ -34,6 +34,11 @@
             android:layout_height="50dp"
             android:queryHint="Search Saved Houses"
             android:iconifiedByDefault="false"/>
+        <Button
+            android:id="@+id/bookButton"
+            android:text="Show only prices 1300 or lower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myRecyclerBookMark"
