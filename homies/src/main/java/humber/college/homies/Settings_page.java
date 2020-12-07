@@ -38,12 +38,17 @@ public class Settings_page extends AppCompatActivity {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         isLoggedIn = accessToken != null && !accessToken.isExpired();
         USR = getSharedPreferences("spDATABASE",0);
-
         log_out_btn = (Button) findViewById(R.id.normal_logout_btn);
+
+        // checking if normal loging is good
+        USR = getSharedPreferences("spDATABASE",0);
+        if(!USR.getBoolean("logbool",false)){
+            log_out_btn.setVisibility(View.INVISIBLE);
+        }
+
         log_out_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                USR = getSharedPreferences("spDATABASE",0);
                 SharedPreferences.Editor editor = USR.edit();
                 editor.putBoolean("logbool",false);
                 editor.commit();
@@ -101,6 +106,8 @@ public class Settings_page extends AppCompatActivity {
     public void onBackPressed() {
         vali_normal_login = false;
         vali_face_login = false;
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        isLoggedIn = accessToken != null && !accessToken.isExpired();
 
         // checking if normal loging is good
         if(!USR.getBoolean("logbool",false)){
@@ -111,18 +118,8 @@ public class Settings_page extends AppCompatActivity {
             vali_face_login = true;
         }
         if (vali_face_login&&vali_normal_login){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Please Login again")
-                    .setCancelable(false)
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent intent = new Intent(getApplicationContext(), Login_page.class);
-                            startActivity(intent);
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.setIcon(R.drawable.ic_baseline_login_24);
-            alert.show();
+            Intent intent = new Intent(getApplicationContext(), Login_page.class);
+            startActivity(intent);
         }else{
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
