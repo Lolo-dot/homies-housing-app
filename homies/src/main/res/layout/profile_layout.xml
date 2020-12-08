@@ -55,7 +55,7 @@
         android:text="@string/name" />
 
     <TextView
-        android:id="@+id/Age"
+        android:id="@+id/add_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/UserName"
@@ -65,10 +65,10 @@
         android:text="@string/age" />
 
     <TextView
-        android:id="@+id/Phone"
+        android:id="@+id/add_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Age"
+        android:layout_below="@id/add_number"
         android:layout_marginTop="15dp"
         android:layout_marginStart="30dp"
         android:textSize="20sp"
@@ -78,7 +78,7 @@
         android:id="@+id/Roommates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Phone"
+        android:layout_below="@id/add_price"
         android:layout_marginTop="15dp"
         android:layout_marginStart="30dp"
         android:textSize="20sp"

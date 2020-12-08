@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         final Fragment bookmarkFrag = new Bookmark_page();
         final Fragment profileFrag = new Profile_page();
         final Fragment messageFrag = new Message_page();
+        final Fragment addFrag  = new Add_House();
         if(getIntent().getStringExtra("openFragment")!=null) {
             if (getIntent().getStringExtra("openFragment").equals("MessageFrag")) {
                 getSupportFragmentManager().beginTransaction()
@@ -105,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.m:
                         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
                                 .replace(R.id.fragmentContent, messageFrag, null).addToBackStack(null).commit();
+                        break;
+                    case R.id.a:
+                        getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
+                                .replace(R.id.fragmentContent, addFrag, null).addToBackStack(null).commit();
                         break;
                     case R.id.b:
                         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)

@@ -1,32 +1,24 @@
 package humber.college.homies;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.ByteArrayOutputStream;
 
 public class Profile_page extends Fragment {
     SharedPreferences USR;
@@ -69,9 +61,9 @@ public class Profile_page extends Fragment {
                     }
                     TextView textview = view.findViewById(R.id.UserName);
                     textview.setText(getString(R.string.profileName) +data.getUsername());
-                    TextView textview2 = view.findViewById(R.id.Age);
+                    TextView textview2 = view.findViewById(R.id.add_number);
                     textview2.setText(getString(R.string.profileAge) +data.getAge());
-                    TextView textview3 = view.findViewById(R.id.Phone);
+                    TextView textview3 = view.findViewById(R.id.add_price);
                     textview3.setText(getString(R.string.profilePhone) +data.getPhoneNumber());
                     TextView textview4 = view.findViewById(R.id.Roommates);
                     textview4.setText(getString(R.string.profileRoommates) +data.getRoomMates());

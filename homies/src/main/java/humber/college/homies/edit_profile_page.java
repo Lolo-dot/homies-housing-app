@@ -20,8 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,7 +47,7 @@ public class edit_profile_page extends AppCompatActivity {
         setContentView(R.layout.edit_profile_layout);
 
         edittext1 = (EditText)findViewById(R.id.EditUserName);
-        edittext3 = (EditText)findViewById(R.id.Phone);
+        edittext3 = (EditText)findViewById(R.id.add_price);
 
         // For image
         add_image = (Button) findViewById(R.id.add_image);
@@ -110,7 +108,7 @@ public class edit_profile_page extends AppCompatActivity {
 
         String txt_username = edittext1.getText().toString();
 
-        EditText edittext2 = (EditText)findViewById(R.id.Age);
+        EditText edittext2 = (EditText)findViewById(R.id.add_number);
         String txt_age = edittext2.getText().toString();
 
         String txt_phone = edittext3.getText().toString();
