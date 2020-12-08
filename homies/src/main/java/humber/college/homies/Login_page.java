@@ -80,7 +80,7 @@ public class Login_page extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
-            Intent intent = new Intent(getApplicationContext(), Search_page.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
     }

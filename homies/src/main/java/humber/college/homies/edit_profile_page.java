@@ -38,6 +38,7 @@ public class edit_profile_page extends AppCompatActivity {
 
     EditText edittext1;
     EditText edittext3;
+    String ProfilePic;
 
     private Button add_image;
     private ImageView image_view;
@@ -84,11 +85,13 @@ public class edit_profile_page extends AppCompatActivity {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                USR = getSharedPreferences("spDATABASE",0);
-                SharedPreferences.Editor editor = USR.edit();
-                editor.putString("profile_pic",image_toString(selectedImage));
-                editor.commit();
-                image_view.setImageBitmap(string_toImage(USR.getString("profile_pic","")));
+                ProfilePic = image_toString(selectedImage);
+                //USR = getSharedPreferences("spDATABASE",0);
+                //SharedPreferences.Editor editor = USR.edit();
+                //editor.putString("profile_pic",image_toString(selectedImage));
+                //editor.commit();
+                image_view.setImageBitmap(string_toImage(ProfilePic));
+               // image_view.setImageBitmap(string_toImage(USR.getString("profile_pic","")));
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -117,9 +120,10 @@ public class edit_profile_page extends AppCompatActivity {
         EditText edittext5 = (EditText)findViewById(R.id.Description);
         String txt_description = edittext5.getText().toString();
 
+
         USR = getSharedPreferences("spDATABASE",0);
         final String username = USR.getString("usernameStorage", getString(R.string.Nothing_Found));
-        final ProfileData data = new ProfileData(txt_username, txt_age, txt_phone, txt_roommates,txt_description);
+        final ProfileData data = new ProfileData(txt_username, txt_age, txt_phone, txt_roommates,txt_description,ProfilePic);
         final DatabaseReference myRef2 = database.getReference("PROFILES/"+username);
         myRef2.setValue(data);
 

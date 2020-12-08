@@ -44,14 +44,6 @@
             </intent-filter>
         </activity>
 
-
-        <activity android:name=".Profile_page" />
-        <activity android:name=".Signup_page" />
-        <activity android:name=".edit_profile_page" />
-        <activity android:name=".Search_page" />
-        <activity android:name=".MainActivity"/>
-
-
     </application>
 
 </manifest>
