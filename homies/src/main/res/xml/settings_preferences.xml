@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory
+        android:title="Appearance">
 
     <SwitchPreference
         android:key="darkmodeSwitch"
         android:title="Enable Dark Mode"
+        android:summary="Enable Dark Mode"
         android:defaultFocusHighlightEnabled="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Account Actions">
+
+        <Preference
+            android:key="Settings_Logout"
+            android:title="Logout"
+
+            />
+
+    </PreferenceCategory>
+
 
 
 </PreferenceScreen>

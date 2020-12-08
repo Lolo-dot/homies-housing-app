@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -34,7 +35,14 @@ public class Settings_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_page);
 
-        // Checking if user is still logged
+        if(findViewById(R.id.setting_fragment_container) != null){
+            if(savedInstanceState != null)
+                return;
+
+            getFragmentManager().beginTransaction().add(R.id.setting_fragment_container, new Settings_Fragment()).commit();
+        }
+
+  /*     // Checking if user is still logged
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         isLoggedIn = accessToken != null && !accessToken.isExpired();
         USR = getSharedPreferences("spDATABASE",0);
@@ -82,10 +90,15 @@ public class Settings_page extends AppCompatActivity {
                     recreate();
                 }
             }
-        });
+        }); */
     }
 
-    private void saveNightModeState(boolean nightMode) {
+    public void settingsCheck(View view){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+
+ /*   private void saveNightModeState(boolean nightMode) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(KEY_ISNIGHTMODE, nightMode);
         editor.apply();
@@ -125,5 +138,5 @@ public class Settings_page extends AppCompatActivity {
             startActivity(intent);
         }
         //Toast.makeText(getApplicationContext(),"Back Press",Toast.LENGTH_LONG).show();
-    }
+    } */
 }
