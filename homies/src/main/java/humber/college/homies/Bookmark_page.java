@@ -87,16 +87,33 @@ public class Bookmark_page extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
             {
                 //Toast.makeText(getContext(),"price low to hhhhigh selected",Toast.LENGTH_SHORT).show();
-                if(parentView.getItemAtPosition(position).toString().equals("Price:Low to High")){
-                    if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
-                        Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
-                        Collections.sort(houseList, House.HouseNameAZ);
-                        adapter.notifyDataSetChanged();
-                    } else{
-                        Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
-                    }
+                if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
+                switch (parentView.getItemAtPosition(position).toString()) {
+                    case "Sort":
+
+                        break;
+                    case "Price:Low to High":
+                            Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
+                            Collections.sort(houseList, House.HouseNameAZ);
+                            adapter.notifyDataSetChanged();
+                        break;
+                    case "Price:High to Low":
+                        Toast.makeText(getContext(),"Price:High to Low",Toast.LENGTH_SHORT).show();
+                        break;
+                    case "Alphabetical:A-Z":
+                        Toast.makeText(getContext(),"Alphabetical:A-Z",Toast.LENGTH_SHORT).show();
+                        break;
+                    case "Alphabetical:Z-A":
+                        Toast.makeText(getContext(),"Alphabetical:Z-A",Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        Toast.makeText(getContext(),"default break",Toast.LENGTH_SHORT).show();
+                        break;
+                }//end of switch
+                } else{
+                    Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
                 }
-            }
+            }//end of onitme selected
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
