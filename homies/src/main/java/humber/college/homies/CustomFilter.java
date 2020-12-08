@@ -36,12 +36,12 @@ public class CustomFilter extends Filter {
             }
             results.count=filteredHouses.size();//matching size of list
             results.values=filteredHouses;//matching values
-        }/*else {
+        }else {
             results.count=filterList.size();
             results.values=filterList;
-        }*/
+        }
 
-        //start of test filter
+        /*//start of test filter
         if (constraint != null && constraint.length()>0 && isParsable(constraint.toString())){
             int constraintNum;
             constraintNum=Integer.parseInt(constraint.toString());//.substring(1);
@@ -60,7 +60,7 @@ public class CustomFilter extends Filter {
         }else {
             results.count=filterList.size();
             results.values=filterList;
-        }
+        }*/
 
         return results;
     }//end of actual fitler work

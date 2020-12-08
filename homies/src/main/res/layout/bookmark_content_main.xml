@@ -34,9 +34,16 @@
             android:layout_height="50dp"
             android:queryHint="Search Saved Houses"
             android:iconifiedByDefault="false"/>
+        <Spinner
+            android:id="@+id/bookSortsSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/sortTypes"
+            android:prompt="Sort"
+            android:spinnerMode="dropdown" />
         <Button
             android:id="@+id/bookButton"
-            android:text="Show only prices 1300 or lower"
+            android:text="SOrt by PRice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

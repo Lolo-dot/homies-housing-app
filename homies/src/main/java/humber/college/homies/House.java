@@ -1,5 +1,7 @@
 package humber.college.homies;
 
+import java.util.Comparator;
+
 public class House {
 
     public String name;
@@ -18,6 +20,18 @@ public class House {
         this.phone=phone;
         this.bookmarked=bookmarked;
     }
+
+    public static Comparator<House>HouseNameAZ = new Comparator<House>() {
+        @Override
+        public int compare(House h1, House h2) {
+            if(Integer.parseInt(h1.getPos())<Integer.parseInt(h2.getPos())){
+                return -1;
+            }else if(Integer.parseInt(h1.getPos())>Integer.parseInt(h2.getPos())){
+                return 1;
+            }else
+            return 0;
+        }
+    };
 
     public String getName() {
         return name;

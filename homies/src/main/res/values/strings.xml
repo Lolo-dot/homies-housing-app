@@ -84,4 +84,11 @@
     <string name="Nothing_Found">Nothing found</string>
     <string name="facebook_app_id">225356762278805</string>
     <string name="fb_login_protocol_scheme">fb225356762278805</string>
+    <string-array name="sortTypes">
+        <item>Price:Low to High</item>
+        <item>British Columbia</item>
+        <item>Alberta</item>
+        <item>Quebec</item>
+        <item>Manitoba</item>
+    </string-array>
 </resources>

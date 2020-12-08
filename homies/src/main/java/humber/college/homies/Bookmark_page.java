@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Bookmark_page extends Fragment {
 
@@ -78,7 +79,13 @@ public class Bookmark_page extends Fragment {
             @Override
             public void onClick(View v)
             {
-                adapter.getFilter().filter("1300");
+                if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
+                    //Toast.makeText(getContext(),"success",Toast.LENGTH_SHORT).show();
+                    Collections.sort(houseList, House.HouseNameAZ);
+                    adapter.notifyDataSetChanged();
+                } else{
+                    Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
