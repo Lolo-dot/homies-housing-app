@@ -30,6 +30,9 @@ public class Settings_page extends AppCompatActivity {
     boolean vali_face_login;
     Button log_out_btn;
 
+    public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
+    public static final String LOG_OUT_BUTTON = "Settings_Logout";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,7 @@ public class Settings_page extends AppCompatActivity {
             getFragmentManager().beginTransaction().add(R.id.setting_fragment_container, new Settings_Fragment()).commit();
         }
 
-  /*     // Checking if user is still logged
+   /*    // Checking if user is still logged
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         isLoggedIn = accessToken != null && !accessToken.isExpired();
         USR = getSharedPreferences("spDATABASE",0);
@@ -93,12 +96,22 @@ public class Settings_page extends AppCompatActivity {
         }); */
     }
 
-    public void settingsCheck(View view){
+  /*  public void settingsCheck(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean darkmodeCheck = sharedPreferences.getBoolean(DARK_MODE_SWITCH, false);
+
+        if(darkmodeCheck){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            recreate();
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            recreate();
+        }
     }
 
 
- /*   private void saveNightModeState(boolean nightMode) {
+    private void saveNightModeState(boolean nightMode) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(KEY_ISNIGHTMODE, nightMode);
         editor.apply();
