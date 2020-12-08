@@ -164,6 +164,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, Settings_page.class);
                 startActivity(intent);
                 break;
+
+            case R.id.item_bookmark:
+                BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
+                bottomNavigationView.setSelectedItemId(R.id.b);
+                final Fragment bookmarkFrag = new Bookmark_page();
+                getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
+                        .replace(R.id.fragmentContent, bookmarkFrag, null).addToBackStack(null).commit();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
