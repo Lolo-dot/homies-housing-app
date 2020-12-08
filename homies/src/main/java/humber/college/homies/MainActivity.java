@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragmentContent, searchFrag, null)
                     .commit();
         }
+        if(getIntent().getIntExtra("openProfile",0)==1){
+            //set the desired fragment as current fragment to fragment pager
+            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
+                    .replace(R.id.fragmentContent, profileFrag, null).addToBackStack(null).commit();
+            BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
+            bottomNavigationView.setSelectedItemId(R.id.p);
+        }
+
 
         //shared pref delcarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);

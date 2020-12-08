@@ -123,13 +123,17 @@ public class edit_profile_page extends AppCompatActivity {
         final DatabaseReference myRef2 = database.getReference("PROFILES/"+username);
         myRef2.setValue(data);
 
-
+/*
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
         bottomNavigationView.setSelectedItemId(R.id.m);
         final Fragment profile_frag = new Profile_page();
         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
                 .replace(R.id.fragmentContent, profile_frag, null).addToBackStack(null).commit();
+*/
 
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.putExtra("openProfile",1);
+        startActivity(intent);
     }
 
     @Override

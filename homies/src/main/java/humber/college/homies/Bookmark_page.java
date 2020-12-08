@@ -86,7 +86,7 @@ public class Bookmark_page extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
             {
-                Toast.makeText(getContext(),"price low to hhhhigh selected",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),"price low to hhhhigh selected",Toast.LENGTH_SHORT).show();
                 if(parentView.getItemAtPosition(position).toString().equals("Price:Low to High")){
                     if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
                         Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
