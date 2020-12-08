@@ -12,6 +12,7 @@
     <item
         android:id="@+id/b"
         android:title="Bookmark"
+        android:visible="false"
         android:icon="@drawable/ic_launcher_background"/>
     <item
         android:id="@+id/p"
