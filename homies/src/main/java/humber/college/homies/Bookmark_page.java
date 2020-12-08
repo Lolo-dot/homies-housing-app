@@ -19,8 +19,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -68,6 +71,39 @@ public class Bookmark_page extends Fragment {
             }
 
         });*/
+
+//Populate the spinner in the fragment
+        Spinner spinner = (Spinner) view.findViewById(R.id.bookSortsSpinner);
+
+
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(view.getContext(), R.array.sortTypes,
+                android.R.layout.simple_spinner_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapterSpinner);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
+            {
+                Toast.makeText(getContext(),"price low to hhhhigh selected",Toast.LENGTH_SHORT).show();
+                if(parentView.getItemAtPosition(position).toString().equals("Price:Low to High")){
+                    if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
+                        Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
+                        Collections.sort(houseList, House.HouseNameAZ);
+                        adapter.notifyDataSetChanged();
+                    } else{
+                        Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+                Toast.makeText(getContext(),"price low to high sssssselected",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //declaring views
         sv = (SearchView) view.findViewById(R.id.bookSearchView);
@@ -133,4 +169,24 @@ public class Bookmark_page extends Fragment {
 
         return view;
     }//end of oncreate view
+
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(pos).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+
+        if(parent.getItemAtPosition(pos).toString().equals("Price:Low to High")){
+            if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
+                Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
+                Collections.sort(houseList, House.HouseNameAZ);
+                adapter.notifyDataSetChanged();
+            } else{
+                Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

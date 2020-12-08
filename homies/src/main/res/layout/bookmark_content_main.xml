@@ -38,8 +38,7 @@
             android:id="@+id/bookSortsSpinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/sortTypes"
-            android:prompt="Sort"
+            android:prompt="@string/spinnerPrompt"
             android:spinnerMode="dropdown" />
         <Button
             android:id="@+id/bookButton"
