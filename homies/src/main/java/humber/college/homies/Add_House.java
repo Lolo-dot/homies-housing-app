@@ -47,8 +47,6 @@ public class Add_House extends Fragment {
     // String for image
     private String ProfilePic;
 
-    // House Data
-    House add_data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -129,9 +127,6 @@ public class Add_House extends Fragment {
                 Bitmap bitmap = Bitmap.createScaledBitmap(selectedImage, 480, 480, true);
                 ProfilePic = image_toString(bitmap);
                 img1.setImageBitmap(string_toImage(ProfilePic));
-                add = get_add.getText().toString();
-                num = get_num.getText().toString();
-                pri = get_price.getText().toString();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -146,12 +141,64 @@ public class Add_House extends Fragment {
         add = get_add.getText().toString();
         num = get_num.getText().toString();
         pri = get_price.getText().toString();
-        House add_data = new House(add,pri,ProfilePic,num,false);
+        if(validation_add(add)&&validation_num(num)&&validation_price(pri)){
+            House add_data = new House(add,pri,ProfilePic,"+1"+num,false);
+            // Adding data to firebase now
+            refBookmarkedHouses.child("Houses").child(add).setValue(add_data);
+            Toast.makeText(getContext(),add+num+pri,Toast.LENGTH_LONG).show();
 
-        // Adding data to firebase now
-        refBookmarkedHouses.child("Houses").child(add).setValue(add_data);
+        }
+    }
 
-        Toast.makeText(getContext(),add+num+pri,Toast.LENGTH_LONG).show();
+    // Validations
+    public boolean validation_num(String msg){
+        if(msg.length()==0)
+        {
+            get_num.requestFocus();
+            get_num.setError("FIELD CANNOT BE EMPTY");
+            return false;
+        }else if(msg.length()>10) {
+            get_num.requestFocus();
+            get_num.setError("Inavlid Number");
+            return false;
+        }else if(msg.matches("[0-9]+")==false){
+            get_num.requestFocus();
+            get_num.setError("Inavlid Number");
+            return false;
+        }else if(msg.contains("+")==false){
+            get_num.requestFocus();
+            get_num.setError("Inavlid Number");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validation_price(String msg){
+        if(msg.length()==0)
+        {
+            get_price.requestFocus();
+            get_price.setError("FIELD CANNOT BE EMPTY");
+            return false;
+        }else if(msg.matches("[0-9]+")==false) {
+            get_price.requestFocus();
+            get_price.setError("Inavlid Price");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validation_add(String msg){
+        if(msg.length()==0)
+        {
+            get_add.requestFocus();
+            get_add.setError("FIELD CANNOT BE EMPTY");
+            return false;
+        }else if(msg.length()>160) {
+            get_add.requestFocus();
+            get_add.setError("Invalid Address");
+            return false;
+        }
+        return true;
     }
 
 }
