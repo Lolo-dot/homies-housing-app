@@ -56,10 +56,16 @@ public class Message_page extends Fragment {
 
         // Code for updating buttons text
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        num = sharedPreferences.getString(getString(R.string.number_key_pref), "Please Select a Number");
+        num = sharedPreferences.getString(getString(R.string.number_key_pref), null);
 
-        // Update Text for user
-        update_num();
+        if(num==null){
+            disp_num.setText("Select Contact");
+            send_msg_btn.setEnabled(false);
+        }else {
+            // Update Text for user
+            update_num();
+        }
+
 
         // Code for sending message
         send_msg_btn.setOnClickListener(new View.OnClickListener() {
@@ -102,10 +108,6 @@ public class Message_page extends Fragment {
 
     public void update_num(){
         // Setting up num for user
-        if(num=="Please Select a Number"){
-            disp_num.setText("Select Contact");
-            send_msg_btn.setEnabled(false);
-        }
         disp_num.setText("To: "+num);
     }
 
