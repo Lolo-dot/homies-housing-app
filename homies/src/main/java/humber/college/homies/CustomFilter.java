@@ -1,5 +1,5 @@
 package humber.college.homies;
-
+//Team Name: Homies
 import android.widget.Filter;
 
 import java.util.ArrayList;

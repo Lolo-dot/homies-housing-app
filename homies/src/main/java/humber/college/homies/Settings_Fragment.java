@@ -1,5 +1,5 @@
 package humber.college.homies;
-
+//Team Name: Homies
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;

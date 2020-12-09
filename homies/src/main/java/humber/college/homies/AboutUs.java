@@ -1,5 +1,5 @@
 package humber.college.homies;
-
+//Team Name: Homies
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;

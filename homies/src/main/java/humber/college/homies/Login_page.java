@@ -1,5 +1,5 @@
 package humber.college.homies;
-
+//Team Name: Homies
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;

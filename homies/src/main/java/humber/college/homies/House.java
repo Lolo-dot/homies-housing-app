@@ -1,5 +1,5 @@
 package humber.college.homies;
-
+//Team Name: Homies
 import java.util.Comparator;
 
 public class House {

@@ -1,5 +1,5 @@
 package humber.college.homies;
-
+//Team Name: Homies
 public class ProfileData {//username age phonenumber roomates descirption
     public String username;
     public String age;
