@@ -7,9 +7,4 @@
         android:title="Settings"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/item_bookmark"
-        android:title="Bookmarked Houses"
-        app:showAsAction="never"/>
-
 </menu>

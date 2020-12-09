@@ -7,20 +7,20 @@
     <item
         android:id="@+id/m"
         android:title="Message"
+        android:visible="false"
         android:icon="@drawable/ic_message"/>
-
     <item
         android:id="@+id/b"
-        android:title="Bookmark"
-        android:visible="false"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="Bookmarks"
+        android:icon="@drawable/bookmarked_houses_nav_icon"/>
+    <item
+        android:id="@+id/a"
+        android:title="Add House"
+        android:icon="@drawable/add_houses_new"/>
     <item
         android:id="@+id/p"
         android:title="Profile"
         android:icon="@drawable/ic_profile"/>
-    <item
-        android:id="@+id/a"
-        android:title="House"
-        android:icon="@drawable/add_houses"/>
+
 
 </menu>
