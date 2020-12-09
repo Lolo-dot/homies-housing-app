@@ -75,9 +75,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
 
         //chcking bool bookmark value set as bookmarked_house or unbookmarked_hosue image
             if(houses.get(position).getBookmarked()) {
-                holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_house);
+                holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_vector);
             }else {
-                holder.bookmarkbutton.setImageResource(R.drawable.add_houses);
+                holder.bookmarkbutton.setImageResource(R.drawable.unbookmarked_vector);
             }
 
         //click listener from custom ItemCLickListener
@@ -103,14 +103,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
                         if(houses.get(pos).getBookmarked()) {
                             //if currently true, set to false set image as unbookmarked
                             refBookmarkedHouses.child("Houses").child(houses.get(pos).getName()).child("bookmarked").setValue(false);
-                            holder.bookmarkbutton.setImageResource(R.drawable.add_houses);
+                            holder.bookmarkbutton.setImageResource(R.drawable.unbookmarked_vector);
                             //then remove from bookmarks
                             refBookmarkedHouses.child("Bookmarked Houses").child(houses.get(pos).getName()).removeValue();
 
                         }else {
                             //if currently false, set to true and set image as bookmarked
                             refBookmarkedHouses.child("Houses").child(houses.get(pos).getName()).child("bookmarked").setValue(true);
-                            holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_house);
+                            holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_vector);
                             //then add to bookmarks
                             House p = new House(houses.get(pos).getName(), houses.get(pos).getPos(),houses.get(pos).getImg(),houses.get(pos).getPhone(),true);
                             refBookmarkedHouses.child("Bookmarked Houses").child(houses.get(pos).getName()).setValue(p);
