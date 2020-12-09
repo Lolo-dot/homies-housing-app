@@ -84,6 +84,24 @@
     <string name="Nothing_Found">Rien n\'a été trouvé</string>
     <string name="facebook_app_id">299379161389975</string>
     <string name="fb_login_protocol_scheme">fb299379161389975</string>
-    <string name="Error_Age">ENTER A VALID AGE</string>
-    <string name="Error_Roommates">ENTER A VALID NUMBER OF ROOMMATES</string>
+    <string name="spinnerPrompt">Trier</string>
+    <string name="Error_Age">ENTREZ UN ÂGE VALIDE</string>
+    <string name="Error_Roommates">ENTRER UN NOMBRE VALIDE DE CHAMBRES</string>
+    <string name="Appearance">Apparence</string>
+    <string name="Enable_DarkMode">Activer le mode sombre</string>
+    <string name="More_Information">Plus d\'information</string>
+    <string name="about_us">À propos de nous</string>
+    <string name="account_actions">Actions du compte</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="about_us_content">Actuellement, de nombreux étudiants (en particulier des étudiants internationaux) ont du mal à trouver un logement abordable près du collège / université qu\'ils fréquentent. Notre application vise à lutter contre ce problème en permettant aux étudiants de rechercher un logement à proximité de leurs établissements, qui répondent également à leurs besoins.</string>
+    <string name="remember_details">Se souvenir des détails</string>
+    <string name="add_house">AJOUTER MAISON</string>
+    <string name="address">Adresse</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="price">Prix</string>
+    <string name="add_image">Ajouter une image</string>
+    <string name="save">sauvegarder</string>
+    <string name="to">À:</string>
+    <string name="enter_message_max_200_words">Entrez le message 200 mots maximum</string>
+    <string name="send">ENVOYER</string>
 </resources>

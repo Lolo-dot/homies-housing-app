@@ -87,6 +87,23 @@
     <string name="spinnerPrompt">Sort</string>
     <string name="Error_Age">ENTER A VALID AGE</string>
     <string name="Error_Roommates">ENTER A VALID NUMBER OF ROOMMATES</string>
+    <string name="Appearance">Appearance</string>
+    <string name="Enable_DarkMode">Enable Dark Mode</string>
+    <string name="More_Information">More Information</string>
+    <string name="about_us">About us</string>
+    <string name="account_actions">Account Actions</string>
+    <string name="logout">Logout</string>
+    <string name="about_us_content">Currently there a lot of students (especially international students) struggling to find affordable housing near the college/university that they attend. Our application aims to combat that problem by allowing students to search for housing near their institutions, that also meet their requirements.</string>
+    <string name="remember_details">Remember Details</string>
+    <string name="add_house">ADD HOUSE</string>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="price">Price</string>
+    <string name="add_image">Add Image</string>
+    <string name="save">Save</string>
+    <string name="to">TO:</string>
+    <string name="enter_message_max_200_words">Enter Message max 200 words</string>
+    <string name="send">SEND</string>
     <string-array name="sortTypes">
         <item>Sort</item>
         <item>Price:Low to High</item>

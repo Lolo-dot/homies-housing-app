@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="172dp"
         android:layout_marginBottom="560dp"
-        android:text="Add Image" />
+        android:text="@string/add_image" />
 
     <EditText
         android:id="@+id/EditUserName"

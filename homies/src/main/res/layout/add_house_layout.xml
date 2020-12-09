@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="6dp"
-        android:text="ADD HOUSE"
+        android:text="@string/add_house"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
 
@@ -39,7 +39,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="60dp"
-        android:hint="Address"
+        android:hint="@string/address"
         android:textSize="20sp" />
 
     <EditText
@@ -51,7 +51,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:textSize="20sp"
-        android:hint="Phone Number" />
+        android:hint="@string/phone_number" />
 
     <EditText
         android:id="@+id/add_price"
@@ -62,7 +62,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:textSize="20sp"
-        android:hint="Price" />
+        android:hint="@string/price" />
 
 
 
@@ -87,7 +87,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Image"
+                android:text="@string/add_image"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:layout_centerInParent="true"
@@ -116,7 +116,7 @@
                 android:id="@+id/save_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="@string/save"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:layout_centerInParent="true"

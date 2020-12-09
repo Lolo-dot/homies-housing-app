@@ -2,31 +2,31 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="Appearance">
+        android:title="@string/Appearance">
 
     <SwitchPreference
         android:key="darkmodeSwitch"
-        android:title="Enable Dark Mode"
+        android:title="@string/Enable_DarkMode"
         android:defaultValue="false" />
 
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="More Information">
+        android:title="@string/More_Information">
 
         <Preference
             android:key="Aboutus"
-            android:title="About us"/>
+            android:title="@string/about_us"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Account Actions">
+        android:title="@string/account_actions">
 
         <Preference
             android:key="Settings_Logout"
-            android:title="Logout"
+            android:title="@string/logout"
 
             />
 
