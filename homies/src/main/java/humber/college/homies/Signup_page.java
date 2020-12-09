@@ -4,9 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -112,7 +109,7 @@ public class Signup_page extends AppCompatActivity {
                                 SharedPreferences.Editor editor = USR.edit();
                                 editor.putString("usernameStorage", username);
                                 editor.apply();
-                                Intent intent = new Intent(getApplicationContext(), edit_profile_page.class);
+                                Intent intent = new Intent(getApplicationContext(), Edit_profile_page.class);
                                 startActivityForResult(intent, 0);
                             }
                         }

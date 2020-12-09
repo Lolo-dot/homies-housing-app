@@ -21,7 +21,7 @@
         <activity android:name=".AboutUs"></activity>
         <activity android:name=".Settings_page" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".edit_profile_page" />
+        <activity android:name=".Edit_profile_page" />
         <activity android:name=".Signup_page" />
         <activity android:name=".Login_page" />
         <activity android:name=".SplashActivity">

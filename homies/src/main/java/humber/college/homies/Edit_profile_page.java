@@ -36,7 +36,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class edit_profile_page extends AppCompatActivity {
+public class Edit_profile_page extends AppCompatActivity {
     SharedPreferences USR;
     String ProfilePic;
     Bitmap bitmap;
