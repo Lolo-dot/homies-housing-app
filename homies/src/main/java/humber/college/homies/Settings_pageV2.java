@@ -7,10 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 public class Settings_pageV2 extends AppCompatActivity {
-
-    public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,21 +21,8 @@ public class Settings_pageV2 extends AppCompatActivity {
                 return;
 
             getFragmentManager().beginTransaction().add(R.id.setting_fragment_container, new Settings_Fragment()).commit();
-            settingsCheck();
         }
     }
 
-    public void settingsCheck(){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean darkmodeCheck = sharedPreferences.getBoolean(DARK_MODE_SWITCH, false);
 
-        if(darkmodeCheck){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            recreate();
-        }
-        else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            recreate();
-        }
-    }
 }

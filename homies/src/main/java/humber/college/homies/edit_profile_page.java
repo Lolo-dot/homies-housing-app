@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -160,6 +161,7 @@ public class edit_profile_page extends AppCompatActivity {
                 final Fragment bookmarkFrag = new Bookmark_page();
                 getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
                         .replace(R.id.fragmentContent, bookmarkFrag, null).addToBackStack(null).commit();
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.constraintLayout), "Welcome to your Bookmarked Houses", Snackbar.LENGTH_LONG);snackbar.show();
                 break;
         }
         return super.onOptionsItemSelected(item);

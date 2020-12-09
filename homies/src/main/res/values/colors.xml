@@ -6,12 +6,14 @@
     <color name="loginBackground">#FF1100</color>
     <color name="defaultBackground">#FFFFFF</color>
 
-    <color name="colorPrimaryNight">#212121</color>
+    <color name="colorPrimaryNight">#535353</color>
     <color name="colorPrimaryDarkNight">#141d26</color>
     <color name="colorAccentNight">#ffffff</color>
 
     <color name="primaryTitleColor">#212121</color>
     <color name="primaryTitleColorNight">#FFFFFF</color>
+    <color name="colorWindowBackgroundNight">#212121</color>
+
 
     <color name="text_color">#000</color>
 </resources>
