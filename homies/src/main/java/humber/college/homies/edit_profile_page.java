@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
@@ -38,7 +39,7 @@ import java.io.InputStream;
 public class edit_profile_page extends AppCompatActivity {
     SharedPreferences USR;
     String ProfilePic;
-
+    Bitmap bitmap;
     private Button add_image;
     private ImageView image_view;
 
@@ -75,6 +76,8 @@ public class edit_profile_page extends AppCompatActivity {
                     }
                     else{
                         image.setImageBitmap(string_toImage(data.getProfilepicture()));
+                        bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
+                        ProfilePic = image_toString(bitmap);
                     }
                     TextView textview = findViewById(R.id.EditUserName);
                     textview.setText(data.getUsername());
