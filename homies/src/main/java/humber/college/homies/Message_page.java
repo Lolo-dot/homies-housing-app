@@ -3,6 +3,7 @@ package humber.college.homies;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -39,7 +40,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class Message_page extends Fragment {
     public String num;
     public String usr_msg;
-    public Button send_msg_btn;
+    public CardView send_msg_btn;
     public EditText get_msg;
     public TextView disp_num;
 
@@ -49,13 +50,13 @@ public class Message_page extends Fragment {
         View view = inflater.inflate(R.layout.message_layout, container, false);
 
         // Intializing the buttons and textfield
-        send_msg_btn = (Button) view.findViewById(R.id.send_msg);
+        send_msg_btn = (CardView) view.findViewById(R.id.send_msg);
         get_msg = (EditText) view.findViewById(R.id.msg_box);
         disp_num = (TextView) view.findViewById(R.id.dis_msg_num);
 
         // Code for updating buttons text
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        num = sharedPreferences.getString(getString(R.string.number_key_pref), null);
+        num = sharedPreferences.getString(getString(R.string.number_key_pref), "Please Select a Number");
 
         // Update Text for user
         update_num();
@@ -101,6 +102,10 @@ public class Message_page extends Fragment {
 
     public void update_num(){
         // Setting up num for user
+        if(num=="Please Select a Number"){
+            disp_num.setText("Select Contact");
+            send_msg_btn.setEnabled(false);
+        }
         disp_num.setText("To: "+num);
     }
 
