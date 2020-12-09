@@ -19,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         constraintSnackLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
         createNotification("Welcome to Homies");
 
+
+
         //shared pref delcarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -107,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.b:
                         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
                                 .replace(R.id.fragmentContent, bookmarkFrag, null).addToBackStack(null).commit();
-                        Snackbar snackbar = Snackbar.make(findViewById(R.id.constraintLayout), R.string.bookmarks_welcome, Snackbar.LENGTH_SHORT);snackbar.show();
                         break;
                     case R.id.p:
                         getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
@@ -130,20 +133,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.back_press_tit))
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.Exit_Confirmation))
                 .setCancelable(false)
-                .setPositiveButton(getString(R.string.back_pres_post), new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finishAffinity();
                     }
                 })
-                .setNegativeButton(getString(R.string.back_pres_neg), new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.back_pres_neg, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //do nothing
                         return;
                     }
                 });
+        builder.setIcon(R.drawable.alert_icon);
         AlertDialog alert = builder.create();
         alert.show();
     }

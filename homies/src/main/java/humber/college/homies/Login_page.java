@@ -95,7 +95,7 @@ public class Login_page extends AppCompatActivity {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if (isLoggedIn) {
-            Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
@@ -197,24 +197,23 @@ public class Login_page extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.Exit_Confirmation);
-        builder.setCancelable(true);
-
-        builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finishAffinity();
-            }
-        });
-        builder.setNegativeButton(getString(R.string.back_pres_neg), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //do nothing
-                return;
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.Exit_Confirmation))
+                .setCancelable(false)
+                .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity();
+                    }
+                })
+                .setNegativeButton(R.string.back_pres_neg, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do nothing
+                        return;
+                    }
+                });
+        builder.setIcon(R.drawable.alert_icon);
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public void Go_To_Signup(View view) {

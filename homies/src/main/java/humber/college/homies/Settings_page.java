@@ -46,26 +46,18 @@ public class Settings_page extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        vali_normal_login = false;
-        vali_face_login = false;
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         isLoggedIn = accessToken != null && !accessToken.isExpired();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean normal_log = prefs.getBoolean("logbool",false);
 
-        // checking if normal loging is good
-        if(!USR.getBoolean("logbool",false)){
-            vali_normal_login=true;
-            //Toast.makeText(getApplicationContext(),"Normal False",Toast.LENGTH_LONG).show();
-        }
-        if(!isLoggedIn){
-            vali_face_login = true;
-        }
-        if (vali_face_login&&vali_normal_login){
+        if (isLoggedIn==false&&normal_log==false){
             Intent intent = new Intent(getApplicationContext(), Login_page.class);
             startActivity(intent);
-        }else{
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
         }
-        //Toast.makeText(getApplicationContext(),"Back Press",Toast.LENGTH_LONG).show();
     }
+    /*@Override
+    public void onBackPressed() {
+
+    }*/
 }
