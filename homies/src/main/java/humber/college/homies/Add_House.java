@@ -126,7 +126,8 @@ public class Add_House extends Fragment {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                ProfilePic = image_toString(selectedImage);
+                Bitmap bitmap = Bitmap.createScaledBitmap(selectedImage, 480, 480, true);
+                ProfilePic = image_toString(bitmap);
                 img1.setImageBitmap(string_toImage(ProfilePic));
                 add = get_add.getText().toString();
                 num = get_num.getText().toString();
