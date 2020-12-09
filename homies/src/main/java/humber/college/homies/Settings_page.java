@@ -44,7 +44,7 @@ public class Settings_page extends AppCompatActivity {
 
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         isLoggedIn = accessToken != null && !accessToken.isExpired();
@@ -53,6 +53,9 @@ public class Settings_page extends AppCompatActivity {
 
         if (isLoggedIn==false&&normal_log==false){
             Intent intent = new Intent(getApplicationContext(), Login_page.class);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
     }
