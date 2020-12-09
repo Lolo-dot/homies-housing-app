@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 final Fragment bookmarkFrag = new Bookmark_page();
                 getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
                         .replace(R.id.fragmentContent, bookmarkFrag, null).addToBackStack(null).commit();
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.constraintLayout), "Welcome to your Bookmarked Houses", Snackbar.LENGTH_LONG);snackbar.show();
                 break;
         }
         return super.onOptionsItemSelected(item);
