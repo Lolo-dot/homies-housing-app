@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     android:id="@+id/msg_layout">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Send Message"
+        android:textColor="#FF0000"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/dis_msg_num"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.271" />
 
     <TextView
         android:id="@+id/dis_msg_num"
@@ -18,26 +30,26 @@
         app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintVertical_bias="0.185" />
 
     <EditText
         android:id="@+id/msg_box"
         android:layout_width="350dp"
         android:layout_height="150dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="288dp"
         android:background="#EAE7E7"
         android:hint="@string/enter_message_max_200_words"
-        android:textColorHint="#8E8A8A"
         android:textColor="@color/colorPrimaryNight"
+        android:textColorHint="#8E8A8A"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintHorizontal_bias="0.606"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/send_msg"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_width="149dp"
+        android:layout_height="47dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:onClick="new_house"
@@ -60,7 +72,7 @@
                 android:text="@string/send"
                 android:textAlignment="center"
                 android:textColor="#fff"
-                android:textSize="40sp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
