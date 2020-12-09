@@ -44,14 +44,20 @@ public class Settings_page extends AppCompatActivity {
 
     }
 
-    /*@Override
+    @Override
     public void onBackPressed() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         isLoggedIn = accessToken != null && !accessToken.isExpired();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean normal_log = prefs.getBoolean("logbool",false);
 
-        if (isLoggedIn==false){
+        if (isLoggedIn==false&&normal_log==false){
             Intent intent = new Intent(getApplicationContext(), Login_page.class);
             startActivity(intent);
         }
+    }
+    /*@Override
+    public void onBackPressed() {
+
     }*/
 }
