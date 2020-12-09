@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.widget.Toast;
 
@@ -62,10 +63,10 @@ public class Settings_Fragment extends PreferenceFragment {
         logoutPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(getContext());
-                if(googleSignInAccount != null)
-                    FirebaseAuth.getInstance().signOut();
-
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences (getContext());
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("logbool",false);
+                editor.commit();
                 Intent d = new Intent(getContext(), Login_page.class);
                 startActivity(d);
                 return true;

@@ -42,28 +42,6 @@ public class Settings_page extends AppCompatActivity {
             getFragmentManager().beginTransaction().add(R.id.setting_fragment_container, new Settings_Fragment()).commit();
         }
 
-  /*     // Checking if user is still logged
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        isLoggedIn = accessToken != null && !accessToken.isExpired();
-        USR = getSharedPreferences("spDATABASE",0);
-
-        // checking if normal logging is good
-        USR = getSharedPreferences("spDATABASE",0);
-        if(!USR.getBoolean("logbool",false)){
-            log_out_btn.setVisibility(View.INVISIBLE);
-        }
-
-        log_out_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = USR.edit();
-                editor.putBoolean("logbool",false);
-                editor.commit();
-                Intent intent = new Intent(getApplicationContext(), Login_page.class);
-                startActivity(intent);
-            }
-        }); */
-
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -93,8 +94,8 @@ public class Login_page extends AppCompatActivity {
         setContentView(R.layout.login_layout);
 
         // Checking if user is already logged in through our normal login method
-        USR = getSharedPreferences("spDATABASE",0);
-        if(USR.getBoolean("logbool",false)){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if(prefs.getBoolean("logbool",false)){
             Toast.makeText(getApplicationContext(),"Login Successfull",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
