@@ -51,4 +51,16 @@ public class ExampleUnitTest {
         UnitTest test1 = new UnitTest();
         assertNotEquals(true,test1.validation_isCorrect3("ELO5768","Shermal123"));
     }
+
+    @Test
+    public void validation_isCorrect8() {
+        UnitTest test1 = new UnitTest();
+        assertNotEquals(true,test1.validation_isCorrect4("+6473546789"));
+    }
+
+    @Test
+    public void validation_isCorrect9() {
+        UnitTest test1 = new UnitTest();
+        assertEquals(true,test1.validation_isCorrect4("6473546789"));
+    }
 }
