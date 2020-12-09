@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/homies_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AboutUs"></activity>
         <activity android:name=".Settings_page" />
         <activity android:name=".MainActivity" />
         <activity android:name=".edit_profile_page" />

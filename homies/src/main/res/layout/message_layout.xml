@@ -8,46 +8,38 @@
 
 
     <TextView
-        android:id="@+id/tvMessages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact_via"
-        android:textColor="#FF5722"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
         android:id="@+id/dis_msg_num"
         android:layout_width="279dp"
         android:layout_height="47dp"
-        android:textSize="30dp"
         android:text="TO: "
-        app:layout_constraintBottom_toTopOf="@+id/msg_box"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMessages" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.105" />
 
     <EditText
         android:id="@+id/msg_box"
-        android:layout_width="294dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="224dp"
+        android:background="#EAE7E7"
         android:hint="Enter Message max 200 words"
+        android:textColorHint="#8E8A8A"
+        android:textColor="@color/colorPrimaryNight"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.594"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMessages" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/send_msg"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="100dp"
         android:onClick="new_house"
         app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="25dp"
@@ -65,9 +57,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Save"
+                android:text="SEND"
+                android:textAlignment="center"
                 android:textColor="#fff"
-                android:textSize="20sp" />
+                android:textSize="40sp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

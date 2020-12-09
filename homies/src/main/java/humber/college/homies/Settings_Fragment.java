@@ -83,13 +83,16 @@ public class Settings_Fragment extends PreferenceFragment {
         aboutusPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-
+/*
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                String Description = "Currently there a lot of students (especially international students) struggling to find affordable housing near the college/university that they attend. Our application aims to combat that problem by allowing students to search for housing near their institutions, that also meet their requirements. The renters place advertisements of their housings with the requirements that they have, and the students use filters to search for suitable housing.";
+                String Description = "Currently there a lot of students (especially international students) struggling to find affordable housing near the college/university that they attend. Our application aims to combat that problem by allowing students to search for housing near their institutions, that also meet their requirements.";
                 builder.setMessage(Description);
                 builder.setCancelable(true);
                 AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                alertDialog.show(); */
+
+                Intent d = new Intent(getContext(), AboutUs.class);
+                startActivity(d);
                 return true;
             }
         });
