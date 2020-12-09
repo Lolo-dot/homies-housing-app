@@ -104,4 +104,5 @@
     <string name="to">À:</string>
     <string name="enter_message_max_200_words">Entrez le message 200 mots maximum</string>
     <string name="send">ENVOYER</string>
+    <string name="send_message">Envoyer le message</string>
 </resources>

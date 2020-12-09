@@ -104,6 +104,7 @@
     <string name="to">TO:</string>
     <string name="enter_message_max_200_words">Enter Message max 200 words</string>
     <string name="send">SEND</string>
+    <string name="send_message">Send Message</string>
     <string-array name="sortTypes">
         <item>Sort</item>
         <item>Price:Low to High</item>
