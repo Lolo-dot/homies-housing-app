@@ -3,6 +3,7 @@ package humber.college.homies;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     //public ArrayList<House> housesList=new ArrayList<>();
     //RecyclerView rv;
     //MyAdapter adapter=new MyAdapter(this,housesList);
+    ConstraintLayout constraintSnackLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
             bottomNavigationView.setSelectedItemId(R.id.p);
         }
+        constraintSnackLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
 
 
         //shared pref delcarations
@@ -180,5 +183,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }//end of code

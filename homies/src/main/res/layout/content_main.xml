@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="90dp"
         android:text="@string/nothing_to_show"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,10 +30,18 @@
         <SearchView
             android:id="@+id/mSearch"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:queryHint="Search Houses"
-            android:iconifiedByDefault="false"
-            />
+            android:layout_height="40dp"
+            android:queryHint="Search New Houses"
+            android:iconifiedByDefault="false" />
+
+        <Spinner
+            android:id="@+id/searchSortsSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spinnerPrompt"
+            android:spinnerMode="dropdown"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myRecycler"

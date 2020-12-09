@@ -21,7 +21,7 @@ public class House {
         this.bookmarked=bookmarked;
     }
 
-    public static Comparator<House>HouseNameAZ = new Comparator<House>() {
+    public static Comparator<House>PriceLowTooHigh = new Comparator<House>() {
         @Override
         public int compare(House h1, House h2) {
             if(Integer.parseInt(h1.getPos())<Integer.parseInt(h2.getPos())){
@@ -30,6 +30,32 @@ public class House {
                 return 1;
             }else
             return 0;
+        }
+    };
+
+    public static Comparator<House>PriceHighToLow = new Comparator<House>() {
+        @Override
+        public int compare(House h1, House h2) {
+            if(Integer.parseInt(h1.getPos())>Integer.parseInt(h2.getPos())){
+                return -1;
+            }else if(Integer.parseInt(h1.getPos())<Integer.parseInt(h2.getPos())){
+                return 1;
+            }else
+                return 0;
+        }
+    };
+
+    public static Comparator<House>NameAToZ = new Comparator<House>() {
+        @Override
+        public int compare(House h1, House h2) {
+            return h1.getName().compareTo(h2.getName());
+        }
+    };
+
+    public static Comparator<House>NameZToA = new Comparator<House>() {
+        @Override
+        public int compare(House h1, House h2) {
+            return h2.getName().compareTo(h1.getName());
         }
     };
 
