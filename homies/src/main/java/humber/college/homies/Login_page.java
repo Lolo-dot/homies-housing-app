@@ -141,7 +141,7 @@ public class Login_page extends AppCompatActivity {
         verifyGoogle = findViewById(R.id.Login_Google);
         constraintLayout = findViewById(R.id.loginLayout);
         preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
-        checkNightModeActivated();
+   //     checkNightModeActivated();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

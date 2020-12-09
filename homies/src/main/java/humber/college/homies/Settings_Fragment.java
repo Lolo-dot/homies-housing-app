@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -19,18 +21,31 @@ public class Settings_Fragment extends PreferenceFragment {
 
     public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
     public static final String LOG_OUT_BUTTON = "Settings_Logout";
-    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
 
-    //Dark Mode Related Stuff
-    public static final String MYPREFERENCES = "nightModePrefs";
-    public static final String KEY_ISNIGHTMODE = "isNightMode";
-    SharedPreferences preferences;
-
+    SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings_preferences);
+
+        sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                if (key.equals(DARK_MODE_SWITCH)) {
+                    boolean darkmodeCheck = sharedPreferences.getBoolean(DARK_MODE_SWITCH, false);
+
+                    if (darkmodeCheck) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        getActivity().recreate();
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        getActivity().recreate();
+                    }
+                }
+
+            }
+        };
 
         Preference logoutPref = (Preference) findPreference(LOG_OUT_BUTTON);
         logoutPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -39,10 +54,9 @@ public class Settings_Fragment extends PreferenceFragment {
                 GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(getContext());
                 if(googleSignInAccount != null)
                     FirebaseAuth.getInstance().signOut();
-                else{
-                    Intent d = new Intent(getContext(), Login_page.class);
-                    startActivity(d);
-                }
+
+                Intent d = new Intent(getContext(), Login_page.class);
+                startActivity(d);
                 return true;
             }
         });
@@ -53,12 +67,12 @@ public class Settings_Fragment extends PreferenceFragment {
     public void onResume() {
         super.onResume();
 
-        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
     }
 }
