@@ -1,5 +1,5 @@
 package humber.college.homies;
-//Team Name: Homies
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
