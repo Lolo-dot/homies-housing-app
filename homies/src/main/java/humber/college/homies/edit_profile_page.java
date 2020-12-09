@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,8 +25,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -68,6 +72,42 @@ public class edit_profile_page extends AppCompatActivity {
             edittext1.setText(user.getDisplayName());
             edittext3.setText(user.getPhoneNumber());
         }
+
+        USR = getSharedPreferences("spDATABASE",0);
+        final String username = USR.getString("usernameStorage", getString(R.string.nothing_found));
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("PROFILES");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(username).exists()){
+                    ProfileData data = snapshot.child(username).getValue(ProfileData.class);
+                    ImageView image = findViewById(R.id.profilePic);
+                    if(data.getProfilepicture() == null){
+                        image.setImageResource(R.drawable.profile_icon);
+                    }
+                    else{
+                        image.setImageBitmap(string_toImage(data.getProfilepicture()));
+                    }
+                    TextView textview = findViewById(R.id.EditUserName);
+                    textview.setText(data.getUsername());
+                    TextView textview2 = findViewById(R.id.add_age);
+                    textview2.setText(data.getAge());
+                    TextView textview3 = findViewById(R.id.add_phone);
+                    textview3.setText(data.getPhoneNumber());
+                    TextView textview4 = findViewById(R.id.Roommates);
+                    textview4.setText(data.getRoomMates());
+                    TextView textview5 = findViewById(R.id.Description);
+                    textview5.setText(data.getDescription());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
@@ -82,12 +122,7 @@ public class edit_profile_page extends AppCompatActivity {
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 Bitmap bitmap = Bitmap.createScaledBitmap(selectedImage, 480, 480, true);
                 ProfilePic = image_toString(bitmap);
-                //USR = getSharedPreferences("spDATABASE",0);
-                //SharedPreferences.Editor editor = USR.edit();
-                //editor.putString("profile_pic",image_toString(selectedImage));
-                //editor.commit();
                 image_view.setImageBitmap(string_toImage(ProfilePic));
-               // image_view.setImageBitmap(string_toImage(USR.getString("profile_pic","")));
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

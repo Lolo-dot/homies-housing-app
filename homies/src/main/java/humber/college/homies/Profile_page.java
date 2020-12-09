@@ -66,8 +66,6 @@ public class Profile_page extends Fragment {
                     textview4.setText(getString(R.string.profileRoommates) +data.getRoomMates());
                     TextView textview5 = view.findViewById(R.id.Description);
                     textview5.setText(data.getDescription());
-                }else{
-
                 }
             }
 
