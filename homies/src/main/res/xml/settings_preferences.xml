@@ -6,10 +6,18 @@
 
     <SwitchPreference
         android:key="darkmodeSwitch"
-        android:summary="Enable Dark Mode"
-        android:defaultValue="false"
-        />
+        android:title="Enable Dark Mode"
+        android:defaultValue="false" />
 
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="More Information">
+
+        <Preference
+            android:key="Aboutus"
+            android:title="About us"/>
 
     </PreferenceCategory>
 
