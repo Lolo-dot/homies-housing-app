@@ -19,7 +19,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Search_page extends Fragment {
 
@@ -50,7 +54,7 @@ public class Search_page extends Fragment {
         //shared pref delcarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("House Name").commit(); //removing old shared pref of phone number/email
+        editor.remove(getString(R.string.number_key_pref)).commit(); //removing old shared pref of phone number/email
 
         //floating action circle/bar. probs not needed
         /*
@@ -63,6 +67,64 @@ public class Search_page extends Fragment {
             }
 
         });*/
+
+        final Spinner spinner = (Spinner) view.findViewById(R.id.searchSortsSpinner);
+
+
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(view.getContext(), R.array.sortTypes,
+                android.R.layout.simple_spinner_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapterSpinner);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
+            {
+                //Toast.makeText(getContext(),"price low to hhhhigh selected",Toast.LENGTH_SHORT).show();
+                if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
+                    switch (parentView.getItemAtPosition(position).toString()) {
+                        case "Sort":
+                            //Toast.makeText(getContext(),"Sort",Toast.LENGTH_SHORT).show();
+
+                            break;
+                        case "Price:Low to High":
+                            //Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
+                            Collections.sort(housesList, House.PriceLowTooHigh);
+                            adapter.notifyDataSetChanged();
+                            break;
+                        case "Price:High to Low":
+                            //Toast.makeText(getContext(),"Price:High to Low",Toast.LENGTH_SHORT).show();
+                            Collections.sort(housesList, House.PriceHighToLow);
+                            adapter.notifyDataSetChanged();
+                            break;
+                        case "Alphabetical:A-Z":
+                            //Toast.makeText(getContext(),"Alphabetical:A-Z",Toast.LENGTH_SHORT).show();
+                            Collections.sort(housesList, House.NameAToZ);
+                            adapter.notifyDataSetChanged();
+                            break;
+                        case "Alphabetical:Z-A":
+                            //Toast.makeText(getContext(),"Alphabetical:Z-A",Toast.LENGTH_SHORT).show();
+                            Collections.sort(housesList, House.NameZToA);
+                            adapter.notifyDataSetChanged();
+                            break;
+                        default:
+                            //Toast.makeText(getContext(),"default break",Toast.LENGTH_SHORT).show();
+                            break;
+                    }//end of switch
+                } else{
+                    spinner.setSelection(0);
+                    //Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.constraintLayout), "Search bar must be empty to change sort", Snackbar.LENGTH_LONG);snackbar.show();
+                }
+            }//end of onitme selected
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+                Toast.makeText(getContext(),"price low to high sssssselected",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //declaring views
         sv = (SearchView) view.findViewById(R.id.mSearch);

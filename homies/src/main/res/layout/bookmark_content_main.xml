@@ -32,7 +32,7 @@
             android:id="@+id/bookSearchView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:queryHint="Search Saved Houses"
+            android:queryHint="Search Bookmarked Houses"
             android:iconifiedByDefault="false"/>
         <Spinner
             android:id="@+id/bookSortsSpinner"
@@ -46,7 +46,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myRecyclerBookMark"
             android:layout_width="wrap_content"
-            android:layout_below="@+id/bookSearchView"
             android:layout_height="wrap_content"
             class="android.support.v7.widget.RecyclerView" />
 

@@ -3,6 +3,7 @@ package humber.college.homies;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,6 +47,7 @@ public class Bookmark_page extends Fragment {
     public ArrayList<House> houseList = new ArrayList<>();
     RecyclerView rv;
     MyAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bookmark_content_main, container, false);
@@ -54,6 +56,7 @@ public class Bookmark_page extends Fragment {
    /* protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bookmark_layout);*/
+
 
         //decalring shared prefs
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -90,36 +93,37 @@ public class Bookmark_page extends Fragment {
                 if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
                 switch (parentView.getItemAtPosition(position).toString()) {
                     case "Sort":
-                        Toast.makeText(getContext(),"Sort",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),"Sort",Toast.LENGTH_SHORT).show();
 
                         break;
                     case "Price:Low to High":
-                            Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
                             Collections.sort(houseList, House.PriceLowTooHigh);
                             adapter.notifyDataSetChanged();
                         break;
                     case "Price:High to Low":
-                        Toast.makeText(getContext(),"Price:High to Low",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),"Price:High to Low",Toast.LENGTH_SHORT).show();
                         Collections.sort(houseList, House.PriceHighToLow);
                         adapter.notifyDataSetChanged();
                         break;
                     case "Alphabetical:A-Z":
-                        Toast.makeText(getContext(),"Alphabetical:A-Z",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),"Alphabetical:A-Z",Toast.LENGTH_SHORT).show();
                         Collections.sort(houseList, House.NameAToZ);
                         adapter.notifyDataSetChanged();
                         break;
                     case "Alphabetical:Z-A":
-                        Toast.makeText(getContext(),"Alphabetical:Z-A",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),"Alphabetical:Z-A",Toast.LENGTH_SHORT).show();
                         Collections.sort(houseList, House.NameZToA);
                         adapter.notifyDataSetChanged();
                         break;
                     default:
-                        Toast.makeText(getContext(),"default break",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),"default break",Toast.LENGTH_SHORT).show();
                         break;
                 }//end of switch
                 } else{
                     spinner.setSelection(0);
-                    Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.constraintLayout), "Search bar must be empty to change sort", Snackbar.LENGTH_LONG);snackbar.show();
                 }
             }//end of onitme selected
 
