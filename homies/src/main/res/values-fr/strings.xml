@@ -105,4 +105,7 @@
     <string name="enter_message_max_200_words">Entrez le message 200 mots maximum</string>
     <string name="send">ENVOYER</string>
     <string name="send_message">Envoyer le message</string>
+    <string name="something_went_wrong">Un problème est survenu</string>
+    <string name="havent_picked_image">Vous n\'avez pas sélectionné d'image</string>
+    <string name="bookmarks_welcome">Bienvenue dans vos maisons favorites</string>
 </resources>

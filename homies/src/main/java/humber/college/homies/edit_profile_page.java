@@ -37,10 +37,6 @@ import java.io.InputStream;
 
 public class edit_profile_page extends AppCompatActivity {
     SharedPreferences USR;
-    private FirebaseAuth mAuth;
-
-    EditText edittext1;
-    EditText edittext3;
     String ProfilePic;
 
     private Button add_image;
@@ -50,9 +46,6 @@ public class edit_profile_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_layout);
-
-        edittext1 = (EditText)findViewById(R.id.EditUserName);
-        edittext3 = (EditText)findViewById(R.id.add_phone);
 
         // For image
         add_image = (Button) findViewById(R.id.add_image);
@@ -66,12 +59,6 @@ public class edit_profile_page extends AppCompatActivity {
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null){
-            edittext1.setText(user.getDisplayName());
-            edittext3.setText(user.getPhoneNumber());
-        }
 
         USR = getSharedPreferences("spDATABASE",0);
         final String username = USR.getString("usernameStorage", getString(R.string.nothing_found));
@@ -126,16 +113,19 @@ public class edit_profile_page extends AppCompatActivity {
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show();
             }
 
         }else {
-            Toast.makeText(this, "You haven't picked Image",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.havent_picked_image),Toast.LENGTH_LONG).show();
         }
     }
 
     public void Go_To_Profile(View view){
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        EditText edittext1 = (EditText)findViewById(R.id.EditUserName);
+        EditText edittext3 = (EditText)findViewById(R.id.add_phone);
         EditText edittext2 = (EditText)findViewById(R.id.add_age);
         EditText edittext4 = (EditText)findViewById(R.id.Roommates);
         EditText edittext5 = (EditText)findViewById(R.id.Description);
@@ -231,7 +221,7 @@ public class edit_profile_page extends AppCompatActivity {
                 final Fragment bookmarkFrag = new Bookmark_page();
                 getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
                         .replace(R.id.fragmentContent, bookmarkFrag, null).addToBackStack(null).commit();
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.constraintLayout), "Welcome to your Bookmarked Houses", Snackbar.LENGTH_LONG);snackbar.show();
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.constraintLayout), R.string.bookmarks_welcome, Snackbar.LENGTH_LONG);snackbar.show();
                 break;
         }
         return super.onOptionsItemSelected(item);
