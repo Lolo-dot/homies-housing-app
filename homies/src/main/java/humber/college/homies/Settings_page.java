@@ -30,9 +30,6 @@ public class Settings_page extends AppCompatActivity {
     boolean vali_face_login;
     Button log_out_btn;
 
-    public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
-    public static final String LOG_OUT_BUTTON = "Settings_Logout";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +42,12 @@ public class Settings_page extends AppCompatActivity {
             getFragmentManager().beginTransaction().add(R.id.setting_fragment_container, new Settings_Fragment()).commit();
         }
 
-   /*    // Checking if user is still logged
+  /*     // Checking if user is still logged
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         isLoggedIn = accessToken != null && !accessToken.isExpired();
         USR = getSharedPreferences("spDATABASE",0);
-        log_out_btn = (Button) findViewById(R.id.normal_logout_btn);
 
-        // checking if normal loging is good
+        // checking if normal logging is good
         USR = getSharedPreferences("spDATABASE",0);
         if(!USR.getBoolean("logbool",false)){
             log_out_btn.setVisibility(View.INVISIBLE);
@@ -66,66 +62,8 @@ public class Settings_page extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Login_page.class);
                 startActivity(intent);
             }
-        });
-
-
-        // If user pressed log out
-        //if (!isLoggedIn){
-        //    Intent intent = new Intent(getApplicationContext(), Login_page.class);
-        //    startActivity(intent);
-        //}
-
-
-        preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
-        darkSwitch = (Switch)findViewById(R.id.darkmodeSwitch);
-        checkNightModeActivated();
-
-        darkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    saveNightModeState(true);
-                    recreate();
-                }else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    saveNightModeState(false);
-                    recreate();
-                }
-            }
         }); */
-    }
 
-  /*  public void settingsCheck(){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean darkmodeCheck = sharedPreferences.getBoolean(DARK_MODE_SWITCH, false);
-
-        if(darkmodeCheck){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            recreate();
-        }
-        else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            recreate();
-        }
-    }
-
-
-    private void saveNightModeState(boolean nightMode) {
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(KEY_ISNIGHTMODE, nightMode);
-        editor.apply();
-    }
-
-    public void checkNightModeActivated(){
-        if(preferences.getBoolean(KEY_ISNIGHTMODE, false)){
-            darkSwitch.setChecked(true);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        else {
-            darkSwitch.setChecked(false);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
     }
 
     @Override
@@ -151,5 +89,5 @@ public class Settings_page extends AppCompatActivity {
             startActivity(intent);
         }
         //Toast.makeText(getApplicationContext(),"Back Press",Toast.LENGTH_LONG).show();
-    } */
+    }
 }

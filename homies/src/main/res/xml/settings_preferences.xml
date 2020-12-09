@@ -7,7 +7,9 @@
     <SwitchPreference
         android:key="darkmodeSwitch"
         android:summary="Enable Dark Mode"
-        android:defaultFocusHighlightEnabled="false"/>
+        android:defaultValue="false"
+        />
+
 
     </PreferenceCategory>
 

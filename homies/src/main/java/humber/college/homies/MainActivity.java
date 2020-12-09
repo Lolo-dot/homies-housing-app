@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.settings_item:
-                Intent intent = new Intent(this, Settings_pageV2.class);
+                Intent intent = new Intent(this, Settings_page.class);
                 startActivity(intent);
                 break;
 
