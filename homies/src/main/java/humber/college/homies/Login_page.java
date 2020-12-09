@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -58,12 +59,15 @@ public class Login_page extends AppCompatActivity {
 
     EditText mUsername, mPassword;
     Button button;
+    CheckBox checkBox;
     SharedPreferences USR;
 
     public static final String MYPREFERENCES = "nightModePrefs";
-    public static final String KEY_ISNIGHTMODE = "isNightMode";
     SharedPreferences preferences;
     public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
+    public static final String REMEMBER_DETAILS = "rememberDetails";
+    public static final String REMEMBER_USERNAME = "rememberUsername";
+    public static final String REMEMBER_PASSWORD = "rememberPassword";
 
     //Google Signin Variables
     private GoogleSignInClient mGoogleSignInClient;
@@ -137,14 +141,22 @@ public class Login_page extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         createGoogleRequest();
-
         mUsername = findViewById(R.id.loginUserName);
         mPassword = findViewById(R.id.loginPassword);
         button = findViewById(R.id.loginButton);
+        checkBox = findViewById(R.id.Login_Remember_CheckBox);
         verifyGoogle = findViewById(R.id.Login_Google);
         constraintLayout = findViewById(R.id.loginLayout);
         preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
         //     checkNightModeActivated();
+
+        USR = getSharedPreferences("spDATABASE", 0);
+        if(USR.getBoolean(REMEMBER_DETAILS, false)){
+            mUsername.setText(USR.getString(REMEMBER_USERNAME, ""));
+            mPassword.setText(USR.getString(REMEMBER_PASSWORD, ""));
+            checkBox.setChecked(true);
+        }
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,6 +189,13 @@ public class Login_page extends AppCompatActivity {
                                     SharedPreferences.Editor editor = USR.edit();
                                     editor.putString("usernameStorage", username);
                                     editor.putBoolean("logbool", true);
+                                    if(checkBox.isChecked()){
+                                        editor.putBoolean(REMEMBER_DETAILS, true);
+                                        editor.putString(REMEMBER_USERNAME, username);
+                                        editor.putString(REMEMBER_PASSWORD, password);
+                                    }
+                                    else
+                                        editor.putBoolean(REMEMBER_DETAILS, false);
                                     editor.apply();
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
