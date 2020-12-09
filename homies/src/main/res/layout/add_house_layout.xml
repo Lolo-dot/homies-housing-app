@@ -27,7 +27,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:contentDescription="@string/todo"
-        android:src="@drawable/profile_icon" />
+        android:src="@drawable/unbookmarked_vector" />
 
     <EditText
         android:id="@+id/add_address"
