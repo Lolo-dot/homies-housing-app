@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Signup_page extends AppCompatActivity {
 
-    EditText mUsername, mEmail, mPhone, mPassword, mConfirmPassword;
+    EditText mUsername, mEmail, mPassword, mConfirmPassword;
     Button  button;
     boolean validation;
     public RelativeLayout layout1;
@@ -41,7 +41,6 @@ public class Signup_page extends AppCompatActivity {
 
         mUsername = findViewById(R.id.signupUserName);
         mEmail = findViewById(R.id.signupEmailAddress);
-        mPhone = findViewById(R.id.signupPhone);
         mPassword = findViewById(R.id.signupPassword);
         mConfirmPassword = findViewById(R.id.signupConfirmPassword);
         button = findViewById(R.id.signupButton);
@@ -75,16 +74,7 @@ public class Signup_page extends AppCompatActivity {
                     mEmail.setError(getString(R.string.Error1));
                     validation = false;
                 }
-                if(phone.length() == 0){
-                    mPhone.requestFocus();
-                    mPhone.setError(getString(R.string.Error1));
-                    validation = false;
-                }
-                else if((phone.length() < 10) || (phone.length() > 13)){
-                    mPhone.requestFocus();
-                    mPhone.setError(getString(R.string.Error_Phone));
-                    validation = false;
-                }
+
                 if(password.length() == 0){
                     mPassword.requestFocus();
                     mPassword.setError(getString(R.string.Error1));
@@ -109,7 +99,7 @@ public class Signup_page extends AppCompatActivity {
 
                 if(validation){
                    final DatabaseReference myRef = database.getReference("USER/"+username);
-                   final SignupData data = new SignupData(username, password, email, phone);
+                   final SignupData data = new SignupData(username, password, email);
                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("USER");
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override

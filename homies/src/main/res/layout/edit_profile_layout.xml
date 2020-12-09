@@ -20,6 +20,10 @@
         android:id="@+id/add_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="172dp"
+        android:layout_marginBottom="560dp"
         android:text="Add Image" />
 
     <EditText
@@ -36,35 +40,38 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/add_number"
+        android:id="@+id/add_age"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/EditUserName"
         android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
+        android:inputType="number"
         android:textSize="20sp"
         android:hint="@string/age_hint" />
 
     <EditText
-        android:id="@+id/add_price"
+        android:id="@+id/add_phone"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_number"
+        android:layout_below="@id/add_age"
         android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:textSize="20sp"
+        android:inputType="phone"
         android:hint="@string/phone_hint" />
 
     <EditText
         android:id="@+id/Roommates"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_price"
+        android:layout_below="@id/add_phone"
         android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
+        android:inputType="number"
         android:textSize="20sp"
         android:hint="@string/roommates_number_hint" />
 

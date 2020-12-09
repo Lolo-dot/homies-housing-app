@@ -81,22 +81,22 @@ public class Login_page extends AppCompatActivity {
         super.onStart();
 
         FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null){
+        if (user != null) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         darkmodeCheck();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
 
         // Checking if user is already logged in through our normal login method
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if(prefs.getBoolean("logbool",false)){
-            Toast.makeText(getApplicationContext(),"Login Successfull",Toast.LENGTH_LONG).show();
+        if (prefs.getBoolean("logbool", false)) {
+            Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
@@ -111,14 +111,14 @@ public class Login_page extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getApplicationContext(),"Login Successfull",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
 
             @Override
             public void onCancel() {
-                Toast.makeText(getApplicationContext(),"Login Unsuccessfull",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Login Unsuccessfull", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -128,8 +128,8 @@ public class Login_page extends AppCompatActivity {
         });
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        if(isLoggedIn){
-            Toast.makeText(getApplicationContext(),"Login Successfull",Toast.LENGTH_LONG).show();
+        if (isLoggedIn) {
+            Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
@@ -144,7 +144,7 @@ public class Login_page extends AppCompatActivity {
         verifyGoogle = findViewById(R.id.Login_Google);
         constraintLayout = findViewById(R.id.loginLayout);
         preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
-   //     checkNightModeActivated();
+        //     checkNightModeActivated();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,39 +153,38 @@ public class Login_page extends AppCompatActivity {
                 final String password = mPassword.getText().toString().trim();
                 boolean validation = true;
 
-                if(username.length() == 0){
+                if (username.length() == 0) {
                     mUsername.requestFocus();
                     mUsername.setError(getString(R.string.Error1));
                     validation = false;
                 }
 
-                if(password.length() == 0){
+                if (password.length() == 0) {
                     mPassword.requestFocus();
                     mPassword.setError(getString(R.string.Error1));
                     validation = false;
                 }
 
-                if(validation){
+                if (validation) {
                     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("USER");
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.child(username).exists()){
-                              SignupData data = snapshot.child(username).getValue(SignupData.class);
-                              if(data.getPassword().equals(password)){
-                                  USR = getSharedPreferences("spDATABASE",0);
-                                  SharedPreferences.Editor editor = USR.edit();
-                                  editor.putString("usernameStorage", username);
-                                  editor.putBoolean("logbool", true);
-                                  editor.apply();
-                                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                  startActivity(intent);
-                              }
-                              else{
+                            if (snapshot.child(username).exists()) {
+                                SignupData data = snapshot.child(username).getValue(SignupData.class);
+                                if (data.getPassword().equals(password)) {
+                                    USR = getSharedPreferences("spDATABASE", 0);
+                                    SharedPreferences.Editor editor = USR.edit();
+                                    editor.putString("usernameStorage", username);
+                                    editor.putBoolean("logbool", true);
+                                    editor.apply();
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                } else {
                                     mPassword.requestFocus();
                                     mPassword.setError(getString(R.string.Error3));
                                 }
-                            }else{
+                            } else {
                                 mUsername.requestFocus();
                                 mUsername.setError(getString(R.string.Error7));
                             }
@@ -209,7 +208,7 @@ public class Login_page extends AppCompatActivity {
 
     }
 
-    private void darkmodeCheck(){
+    private void darkmodeCheck() {
         SharedPreferences preferences = getSharedPreferences(Settings_Fragment.SETTINGS_SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
         boolean darkmodeCheck = preferences.getBoolean(DARK_MODE_SWITCH, false);
 
@@ -217,7 +216,6 @@ public class Login_page extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
     }
-
 
 
     private void createGoogleRequest() {
@@ -273,19 +271,17 @@ public class Login_page extends AppCompatActivity {
                             final String username = user.getDisplayName();
                             String password = null;
                             String email = user.getEmail();
-                            String phone = user.getPhoneNumber();
 
-                            final DatabaseReference myRef = database.getReference("USER/"+username);
-                            final SignupData data = new SignupData(username, password, email, phone);
+                            final DatabaseReference myRef = database.getReference("USER/" + username);
+                            final SignupData data = new SignupData(username, password, email);
                             final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("USER");
                             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if(snapshot.child(username).exists()){
+                                    if (snapshot.child(username).exists()) {
                                         Intent intent = new Intent(getApplicationContext(), Search_page.class);
                                         startActivity(intent);
-                                    }
-                                    else{
+                                    } else {
                                         myRef.setValue(data);
                                         Intent intent = new Intent(getApplicationContext(), edit_profile_page.class);
                                         startActivity(intent);
@@ -322,45 +318,17 @@ public class Login_page extends AppCompatActivity {
             }
         });
         builder.setNegativeButton(getString(R.string.back_pres_neg), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //do nothing
-                        return;
-                    }
-                });
+            public void onClick(DialogInterface dialog, int id) {
+                //do nothing
+                return;
+            }
+        });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
 
-    public void Go_To_Signup(View view){
+    public void Go_To_Signup(View view) {
         Intent intent = new Intent(this, Signup_page.class);
         startActivity(intent);
-    }
-
-    public void checkNightModeActivated(){
-        if(preferences.getBoolean(KEY_ISNIGHTMODE, false)){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.settings_item:
-                Intent intent = new Intent(this, Settings_page.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

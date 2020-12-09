@@ -48,7 +48,7 @@ public class edit_profile_page extends AppCompatActivity {
         setContentView(R.layout.edit_profile_layout);
 
         edittext1 = (EditText)findViewById(R.id.EditUserName);
-        edittext3 = (EditText)findViewById(R.id.add_price);
+        edittext3 = (EditText)findViewById(R.id.add_phone);
 
         // For image
         add_image = (Button) findViewById(R.id.add_image);
@@ -72,7 +72,6 @@ public class edit_profile_page extends AppCompatActivity {
             edittext1.setText(user.getDisplayName());
             edittext3.setText(user.getPhoneNumber());
         }
-
     }
 
     @Override
@@ -105,27 +104,65 @@ public class edit_profile_page extends AppCompatActivity {
 
     public void Go_To_Profile(View view){
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
-        String txt_username = edittext1.getText().toString();
-
-        EditText edittext2 = (EditText)findViewById(R.id.add_number);
-        String txt_age = edittext2.getText().toString();
-
-        String txt_phone = edittext3.getText().toString();
-
+        EditText edittext2 = (EditText)findViewById(R.id.add_age);
         EditText edittext4 = (EditText)findViewById(R.id.Roommates);
-        String txt_roommates = edittext4.getText().toString();
-
         EditText edittext5 = (EditText)findViewById(R.id.Description);
-        String txt_description = edittext5.getText().toString();
 
+        String txt_username = edittext1.getText().toString().trim();
+        String txt_age = edittext2.getText().toString().trim();
+        String txt_phone = edittext3.getText().toString().trim();
+        String txt_roommates = edittext4.getText().toString().trim();
+        String txt_description = edittext5.getText().toString().trim();
 
-        USR = getSharedPreferences("spDATABASE",0);
-        final String username = USR.getString("usernameStorage", getString(R.string.Nothing_Found));
-        final ProfileData data = new ProfileData(txt_username, txt_age, txt_phone, txt_roommates,txt_description,ProfilePic);
-        final DatabaseReference myRef2 = database.getReference("PROFILES/"+username);
-        myRef2.setValue(data);
+        boolean validation = true;
+
+        if(txt_username.length() == 0){
+            edittext1.requestFocus();
+            edittext1.setError(getString(R.string.Error1));
+            validation = false;
+        }
+        else if(txt_username.length() < 2){
+            edittext1.requestFocus();
+            edittext1.setError(getString(R.string.Error2));
+            validation = false;
+        }
+        if(txt_age.length() == 0){
+            edittext2.requestFocus();
+            edittext2.setError(getString(R.string.Error1));
+            validation = false;
+        }
+        else if (Integer.parseInt(txt_age) > 150){
+            edittext2.requestFocus();
+            edittext2.setError(getString(R.string.Error_Age));
+            validation = false;
+        }
+        if(txt_phone.length() == 0){
+            edittext3.requestFocus();
+            edittext3.setError(getString(R.string.Error1));
+            validation = false;
+        }
+        else if((txt_phone.length() < 10) || (txt_phone.length() > 13)){
+            edittext3.requestFocus();
+            edittext3.setError(getString(R.string.Error_Phone));
+            validation = false;
+        }
+        if(txt_roommates.length() == 0){
+            edittext4.requestFocus();
+            edittext4.setError(getString(R.string.Error1));
+            validation = false;
+        }
+        else if(Integer.parseInt(txt_roommates) > 99){
+            edittext4.requestFocus();
+            edittext4.setError(getString(R.string.Error_Roommates));
+            validation = false;
+        }
+
+        if(validation) {
+            USR = getSharedPreferences("spDATABASE", 0);
+            final String username = USR.getString("usernameStorage", getString(R.string.Nothing_Found));
+            final ProfileData data = new ProfileData(txt_username, txt_age, txt_phone, txt_roommates, txt_description, ProfilePic);
+            final DatabaseReference myRef2 = database.getReference("PROFILES/" + username);
+            myRef2.setValue(data);
 
 /*
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
@@ -135,9 +172,10 @@ public class edit_profile_page extends AppCompatActivity {
                 .replace(R.id.fragmentContent, profile_frag, null).addToBackStack(null).commit();
 */
 
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("openProfile",1);
-        startActivity(intent);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("openProfile", 1);
+            startActivity(intent);
+        }
     }
 
     @Override

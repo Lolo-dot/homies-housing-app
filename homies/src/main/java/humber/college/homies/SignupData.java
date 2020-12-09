@@ -4,17 +4,15 @@ public class SignupData {
     public String username;
     public String password;
     public String email;
-    public String phone;
 
     public SignupData(){
 
     }
 
-    public SignupData(String username, String password, String email, String phone){
+    public SignupData(String username, String password, String email){
         this.username = username;
         this.password = password;
         this.email = email;
-        this.phone = phone;;
     }
 
     public String getPassword() {return password;}

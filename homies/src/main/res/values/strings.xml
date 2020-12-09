@@ -85,6 +85,8 @@
     <string name="facebook_app_id">225356762278805</string>
     <string name="fb_login_protocol_scheme">fb225356762278805</string>
     <string name="spinnerPrompt">Sort</string>
+    <string name="Error_Age">ENTER A VALID AGE</string>
+    <string name="Error_Roommates">ENTER A VALID NUMBER OF ROOMMATES</string>
     <string-array name="sortTypes">
         <item>Sort</item>
         <item>Price:Low to High</item>
