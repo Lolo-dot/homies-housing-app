@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -32,6 +34,9 @@ public class Add_House extends Fragment {
     private EditText get_add,get_num,get_price;
     private ImageView img1;
 
+    // Strings for getting text
+    String add,num,pri;
+
     //Recycler variables
     CardView crd1,crd2;
 
@@ -40,6 +45,9 @@ public class Add_House extends Fragment {
 
     // String for image
     private String ProfilePic;
+
+    // House Data
+    House add_data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +69,7 @@ public class Add_House extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
+
         // Setting on click listeners
         crd1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,11 +90,6 @@ public class Add_House extends Fragment {
     }
 
     // Function for adding image
-    public void new_house(){
-        Toast.makeText(getContext(),"New House",Toast.LENGTH_LONG).show();
-    }
-
-    // Function for adding house info
     public void add_image(){
         Toast.makeText(getContext(),"Add Image",Toast.LENGTH_LONG).show();
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
@@ -121,8 +125,6 @@ public class Add_House extends Fragment {
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
-
-
         if (resultCode == RESULT_OK) {
             try {
                 final Uri imageUri = data.getData();
@@ -130,18 +132,33 @@ public class Add_House extends Fragment {
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 ProfilePic = image_toString(selectedImage);
                 img1.setImageBitmap(string_toImage(ProfilePic));
-                // image_view.setImageBitmap(string_toImage(USR.getString("profile_pic","")));
-
+                add = get_add.getText().toString();
+                num = get_num.getText().toString();
+                pri = get_price.getText().toString();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
             }
-
         }else {
             Toast.makeText(getContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
     }
 
+    // Function for adding house info to firebase
+    public void new_house(){
+        add = get_add.getText().toString();
+        num = get_num.getText().toString();
+        pri = get_price.getText().toString();
+        House add_data = new House(add,pri,ProfilePic,num,false);
 
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef2 = database.getReference();
+        // Adding data to firebase now
+        myRef2.child("Houses").child(add).setValue(add_data);
+
+        //myRef2.child("Bookmarked Houses").child(add).setValue(add_data);
+        myRef2.setValue(add_data);
+        Toast.makeText(getContext(),add+num+pri,Toast.LENGTH_LONG).show();
+    }
 
 }
