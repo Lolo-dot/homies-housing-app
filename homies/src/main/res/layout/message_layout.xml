@@ -7,59 +7,56 @@
     android:id="@+id/msg_layout">
 
     <TextView
+        android:id="@+id/send_msg_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/send_message"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/dis_msg_num"
+        android:textSize="40dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/dis_msg_num"
-        android:layout_width="279dp"
-        android:layout_height="47dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/to"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="40dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.185" />
+        app:layout_constraintTop_toBottomOf="@+id/send_msg_tv" />
 
     <EditText
         android:id="@+id/msg_box"
         android:layout_width="350dp"
         android:layout_height="150dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginBottom="25dp"
         android:background="#EAE7E7"
         android:hint="@string/enter_message_max_200_words"
         android:textColor="@color/colorPrimaryNight"
         android:textColorHint="#8E8A8A"
+        app:layout_constraintBottom_toTopOf="@+id/send_msg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.606"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dis_msg_num" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/send_msg"
         android:layout_width="149dp"
         android:layout_height="47dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
         android:onClick="new_house"
         app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="25dp"
+        app:cardCornerRadius="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/msg_box">
+        android:layout_marginBottom="25dp">
 
         <RelativeLayout
+            android:id="@+id/save_btn_relative"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

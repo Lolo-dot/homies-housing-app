@@ -108,9 +108,11 @@ public class Message_page extends Fragment {
 
     public void update_num(){
         // Setting up num for user
-        disp_num.setText("To: "+num);
-    }
 
+        String number = getResources().getString(R.string.to)+num;
+        disp_num.setText(number);
+        //Toast.makeText(getActivity(),number, Toast.LENGTH_SHORT).show();
+    }
 
     protected void sendSMS(String phoneNo, String message) {
         // TODO Auto-generated method stub
