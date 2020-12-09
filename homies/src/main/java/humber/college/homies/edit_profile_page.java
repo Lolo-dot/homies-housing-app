@@ -85,7 +85,8 @@ public class edit_profile_page extends AppCompatActivity {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                ProfilePic = image_toString(selectedImage);
+                Bitmap bitmap = Bitmap.createScaledBitmap(selectedImage, 480, 480, true);
+                ProfilePic = image_toString(bitmap);
                 //USR = getSharedPreferences("spDATABASE",0);
                 //SharedPreferences.Editor editor = USR.edit();
                 //editor.putString("profile_pic",image_toString(selectedImage));
