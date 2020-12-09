@@ -63,10 +63,16 @@ public class Settings_Fragment extends PreferenceFragment {
         logoutPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences (getContext());
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("logbool",false);
-                editor.commit();
+                GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(getContext());
+                if(signInAccount != null){
+                    FirebaseAuth.getInstance().signOut();
+                }
+                else {
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("logbool", false);
+                    editor.commit();
+                }
                 Intent d = new Intent(getContext(), Login_page.class);
                 startActivity(d);
                 return true;
