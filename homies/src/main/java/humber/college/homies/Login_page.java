@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -58,10 +59,10 @@ public class Login_page extends AppCompatActivity {
     Button button;
     SharedPreferences USR;
 
-
     public static final String MYPREFERENCES = "nightModePrefs";
     public static final String KEY_ISNIGHTMODE = "isNightMode";
     SharedPreferences preferences;
+    public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
 
     //Google Signin Variables
     private GoogleSignInClient mGoogleSignInClient;
@@ -87,7 +88,7 @@ public class Login_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
-
+        darkmodeCheck();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
 
@@ -98,6 +99,7 @@ public class Login_page extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
+
 
         // Facebook API Code
         //FacebookSdk.sdkInitialize(getApplicationContext());
@@ -204,6 +206,15 @@ public class Login_page extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void darkmodeCheck(){
+        SharedPreferences preferences = getSharedPreferences(Settings_Fragment.SETTINGS_SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        boolean darkmodeCheck = preferences.getBoolean(DARK_MODE_SWITCH, false);
+
+        if (darkmodeCheck) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
     }
 
 
