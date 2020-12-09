@@ -165,7 +165,7 @@ public class Add_House extends Fragment {
             get_num.requestFocus();
             get_num.setError("Inavlid Number");
             return false;
-        }else if(msg.contains("+")==false){
+        }else if(msg.contains("+")){
             get_num.requestFocus();
             get_num.setError("Inavlid Number");
             return false;
