@@ -69,27 +69,9 @@ public class Login_page extends AppCompatActivity {
     public static final String REMEMBER_USERNAME = "rememberUsername";
     public static final String REMEMBER_PASSWORD = "rememberPassword";
 
-    //Google Signin Variables
-    private GoogleSignInClient mGoogleSignInClient;
-    private final static int RC_SIGN_IN = 123;
-    private ConstraintLayout constraintLayout;
-    ImageButton verifyGoogle;
-    private FirebaseAuth mAuth;
-
     // Facebook SignIn Vaiables
     private LoginButton loginButton;
     CallbackManager callbackManager;
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,14 +121,12 @@ public class Login_page extends AppCompatActivity {
         }
         // End of Facebook code
 
-        mAuth = FirebaseAuth.getInstance();
-        createGoogleRequest();
+
+
         mUsername = findViewById(R.id.loginUserName);
         mPassword = findViewById(R.id.loginPassword);
         button = findViewById(R.id.loginButton);
         checkBox = findViewById(R.id.Login_Remember_CheckBox);
-        verifyGoogle = findViewById(R.id.Login_Google);
-        constraintLayout = findViewById(R.id.loginLayout);
         preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
         //     checkNightModeActivated();
 
@@ -217,14 +197,6 @@ public class Login_page extends AppCompatActivity {
                 }
             }
         });
-
-        verifyGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn_Google();
-            }
-        });
-
     }
 
     private void darkmodeCheck() {
@@ -236,92 +208,11 @@ public class Login_page extends AppCompatActivity {
         }
     }
 
-
-    private void createGoogleRequest() {
-        // Configure Google Sign In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-    }
-
-    private void signIn_Google() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account.getIdToken());
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                // ...
-            }
-        }
-
         // Stuff for facebook api
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-                            final String username = user.getDisplayName();
-                            String password = null;
-                            String email = user.getEmail();
-
-                            final DatabaseReference myRef = database.getReference("USER/" + username);
-                            final SignupData data = new SignupData(username, password, email);
-                            final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("USER");
-                            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if (snapshot.child(username).exists()) {
-                                        Intent intent = new Intent(getApplicationContext(), Search_page.class);
-                                        startActivity(intent);
-                                    } else {
-                                        myRef.setValue(data);
-                                        Intent intent = new Intent(getApplicationContext(), edit_profile_page.class);
-                                        startActivity(intent);
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-                            Intent intent = new Intent(getApplicationContext(), Search_page.class);
-                            startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Snackbar.make(constraintLayout, getString(R.string.Authentication_Failed), Snackbar.LENGTH_SHORT).show();
-                        }
-
-                        // ...
-                    }
-                });
     }
 
     @Override
