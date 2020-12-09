@@ -73,7 +73,7 @@ public class Bookmark_page extends Fragment {
         });*/
 
 //Populate the spinner in the fragment
-        Spinner spinner = (Spinner) view.findViewById(R.id.bookSortsSpinner);
+        final Spinner spinner = (Spinner) view.findViewById(R.id.bookSortsSpinner);
 
 
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(view.getContext(), R.array.sortTypes,
@@ -90,27 +90,35 @@ public class Bookmark_page extends Fragment {
                 if(sv.getQuery().toString()==null||sv.getQuery().toString().equals("")) {
                 switch (parentView.getItemAtPosition(position).toString()) {
                     case "Sort":
+                        Toast.makeText(getContext(),"Sort",Toast.LENGTH_SHORT).show();
 
                         break;
                     case "Price:Low to High":
                             Toast.makeText(getContext(),"price low to high selected",Toast.LENGTH_SHORT).show();
-                            Collections.sort(houseList, House.HouseNameAZ);
+                            Collections.sort(houseList, House.PriceLowTooHigh);
                             adapter.notifyDataSetChanged();
                         break;
                     case "Price:High to Low":
                         Toast.makeText(getContext(),"Price:High to Low",Toast.LENGTH_SHORT).show();
+                        Collections.sort(houseList, House.PriceHighToLow);
+                        adapter.notifyDataSetChanged();
                         break;
                     case "Alphabetical:A-Z":
                         Toast.makeText(getContext(),"Alphabetical:A-Z",Toast.LENGTH_SHORT).show();
+                        Collections.sort(houseList, House.NameAToZ);
+                        adapter.notifyDataSetChanged();
                         break;
                     case "Alphabetical:Z-A":
                         Toast.makeText(getContext(),"Alphabetical:Z-A",Toast.LENGTH_SHORT).show();
+                        Collections.sort(houseList, House.NameZToA);
+                        adapter.notifyDataSetChanged();
                         break;
                     default:
                         Toast.makeText(getContext(),"default break",Toast.LENGTH_SHORT).show();
                         break;
                 }//end of switch
                 } else{
+                    spinner.setSelection(0);
                     Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
                 }
             }//end of onitme selected
@@ -125,8 +133,8 @@ public class Bookmark_page extends Fragment {
         //declaring views
         sv = (SearchView) view.findViewById(R.id.bookSearchView);
         rv = (RecyclerView) view.findViewById(R.id.myRecyclerBookMark);
-        but = (Button) view.findViewById(R.id.bookButton);
-
+        //but = (Button) view.findViewById(R.id.bookButton);
+/*
         but.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -140,7 +148,7 @@ public class Bookmark_page extends Fragment {
                     Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         //setting rv properties
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));// should be bookmark or this isntead of activity?
@@ -186,7 +194,7 @@ public class Bookmark_page extends Fragment {
 
         return view;
     }//end of oncreate view
-
+/*
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         // An item was selected. You can retrieve the selected item using
 
@@ -205,5 +213,5 @@ public class Bookmark_page extends Fragment {
                 Toast.makeText(getContext(),"Search bar must be empty to change sort",Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
 }
