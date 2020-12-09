@@ -23,7 +23,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".edit_profile_page" />
         <activity android:name=".Signup_page" />
-        <activity android:name=".Login_page">
+        <activity android:name=".Login_page" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
