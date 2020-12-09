@@ -77,7 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
             if(houses.get(position).getBookmarked()) {
                 holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_house);
             }else {
-                holder.bookmarkbutton.setImageResource(R.drawable.unbookmarked_house);
+                holder.bookmarkbutton.setImageResource(R.drawable.add_houses);
             }
 
         //click listener from custom ItemCLickListener
@@ -103,7 +103,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
                         if(houses.get(pos).getBookmarked()) {
                             //if currently true, set to false set image as unbookmarked
                             refBookmarkedHouses.child("Houses").child(houses.get(pos).getName()).child("bookmarked").setValue(false);
-                            holder.bookmarkbutton.setImageResource(R.drawable.unbookmarked_house);
+                            holder.bookmarkbutton.setImageResource(R.drawable.add_houses);
                             //then remove from bookmarks
                             refBookmarkedHouses.child("Bookmarked Houses").child(houses.get(pos).getName()).removeValue();
 
