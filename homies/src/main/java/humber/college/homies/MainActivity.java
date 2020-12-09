@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.p);
         }
         constraintSnackLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
-
+        createNotification("Welcome to Homies");
 
         //shared pref delcarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -161,6 +165,28 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createNotification(String message){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                MainActivity.this
+        )
+                .setSmallIcon(R.drawable.unbookmarked_vector)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText(message)
+                .setAutoCancel(true);
+
+        Intent noti = new Intent(this, Add_House.class);
+        noti.addFlags(noti.FLAG_ACTIVITY_CLEAR_TOP);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this,
+                0, noti, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager)getSystemService(
+                Context.NOTIFICATION_SERVICE
+        );
+        notificationManager.notify(0, builder.build());
     }
 
 
