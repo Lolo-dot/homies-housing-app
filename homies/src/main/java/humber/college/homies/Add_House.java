@@ -41,7 +41,8 @@ public class Add_House extends Fragment {
     CardView crd1,crd2;
 
     // Firebase Variable
-    private FirebaseAuth mAuth;
+    public FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public DatabaseReference refBookmarkedHouses = database.getReference();
 
     // String for image
     private String ProfilePic;
@@ -64,11 +65,6 @@ public class Add_House extends Fragment {
 
         // ImageField
         img1 = (ImageView) view.findViewById(R.id.House_pic);
-
-        // Firebase setting up
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-
 
         // Setting on click listeners
         crd1.setOnClickListener(new View.OnClickListener() {
@@ -151,13 +147,9 @@ public class Add_House extends Fragment {
         pri = get_price.getText().toString();
         House add_data = new House(add,pri,ProfilePic,num,false);
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef2 = database.getReference();
         // Adding data to firebase now
-        myRef2.child("Houses").child(add).setValue(add_data);
+        refBookmarkedHouses.child("Houses").child(add).setValue(add_data);
 
-        //myRef2.child("Bookmarked Houses").child(add).setValue(add_data);
-        myRef2.setValue(add_data);
         Toast.makeText(getContext(),add+num+pri,Toast.LENGTH_LONG).show();
     }
 
