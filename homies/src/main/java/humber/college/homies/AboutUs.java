@@ -1,9 +1,6 @@
 package humber.college.homies;
 //Team Name: Homies
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 public class AboutUs extends AppCompatActivity {

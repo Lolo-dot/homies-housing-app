@@ -42,19 +42,16 @@ public class Login_page extends AppCompatActivity {
     CheckBox checkBox;
     SharedPreferences prefs;
 
- //   public static final String MYPREFERENCES = "nightModePrefs";
-    SharedPreferences preferences;
     public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
     public static final String REMEMBER_DETAILS = "rememberDetails";
     public static final String REMEMBER_USERNAME = "rememberUsername";
     public static final String REMEMBER_PASSWORD = "rememberPassword";
     public static final String LOGBOOL = "logbool";
 
-
     // Facebook SignIn Vaiables
     private LoginButton loginButton;
     CallbackManager callbackManager;
- //   SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         darkmodeCheck();
@@ -64,7 +61,6 @@ public class Login_page extends AppCompatActivity {
         // Checking if user is already logged in through our normal login method
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if (prefs.getBoolean(LOGBOOL, false)) {
-        //    Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
@@ -79,7 +75,6 @@ public class Login_page extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-    //            Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
@@ -97,7 +92,6 @@ public class Login_page extends AppCompatActivity {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if (isLoggedIn) {
-            //Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
@@ -107,7 +101,6 @@ public class Login_page extends AppCompatActivity {
         mPassword = findViewById(R.id.loginPassword);
         button = findViewById(R.id.loginButton);
         checkBox = findViewById(R.id.Login_Remember_CheckBox);
-     //   preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
 
         if(prefs.getBoolean(REMEMBER_DETAILS, false)){
             mUsername.setText(prefs.getString(REMEMBER_USERNAME, ""));
