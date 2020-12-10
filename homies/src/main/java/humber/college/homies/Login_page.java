@@ -40,19 +40,21 @@ public class Login_page extends AppCompatActivity {
     EditText mUsername, mPassword;
     Button button;
     CheckBox checkBox;
-    SharedPreferences USR;
+    SharedPreferences prefs;
 
-    public static final String MYPREFERENCES = "nightModePrefs";
+ //   public static final String MYPREFERENCES = "nightModePrefs";
     SharedPreferences preferences;
     public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
     public static final String REMEMBER_DETAILS = "rememberDetails";
     public static final String REMEMBER_USERNAME = "rememberUsername";
     public static final String REMEMBER_PASSWORD = "rememberPassword";
+    public static final String LOGBOOL = "logbool";
+
 
     // Facebook SignIn Vaiables
     private LoginButton loginButton;
     CallbackManager callbackManager;
-
+ //   SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         darkmodeCheck();
@@ -60,9 +62,9 @@ public class Login_page extends AppCompatActivity {
         setContentView(R.layout.login_layout);
 
         // Checking if user is already logged in through our normal login method
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if (prefs.getBoolean("logbool", false)) {
-            Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (prefs.getBoolean(LOGBOOL, false)) {
+        //    Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
@@ -77,14 +79,14 @@ public class Login_page extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
+    //            Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
 
             @Override
             public void onCancel() {
-                Toast.makeText(getApplicationContext(), "Login Unsuccessfull", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Login Unsuccessful", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -101,19 +103,15 @@ public class Login_page extends AppCompatActivity {
         }
         // End of Facebook code
 
-
-
         mUsername = findViewById(R.id.loginUserName);
         mPassword = findViewById(R.id.loginPassword);
         button = findViewById(R.id.loginButton);
         checkBox = findViewById(R.id.Login_Remember_CheckBox);
-        preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
-        //     checkNightModeActivated();
+     //   preferences = getSharedPreferences(MYPREFERENCES, Context.MODE_PRIVATE);
 
-        USR = getSharedPreferences("spDATABASE", 0);
-        if(USR.getBoolean(REMEMBER_DETAILS, false)){
-            mUsername.setText(USR.getString(REMEMBER_USERNAME, ""));
-            mPassword.setText(USR.getString(REMEMBER_PASSWORD, ""));
+        if(prefs.getBoolean(REMEMBER_DETAILS, false)){
+            mUsername.setText(prefs.getString(REMEMBER_USERNAME, ""));
+            mPassword.setText(prefs.getString(REMEMBER_PASSWORD, ""));
             checkBox.setChecked(true);
         }
 
@@ -145,10 +143,9 @@ public class Login_page extends AppCompatActivity {
                             if (snapshot.child(username).exists()) {
                                 SignupData data = snapshot.child(username).getValue(SignupData.class);
                                 if (data.getPassword().equals(password)) {
-                                    USR = getSharedPreferences("spDATABASE", 0);
-                                    SharedPreferences.Editor editor = USR.edit();
+                                    SharedPreferences.Editor editor = prefs.edit();
                                     editor.putString("usernameStorage", username);
-                                    editor.putBoolean("logbool", true);
+                                    editor.putBoolean(LOGBOOL, true);
                                     if(checkBox.isChecked()){
                                         editor.putBoolean(REMEMBER_DETAILS, true);
                                         editor.putString(REMEMBER_USERNAME, username);

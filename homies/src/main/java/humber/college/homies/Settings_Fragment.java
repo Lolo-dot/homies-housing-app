@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import static humber.college.homies.Login_page.LOGBOOL;
+
 public class Settings_Fragment extends PreferenceFragment {
 
     public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
@@ -29,7 +31,6 @@ public class Settings_Fragment extends PreferenceFragment {
         //Define the settings file to use by this settings fragment
         getPreferenceManager().setSharedPreferencesName(SETTINGS_SHARED_PREFERENCES_FILE_NAME);
 
-
         addPreferencesFromResource(R.xml.settings_preferences);
 
         sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -40,7 +41,6 @@ public class Settings_Fragment extends PreferenceFragment {
 
                     if (darkmodeCheck) {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
                         getActivity().recreate();
                     } else {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -57,7 +57,7 @@ public class Settings_Fragment extends PreferenceFragment {
             public boolean onPreferenceClick(Preference preference) {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("logbool", false);
+                editor.putBoolean(LOGBOOL, false);
                 editor.commit();
                 Intent d = new Intent(getContext(), Login_page.class);
                 startActivity(d);
@@ -69,20 +69,11 @@ public class Settings_Fragment extends PreferenceFragment {
         aboutusPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-/*
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                String Description = "Currently there a lot of students (especially international students) struggling to find affordable housing near the college/university that they attend. Our application aims to combat that problem by allowing students to search for housing near their institutions, that also meet their requirements.";
-                builder.setMessage(Description);
-                builder.setCancelable(true);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show(); */
-
                 Intent d = new Intent(getContext(), AboutUs.class);
                 startActivity(d);
                 return true;
             }
         });
-
     }
 
     @Override
