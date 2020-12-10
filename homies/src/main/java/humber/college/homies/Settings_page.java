@@ -1,34 +1,19 @@
 package humber.college.homies;
 //Team Name: Homies
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 
 public class Settings_page extends AppCompatActivity {
 
-    private Switch darkSwitch;
-    boolean isLoggedIn;
-    SharedPreferences USR;
-    public static final String MYPREFERENCES = "nightModePrefs";
-    public static final String KEY_ISNIGHTMODE = "isNightMode";
     SharedPreferences preferences;
     boolean vali_normal_login;
     boolean vali_face_login;
-    Button log_out_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

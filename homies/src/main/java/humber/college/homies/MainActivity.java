@@ -3,7 +3,6 @@ package humber.college.homies;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
@@ -19,23 +18,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-import com.facebook.AccessToken;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
     public MainActivity(){
         super(R.layout.searchlayout);
     }
-    //SearchView sv;
-    //private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //public ArrayList<House> housesList=new ArrayList<>();
-    //RecyclerView rv;
-    //MyAdapter adapter=new MyAdapter(this,housesList);
-    ConstraintLayout constraintSnackLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,28 +56,14 @@ public class MainActivity extends AppCompatActivity {
             BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
             bottomNavigationView.setSelectedItemId(R.id.p);
         }
-        constraintSnackLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
         createNotification("Welcome to Homies");
 
 
 
-        //shared pref delcarations
+        //shared pref declarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("House Name").commit(); //removing old shared pref of phone number/email
-
-        //floating action circle/bar. probs not needed
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.snack_bar_value), Snackbar.LENGTH_LONG)
-                        .setAction(getString(R.string.action_snack_bar), null).show();
-            }
-
-        });*/
-
 
         //bottom navigationbar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
@@ -127,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void Go_To_EditProfile(View view){
         Intent intent = new Intent(this, Edit_profile_page.class);
-        //startActivityForResult(intent, 0);
         startActivity(intent);
     }
 

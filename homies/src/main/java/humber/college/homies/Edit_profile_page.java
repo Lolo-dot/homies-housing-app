@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,15 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,8 +54,7 @@ public class Edit_profile_page extends AppCompatActivity {
             }
         });
 
-
-        USR = getSharedPreferences("spDATABASE",0);
+        USR = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         final String username = USR.getString("usernameStorage", getString(R.string.nothing_found));
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("PROFILES");
 
@@ -97,13 +90,11 @@ public class Edit_profile_page extends AppCompatActivity {
 
             }
         });
-
     }
 
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
-
 
         if (resultCode == RESULT_OK) {
             try {
@@ -183,19 +174,10 @@ public class Edit_profile_page extends AppCompatActivity {
         }
 
         if(validation) {
-            USR = getSharedPreferences("spDATABASE", 0);
             final String username = USR.getString("usernameStorage", getString(R.string.Nothing_Found));
             final ProfileData data = new ProfileData(txt_username, txt_age, txt_phone, txt_roommates, txt_description, ProfilePic);
             final DatabaseReference myRef2 = database.getReference("PROFILES/" + username);
             myRef2.setValue(data);
-
-/*
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
-        bottomNavigationView.setSelectedItemId(R.id.m);
-        final Fragment profile_frag = new Profile_page();
-        getSupportFragmentManager().beginTransaction().setReorderingAllowed(true)
-                .replace(R.id.fragmentContent, profile_frag, null).addToBackStack(null).commit();
-*/
 
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("openProfile", 1);
@@ -243,5 +225,4 @@ public class Edit_profile_page extends AppCompatActivity {
         }
         return error_img;
     }
-
 }
