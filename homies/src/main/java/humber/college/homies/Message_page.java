@@ -40,7 +40,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class Message_page extends Fragment {
     public String num;
     public String usr_msg;
-    public CardView send_msg_btn;
+    public CardView send_msg_btn,call_btn;
     public EditText get_msg;
     public TextView disp_num;
 
@@ -51,6 +51,7 @@ public class Message_page extends Fragment {
 
         // Intializing the buttons and textfield
         send_msg_btn = (CardView) view.findViewById(R.id.send_msg);
+        call_btn = (CardView) view.findViewById(R.id.call_btn);
         get_msg = (EditText) view.findViewById(R.id.msg_box);
         disp_num = (TextView) view.findViewById(R.id.dis_msg_num);
 
@@ -84,6 +85,15 @@ public class Message_page extends Fragment {
                         }
                     }
                 }
+            }
+        });
+
+        call_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + num));
+                startActivity(intent);
             }
         });
         return view;
