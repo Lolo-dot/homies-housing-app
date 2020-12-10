@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.facebook.login.LoginManager;
+
 import static humber.college.homies.Login_page.LOGBOOL;
 
 public class Settings_Fragment extends PreferenceFragment {
@@ -59,6 +61,7 @@ public class Settings_Fragment extends PreferenceFragment {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putBoolean(LOGBOOL, false);
                 editor.commit();
+                LoginManager.getInstance().logOut();
                 Intent d = new Intent(getContext(), Login_page.class);
                 startActivity(d);
                 return true;

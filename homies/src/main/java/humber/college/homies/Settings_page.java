@@ -2,12 +2,15 @@ package humber.college.homies;
 //Team Name: Homies
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 
 import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 
 public class Settings_page extends AppCompatActivity {
 
@@ -28,6 +31,13 @@ public class Settings_page extends AppCompatActivity {
         }
 
     }
+
+    /*public void Go_To_Login(View view) {
+
+        LoginManager.getInstance().logOut();
+        Intent intent = new Intent(this, Login_page.class);
+        startActivity(intent);
+    }*/
 
    /* @Override
     public void onBackPressed() {
