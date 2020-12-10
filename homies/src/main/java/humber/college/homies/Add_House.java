@@ -145,7 +145,7 @@ public class Add_House extends Fragment {
             House add_data = new House(add,pri,ProfilePic,"+1"+num,false);
             // Adding data to firebase now
             refBookmarkedHouses.child("Houses").child(add).setValue(add_data);
-            Toast.makeText(getContext(),add+num+pri,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(),add+num+pri,Toast.LENGTH_LONG).show();
 
         }
     }
