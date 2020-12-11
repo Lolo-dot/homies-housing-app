@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Picture;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,14 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -72,9 +69,7 @@ public class Profile_page extends Fragment {
         final boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if(isLoggedIn){
             pictureView.setVisibility(View.VISIBLE);
-            //Toast.makeText(getContext(),"hello",Toast.LENGTH_LONG).show();
             getUserProfile(AccessToken.getCurrentAccessToken());
-
         }
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -89,7 +84,6 @@ public class Profile_page extends Fragment {
                     else{
                         image.setImageBitmap(string_toImage(data.getProfilepicture()));
                     }
-
                     textview.setText(getString(R.string.profileName) +data.getUsername());
                     textview2.setText(getString(R.string.profileAge) +data.getAge());
                     textview3.setText(getString(R.string.profilePhone) +data.getPhoneNumber());
@@ -137,10 +131,10 @@ public class Profile_page extends Fragment {
                             first_name= object.getString("first_name");
                             last_name = object.getString("last_name");
                             textview.setText(getString(R.string.profileName) +first_name+" "+last_name);
-                            textview2.setText(getString(R.string.profileAge) +"N/A");
-                            textview3.setText(getString(R.string.profilePhone) +"N/A");
-                            textview4.setText(getString(R.string.profileRoommates) +"N/A");
-                            textview5.setText("Description: N/A");
+                            textview2.setText(getString(R.string.profileAge) +getString(R.string.NA));
+                            textview3.setText(getString(R.string.profilePhone) +getString(R.string.NA));
+                            textview4.setText(getString(R.string.profileRoommates) +getString(R.string.NA));
+                            textview5.setText(getString(R.string.editprofile_description)+getString(R.string.NA));
                             pictureView.setProfileId(object.getString("id"));
                             String id = "https://graph.facebook.com/"+object.getString("id")+"/picture?type=normal";
                         } catch (JSONException e) {

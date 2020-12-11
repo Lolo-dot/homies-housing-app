@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -21,7 +20,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.firebase.database.DataSnapshot;
@@ -29,11 +27,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-
-import java.util.Arrays;
 
 public class Login_page extends AppCompatActivity {
 
@@ -65,7 +58,6 @@ public class Login_page extends AppCompatActivity {
             startActivity(intent);
         }
 
-
         // Facebook API Code
         //FacebookSdk.sdkInitialize(getApplicationContext());
         //AppEventsLogger.activateApp(this);
@@ -81,7 +73,7 @@ public class Login_page extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                //Toast.makeText(getApplicationContext(), "Login Unsuccessful", Toast.LENGTH_LONG).show();
+
             }
 
             @Override
@@ -107,7 +99,6 @@ public class Login_page extends AppCompatActivity {
             mPassword.setText(prefs.getString(REMEMBER_PASSWORD, ""));
             checkBox.setChecked(true);
         }
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +142,7 @@ public class Login_page extends AppCompatActivity {
                                         startActivity(intent);
                                     } else {
                                         mPassword.requestFocus();
-                                        mPassword.setError(getString(R.string.Error3));
+                                        mPassword.setError(getString(R.string.Error_Username_Password));
                                     }
                                 } else{
                                     mUsername.requestFocus();

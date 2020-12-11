@@ -30,10 +30,8 @@
     <string name="age_hint">Age</string>
     <string name="phone_hint">Phone</string>
     <string name="roommates_number_hint">Number of Roommates</string>
-    <string name="description_hint">Description</string>
     <string name="submit">Save</string>
     <string name="messagesnonewmessages">No New Messages</string>
-    <string name="FieldCannotbeEmpty">Field Can Not Be Empty</string>
     <string name="editprofile_name">Name: \</string>
     <string name="editprofile_age">Age: \</string>
     <string name="editprofile_phone">Phone: \</string>
@@ -50,7 +48,6 @@
     <string name="Yes">Yes</string>
     <string name="money_sign">$</string>
     <string name="back_press_tit">Exit</string>
-    <string name="back_pres_post">Yes</string>
     <string name="back_pres_neg">No</string>
     <string name="number_key_pref">phone_number</string>
     <string name="snack_bar_value">Replace with your own action</string>
@@ -108,6 +105,9 @@
     <string name="something_went_wrong">Something went wrong</string>
     <string name="havent_picked_image">You haven\'t picked Image</string>
     <string name="bookmarks_welcome">Welcome to your Bookmarked Houses</string>
+    <string name="Error_Username_Password">THE USERNAME AND PASSWORD DO NOT MATCH</string>
+    <string name="NA">N/A</string>
+    <string name="Error_Max_Length_160">Max Length 160</string>
     <string-array name="sortTypes">
         <item>Sort</item>
         <item>Price:Low to High</item>

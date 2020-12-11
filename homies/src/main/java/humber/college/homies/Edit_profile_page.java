@@ -61,9 +61,9 @@ public class Edit_profile_page extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ImageView image = findViewById(R.id.profilePic);
                 if(snapshot.child(username).exists()){
                     ProfileData data = snapshot.child(username).getValue(ProfileData.class);
-                    ImageView image = findViewById(R.id.profilePic);
                     if(data.getProfilepicture() == null){
                         image.setImageResource(R.drawable.profile_icon);
                     }

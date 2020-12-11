@@ -30,10 +30,8 @@
     <string name="age_hint">âge</string>
     <string name="phone_hint">téléphone</string>
     <string name="roommates_number_hint">Numéro de colocataire</string>
-    <string name="description_hint">la description</string>
     <string name="submit">sauvegarder</string>
     <string name="messagesnonewmessages">Aucun nouveau message</string>
-    <string name="FieldCannotbeEmpty">Le champ ne peut pas être vide</string>
     <string name="editprofile_name">Nom: \\</string>
     <string name="editprofile_age">âge</string>
     <string name="editprofile_phone">téléphone</string>
@@ -53,7 +51,6 @@
     <string name="toast_onCanceled_bookmark">a pas réussi à obtenir de la valeur</string>
     <string name="money_sign">$</string>
     <string name="back_press_tit">Sortie</string>
-    <string name="back_pres_post">Oui</string>
     <string name="back_pres_neg">Non</string>
     <string name="snack_bar_value">Remplacez par votre propre action</string>
     <string name="action_snack_bar">Action</string>
@@ -108,4 +105,7 @@
     <string name="something_went_wrong">Un problème est survenu</string>
     <string name="havent_picked_image">Vous n\'avez pas sélectionné d\'image</string>
     <string name="bookmarks_welcome">Bienvenue dans vos maisons favorites</string>
+    <string name="Error_Username_Password">LE NOM D\'UTILISATEUR ET LE MOT DE PASSE NE CORRESPONDENT PAS</string>
+    <string name="NA">N/A</string>
+    <string name="Error_Max_Length_160">Longueur maximale 160</string>
 </resources>

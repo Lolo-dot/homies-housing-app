@@ -44,7 +44,6 @@ public class Message_page extends Fragment {
     public EditText get_msg;
     public TextView disp_num;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.message_layout, container, false);
@@ -105,18 +104,16 @@ public class Message_page extends Fragment {
         return view;
     }//end of oncreate
 
-
-
     // Code for sending message
     public boolean validations(String msg){
         if(msg.length()==0)
         {
             get_msg.requestFocus();
-            get_msg.setError("FIELD CANNOT BE EMPTY");
+            get_msg.setError(getString(R.string.Error1));
             return false;
         }else if(msg.length()>160) {
             get_msg.requestFocus();
-            get_msg.setError("Max Length 160");
+            get_msg.setError(getString(R.string.Error_Max_Length_160));
             return false;
         }
         return true;
