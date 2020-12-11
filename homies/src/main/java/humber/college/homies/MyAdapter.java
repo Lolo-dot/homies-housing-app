@@ -33,17 +33,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
     Context c;
     ArrayList<House> houses,filterList;
     CustomFilter filter;
+    String username;
+    public FirebaseDatabase database1;
+    public DatabaseReference refBookmarkedHouses;
     //PriceFilter priceFilter;
 
-    public FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public DatabaseReference refBookmarkedHouses = database.getReference();
+
+
 
     public MyAdapter(Context ctx, ArrayList<House> houses)
     {
         this.c=ctx;//context
         this.houses=houses;
         this.filterList=houses;
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
+        this.username = sharedPreferences.getString("usernameStorage","failed");
+        this.database1= FirebaseDatabase.getInstance();
+        this.refBookmarkedHouses= database1.getReference().child("USER").child(username);
     }
+
+
+
+
+
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -102,18 +115,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
 
                         if(houses.get(pos).getBookmarked()) {
                             //if currently true, set to false set image as unbookmarked
-                            refBookmarkedHouses.child("Houses").child(houses.get(pos).getName()).child("bookmarked").setValue(false);
+                            refBookmarkedHouses.child("userHouses").child(houses.get(pos).getName()).child("bookmarked").setValue(false);
                             holder.bookmarkbutton.setImageResource(R.drawable.unbookmarked_vector);
                             //then remove from bookmarks
-                            refBookmarkedHouses.child("Bookmarked Houses").child(houses.get(pos).getName()).removeValue();
+                            refBookmarkedHouses.child("userBookmarkedHouses").child(houses.get(pos).getName()).removeValue();
 
                         }else {
                             //if currently false, set to true and set image as bookmarked
-                            refBookmarkedHouses.child("Houses").child(houses.get(pos).getName()).child("bookmarked").setValue(true);
+                            refBookmarkedHouses.child("userHouses").child(houses.get(pos).getName()).child("bookmarked").setValue(true);
                             holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_vector);
                             //then add to bookmarks
                             House p = new House(houses.get(pos).getName(), houses.get(pos).getPos(),houses.get(pos).getImg(),houses.get(pos).getPhone(),true);
-                            refBookmarkedHouses.child("Bookmarked Houses").child(houses.get(pos).getName()).setValue(p);
+                            refBookmarkedHouses.child("userBookmarkedHouses").child(houses.get(pos).getName()).setValue(p);
 
                         }
                         break;

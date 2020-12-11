@@ -47,12 +47,15 @@ public class Bookmark_page extends Fragment {
     public ArrayList<House> houseList = new ArrayList<>();
     RecyclerView rv;
     MyAdapter adapter;
+    String username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bookmark_content_main, container, false);
 
         adapter = new MyAdapter(getContext(), houseList);
+
+
    /* protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bookmark_layout);*/
@@ -62,6 +65,8 @@ public class Bookmark_page extends Fragment {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(getString(R.string.number_key_pref)).commit(); //removing old phone number/email sharepref on startup.
+
+        username = sharedPreferences.getString("usernameStorage","failed");
 
         //flotaing action bar, probs not needed
         /*
@@ -161,9 +166,13 @@ public class Bookmark_page extends Fragment {
         //setting recycler views adapter ( of type MyAdapter, which is custom made)
         rv.setAdapter(adapter);
 
+
+        final DatabaseReference refUserName = FirebaseDatabase.getInstance().getReference().child("USER").child(username);//reference to specificshared pref username
+
+        final DatabaseReference refUseBookmarkedrHouses = FirebaseDatabase.getInstance().getReference().child("USER").child(username).child("userBookmarkedHouses");
         //getting bookmarked houses database and adding to arraylist
-        DatabaseReference refp1 = database.getReference(getString(R.string.bookmark_path_page_database));
-        refp1.addValueEventListener(new ValueEventListener() {
+       // DatabaseReference refp1 = database.getReference(getString(R.string.bookmark_path_page_database));
+        refUseBookmarkedrHouses.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 houseList.clear();//clearing current list

@@ -52,7 +52,7 @@ public class Signup_page extends AppCompatActivity {
 
         //getting master "Houses" list to assign to "userHouses" array list
         //final DatabaseReference myRef = database.getReference("USER/"+username);
-        DatabaseReference refHouses = database.getReference(getString(R.string.database_ref_search_gae));
+       /* DatabaseReference refHouses = database.getReference(getString(R.string.database_ref_search_gae));
         refHouses.addListenerForSingleValueEvent(new ValueEventListener() {
                 //housesList.clear();
                 @Override
@@ -68,7 +68,7 @@ public class Signup_page extends AppCompatActivity {
                 //Toast.makeText(getActivity(), getString(R.string.on_cancel_search_page_error), Toast.LENGTH_SHORT).show();
                 Log.d("SIGNUPPAGEERROR", " master house list database snapshot failed in signup");
             }
-        });
+        });*/
 
         //create profile submit button and validation
         button.setOnClickListener(new View.OnClickListener() {

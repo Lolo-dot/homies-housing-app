@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,8 +44,11 @@ public class Search_page extends Fragment {
     SearchView sv;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     public ArrayList<House> housesList = new ArrayList<>();
+    public ArrayList<House> userHouses = new ArrayList<>();
+    public ArrayList<House> userBookmarkedHouses = new ArrayList<>();
     RecyclerView rv;
     MyAdapter adapter;
+    String username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,7 +59,10 @@ public class Search_page extends Fragment {
         //shared pref delcarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(getString(R.string.number_key_pref)).commit(); //removing old shared pref of phone number/email
+        editor.remove(getString(R.string.number_key_pref)).apply(); //removing old shared pref of phone number/email
+
+        username = sharedPreferences.getString("usernameStorage","failed");
+
 
         //floating action circle/bar. probs not needed
         /*
@@ -139,8 +146,8 @@ public class Search_page extends Fragment {
         rv.setAdapter(adapter);
 
         //databse for houses catalog. updates houselist and refreshes adapter using hosuelist
-        DatabaseReference refp1 = database.getReference(getString(R.string.database_ref_search_gae));
-        refp1.addValueEventListener(new ValueEventListener() {
+        final DatabaseReference refUserNameuserHouses = FirebaseDatabase.getInstance().getReference().child("USER").child(username).child("userHouses");
+        refUserNameuserHouses.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -156,6 +163,41 @@ public class Search_page extends Fragment {
             @Override
             public void onCancelled(DatabaseError error) {
                 Toast.makeText(getActivity(), getString(R.string.on_cancel_search_page_error), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //getting master "Houses" list to assign to "userHouses" array list, (need checks vs bookmarked houses)
+        //final DatabaseReference myRef = database.getReference("USER/"+username);
+        final DatabaseReference refUserName = FirebaseDatabase.getInstance().getReference().child("USER").child(username);//reference to specificshared pref username
+        //refUserName.child("userHouses").removeValue(); //removing current houses list
+        DatabaseReference refHouses = database.getReference(getString(R.string.database_ref_search_gae)); //reference to master "Houses"
+        refHouses.addListenerForSingleValueEvent(new ValueEventListener() {
+            //housesList.clear();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //refUserName.child("userHouses").removeValue();
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) { //loop to get all data from children of houses catalog
+                    House p = postSnapshot.getValue(House.class); //assigning object from database to new House p
+                   // userHouses.add(p); //adding new house p to list
+                    refUserName.child("userHouses").child(p.getName()).setValue(p);
+                    //refUserName.child("userHouses").
+
+                    //if(refUserName.child("userHouses").child(p.getName()).getKey()!=null){
+                        //refUserName.child("userHouses").child(p.getName()).setValue(p);
+                        //Toast.makeText(getActivity(),p.getName()+" is equal to "+refUserName.child("userHouses").child(p.getName()).getKey(), Toast.LENGTH_SHORT).show();
+                    //}
+                    //else{
+                     //   Toast.makeText(getActivity()," not found ", Toast.LENGTH_SHORT).show();
+                    //}
+                }
+                //adapter.notifyDataSetChanged(); //refreshes adapters house list
+                //refUserName.child("userHouses").updateChildren(userHouses);
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                //Toast.makeText(getActivity(), getString(R.string.on_cancel_search_page_error), Toast.LENGTH_SHORT).show();
+                Log.d("SEARCHERROR", " master house list database snapshot failed in signup");
             }
         });
 

@@ -134,31 +134,30 @@ public class Login_page extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.child(username).exists()) {
-                                SignupData data = snapshot.child(username).getValue(SignupData.class);
-                                if (data.getPassword().equals(password)) {
-                                    SharedPreferences.Editor editor = prefs.edit();
-                                    editor.putString("usernameStorage", username);
-                                    editor.putBoolean(LOGBOOL, true);
-                                    if(checkBox.isChecked()){
-                                        editor.putBoolean(REMEMBER_DETAILS, true);
-                                        editor.putString(REMEMBER_USERNAME, username);
-                                        editor.putString(REMEMBER_PASSWORD, password);
+                                    String data = snapshot.child(username).child("password").getValue(String.class);
+                                    if (data.equals(password)) {
+                                        SharedPreferences.Editor editor = prefs.edit();
+                                        editor.putString("usernameStorage", username);
+                                        editor.putBoolean(LOGBOOL, true);
+                                        if (checkBox.isChecked()) {
+                                            editor.putBoolean(REMEMBER_DETAILS, true);
+                                            editor.putString(REMEMBER_USERNAME, username);
+                                            editor.putString(REMEMBER_PASSWORD, password);
+                                        } else {
+                                            editor.putBoolean(REMEMBER_DETAILS, false);
+                                        }
+                                        editor.apply();
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        mPassword.requestFocus();
+                                        mPassword.setError(getString(R.string.Error3));
                                     }
-                                    else
-                                        editor.putBoolean(REMEMBER_DETAILS, false);
-                                    editor.apply();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    mPassword.requestFocus();
-                                    mPassword.setError(getString(R.string.Error3));
+                                } else{
+                                    mUsername.requestFocus();
+                                    mUsername.setError(getString(R.string.Error7));
                                 }
-                            } else {
-                                mUsername.requestFocus();
-                                mUsername.setError(getString(R.string.Error7));
                             }
-                        }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 
