@@ -60,15 +60,16 @@ public class Profile_page extends Fragment {
         textview4 = view.findViewById(R.id.Roommates);
         textview5 = view.findViewById(R.id.Description);
         image = view.findViewById(R.id.profilePic);
-        pictureView = view.findViewById(R.id.profilePic);
-        pictureView.setVisibility(View.INVISIBLE);
+        //pictureView = view.findViewById(R.id.profilePic);
+        //pictureView.setVisibility(View.INVISIBLE);
         image.setVisibility(View.INVISIBLE);
 
         // Faceboook Stuff
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         final boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if(isLoggedIn){
-            pictureView.setVisibility(View.VISIBLE);
+            //pictureView.setVisibility(View.VISIBLE);
+            image.setVisibility(View.VISIBLE);
             getUserProfile(AccessToken.getCurrentAccessToken());
         }
 
@@ -135,7 +136,7 @@ public class Profile_page extends Fragment {
                             textview3.setText(getString(R.string.profilePhone) +getString(R.string.NA));
                             textview4.setText(getString(R.string.profileRoommates) +getString(R.string.NA));
                             textview5.setText(getString(R.string.editprofile_description)+getString(R.string.NA));
-                            pictureView.setProfileId(object.getString("id"));
+                            //pictureView.setProfileId(object.getString("id"));
                             String id = "https://graph.facebook.com/"+object.getString("id")+"/picture?type=normal";
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -51,6 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
         this.filterList=houses;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
         this.username = sharedPreferences.getString("usernameStorage","failed");
+        Log.d("usernameTag", "value of username in myAdapter is"+username);
         this.database1= FirebaseDatabase.getInstance();
         this.refBookmarkedHouses= database1.getReference().child("USER").child(username);
     }
@@ -74,11 +75,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
 
         //getting image from object from @drawable/california bungalow to a resource id (R.id.california_bungalow = 140481 or smth)
         String imgName = houses.get(position).getImg();
-
-     //   if (imgName.contains("@drawable")) {
-       //     int image = c.getApplicationContext().getResources().getIdentifier(imgName, null, c.getApplicationContext().getPackageName());
-         //   holder.img.setImageResource(image);
-       // }else{
             holder.img.setImageBitmap(string_toImage(imgName));
             //Toast.makeText(c,"bitmap set!", Toast.LENGTH_SHORT).show();
        // }
