@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Picture;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
@@ -24,6 +25,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.Profile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,13 +34,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.facebook.login.widget.ProfilePictureView;
 
 public class Profile_page extends Fragment {
     SharedPreferences USR;
     public String Name;
     CallbackManager callbackManager;
-    public String first_name,last_name,email;
+    public String first_name,last_name;
+    public ImageView image;
     TextView textview,textview2,textview3,textview4,textview5;
+    ProfilePictureView pictureView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,11 +62,16 @@ public class Profile_page extends Fragment {
         textview3 = view.findViewById(R.id.add_price);
         textview4 = view.findViewById(R.id.Roommates);
         textview5 = view.findViewById(R.id.Description);
+        image = view.findViewById(R.id.profilePic);
+        pictureView = view.findViewById(R.id.fbProfilePic);
+        pictureView.setVisibility(View.INVISIBLE);
+        image.setVisibility(View.INVISIBLE);
 
         // Faceboook Stuff
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         final boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if(isLoggedIn){
+            pictureView.setVisibility(View.VISIBLE);
             //Toast.makeText(getContext(),"hello",Toast.LENGTH_LONG).show();
             getUserProfile(AccessToken.getCurrentAccessToken());
 
@@ -70,8 +81,8 @@ public class Profile_page extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child(username).exists()&&isLoggedIn==false){
+                    image.setVisibility(View.VISIBLE);
                     ProfileData data = snapshot.child(username).getValue(ProfileData.class);
-                    ImageView image = view.findViewById(R.id.profilePic);
                     if(data.getProfilepicture() == null){
                         image.setImageResource(R.drawable.profile_icon);
                     }
@@ -130,6 +141,7 @@ public class Profile_page extends Fragment {
                             textview3.setText(getString(R.string.profilePhone) +"N/A");
                             textview4.setText(getString(R.string.profileRoommates) +"N/A");
                             textview5.setText("Description: N/A");
+                            pictureView.setProfileId(object.getString("id"));
                             String id = "https://graph.facebook.com/"+object.getString("id")+"/picture?type=normal";
                         } catch (JSONException e) {
                             e.printStackTrace();
