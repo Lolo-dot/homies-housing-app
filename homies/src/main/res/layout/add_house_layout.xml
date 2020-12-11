@@ -15,7 +15,6 @@
         android:text="@string/add_house"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-
         android:textSize="30dp"
         android:textStyle="bold" />
 
@@ -40,7 +39,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="60dp"
         android:hint="@string/address"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:inputType="textPostalAddress"/>
 
     <EditText
         android:id="@+id/add_number"
@@ -51,6 +51,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:textSize="20sp"
+        android:inputType="phone"
         android:hint="@string/phone_number" />
 
     <EditText
@@ -62,10 +63,8 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:textSize="20sp"
+        android:inputType="numberDecimal"
         android:hint="@string/price" />
-
-
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Cardview2"

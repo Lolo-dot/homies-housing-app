@@ -79,7 +79,6 @@ public class Add_House extends Fragment {
             }
         });
 
-
         return view;
     }
 

@@ -16,6 +16,17 @@
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/todo" />
 
+    <com.facebook.login.widget.ProfilePictureView
+        android:id="@+id/fbProfilePic"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/profile_icon"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/todo" />
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/Cardview2"
         android:layout_width="150dp"
