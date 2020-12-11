@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class Signup_page extends AppCompatActivity {
 
     EditText mUsername, mEmail, mPassword, mConfirmPassword;
@@ -27,6 +31,9 @@ public class Signup_page extends AppCompatActivity {
     boolean validation;
     public RelativeLayout layout1;
     SharedPreferences USR;
+
+    public ArrayList<House> userHouses = new ArrayList<>();
+    public ArrayList<House> userBookmarkedHouses = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,6 +50,27 @@ public class Signup_page extends AppCompatActivity {
         button = findViewById(R.id.signupButton);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+        //getting master "Houses" list to assign to "userHouses" array list
+        //final DatabaseReference myRef = database.getReference("USER/"+username);
+        DatabaseReference refHouses = database.getReference(getString(R.string.database_ref_search_gae));
+        refHouses.addListenerForSingleValueEvent(new ValueEventListener() {
+                //housesList.clear();
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) { //loop to get all data from children of houses catalog
+                        House p = postSnapshot.getValue(House.class); //assigning object from database to new House p
+                        userHouses.add(p); //adding new house p to list
+                    }
+                    //adapter.notifyDataSetChanged(); //refreshes adapters house list
+                }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                //Toast.makeText(getActivity(), getString(R.string.on_cancel_search_page_error), Toast.LENGTH_SHORT).show();
+                Log.d("SIGNUPPAGEERROR", " master house list database snapshot failed in signup");
+            }
+        });
+
+        //create profile submit button and validation
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +121,7 @@ public class Signup_page extends AppCompatActivity {
 
                 if(validation){
                    final DatabaseReference myRef = database.getReference("USER/"+username);
-                   final SignupData data = new SignupData(username, password, email);
+                   final SignupData data = new SignupData(username, password, email, userHouses, userBookmarkedHouses);
                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("USER");
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -120,7 +148,7 @@ public class Signup_page extends AppCompatActivity {
                 }
             }
         });
-    }
+    } //end of oncreate
 
     @Override
     public void onBackPressed() {

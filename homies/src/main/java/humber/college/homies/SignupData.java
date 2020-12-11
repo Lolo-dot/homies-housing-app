@@ -1,18 +1,25 @@
 package humber.college.homies;
+
+import java.util.ArrayList;
+
 //Team Name: Homies
 public class SignupData {
     public String username;
     public String password;
     public String email;
+    public ArrayList<House> userHouses;
+    public ArrayList<House> userBookmarkedHouses;
 
     public SignupData(){
 
     }
 
-    public SignupData(String username, String password, String email){
+    public SignupData(String username, String password, String email, ArrayList<House> userHouses, ArrayList<House> userBookmarkedHouses){
         this.username = username;
         this.password = password;
         this.email = email;
+        this.userHouses= userHouses;
+        this.userBookmarkedHouses = userBookmarkedHouses;
     }
 
     public String getPassword() {return password;}
