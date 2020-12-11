@@ -16,15 +16,18 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -73,13 +76,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
         //getting image from object from @drawable/california bungalow to a resource id (R.id.california_bungalow = 140481 or smth)
         String imgName = houses.get(position).getImg();
 
-        if (imgName.contains("@drawable")) {
-            int image = c.getApplicationContext().getResources().getIdentifier(imgName, null, c.getApplicationContext().getPackageName());
-            holder.img.setImageResource(image);
-        }else{
+     //   if (imgName.contains("@drawable")) {
+       //     int image = c.getApplicationContext().getResources().getIdentifier(imgName, null, c.getApplicationContext().getPackageName());
+         //   holder.img.setImageResource(image);
+       // }else{
             holder.img.setImageBitmap(string_toImage(imgName));
             //Toast.makeText(c,"bitmap set!", Toast.LENGTH_SHORT).show();
-        }
+       // }
         //binding data to views
         holder.posTxt.setText(c.getString(R.string.money_sign)+houses.get(position).getPos());
         holder.nameTxt.setText(houses.get(position).getName());
@@ -87,6 +90,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
         //holder.img.setImageBitmap();
 
         //chcking bool bookmark value set as bookmarked_house or unbookmarked_hosue image
+        if(houses.get(position).getBookmarked()==null) { //if bookmark is null, this is a new object andits defualt is now set to false
+            houses.get(position).setBookmarked(false);
+        }
             if(houses.get(position).getBookmarked()) {
                 holder.bookmarkbutton.setImageResource(R.drawable.bookmarked_vector);
             }else {
