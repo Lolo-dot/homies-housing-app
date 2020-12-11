@@ -49,7 +49,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> implements Filtera
         this.c=ctx;//context
         this.houses=houses;
         this.filterList=houses;
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
         this.username = sharedPreferences.getString("usernameStorage","failed");
         this.database1= FirebaseDatabase.getInstance();

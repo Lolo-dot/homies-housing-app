@@ -60,7 +60,7 @@ public class Profile_page extends Fragment {
         textview4 = view.findViewById(R.id.Roommates);
         textview5 = view.findViewById(R.id.Description);
         image = view.findViewById(R.id.profilePic);
-        pictureView = view.findViewById(R.id.fbProfilePic);
+        pictureView = view.findViewById(R.id.profilePic);
         pictureView.setVisibility(View.INVISIBLE);
         image.setVisibility(View.INVISIBLE);
 
