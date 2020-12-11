@@ -1,8 +1,8 @@
 package humber.college.homies;
+//Team Name: Homies
 
 import java.util.ArrayList;
 
-//Team Name: Homies
 public class SignupData {
     public String username;
     public String password;

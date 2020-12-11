@@ -1,5 +1,5 @@
 package humber.college.homies;
-
+//Team Name: Homies
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +25,4 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 3000);
     }
-
-
 }
