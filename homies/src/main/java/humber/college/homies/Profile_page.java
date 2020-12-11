@@ -3,30 +3,46 @@ package humber.college.homies;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Profile_page extends Fragment {
     SharedPreferences USR;
+    public String Name;
+    CallbackManager callbackManager;
+    public String first_name,last_name,email;
+    TextView textview,textview2,textview3,textview4,textview5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        FacebookSdk.sdkInitialize(getContext());
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final View view = inflater.inflate(R.layout.profile_layout, container, false);
 
@@ -34,10 +50,26 @@ public class Profile_page extends Fragment {
         final String username = USR.getString("usernameStorage", getString(R.string.nothing_found));
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("PROFILES");
 
+        //Intials
+        textview = view.findViewById(R.id.UserName);
+        textview2 = view.findViewById(R.id.add_number);
+        textview3 = view.findViewById(R.id.add_price);
+        textview4 = view.findViewById(R.id.Roommates);
+        textview5 = view.findViewById(R.id.Description);
+
+        // Faceboook Stuff
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        final boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if(isLoggedIn){
+            //Toast.makeText(getContext(),"hello",Toast.LENGTH_LONG).show();
+            getUserProfile(AccessToken.getCurrentAccessToken());
+
+        }
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(username).exists()){
+                if(snapshot.child(username).exists()&&isLoggedIn==false){
                     ProfileData data = snapshot.child(username).getValue(ProfileData.class);
                     ImageView image = view.findViewById(R.id.profilePic);
                     if(data.getProfilepicture() == null){
@@ -46,15 +78,11 @@ public class Profile_page extends Fragment {
                     else{
                         image.setImageBitmap(string_toImage(data.getProfilepicture()));
                     }
-                    TextView textview = view.findViewById(R.id.UserName);
+
                     textview.setText(getString(R.string.profileName) +data.getUsername());
-                    TextView textview2 = view.findViewById(R.id.add_number);
                     textview2.setText(getString(R.string.profileAge) +data.getAge());
-                    TextView textview3 = view.findViewById(R.id.add_price);
                     textview3.setText(getString(R.string.profilePhone) +data.getPhoneNumber());
-                    TextView textview4 = view.findViewById(R.id.Roommates);
                     textview4.setText(getString(R.string.profileRoommates) +data.getRoomMates());
-                    TextView textview5 = view.findViewById(R.id.Description);
                     textview5.setText(data.getDescription());
                 }
             }
@@ -80,5 +108,40 @@ public class Profile_page extends Fragment {
             error_img = BitmapFactory.decodeByteArray(b, 0, b.length);
         }
         return error_img;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void getUserProfile(AccessToken currentAccessToken) {
+        GraphRequest request = GraphRequest.newMeRequest(
+                currentAccessToken, new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        Log.d("TAG", object.toString());
+                        try {
+                            first_name= object.getString("first_name");
+                            last_name = object.getString("last_name");
+                            textview.setText(getString(R.string.profileName) +first_name+" "+last_name);
+                            textview2.setText(getString(R.string.profileAge) +"N/A");
+                            textview3.setText(getString(R.string.profilePhone) +"N/A");
+                            textview4.setText(getString(R.string.profileRoommates) +"N/A");
+                            textview5.setText("Description: N/A");
+                            String id = "https://graph.facebook.com/"+object.getString("id")+"/picture?type=normal";
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "first_name,last_name,email,id");
+        request.setParameters(parameters);
+        request.executeAsync();
+
     }
 }
