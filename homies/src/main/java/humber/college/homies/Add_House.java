@@ -31,14 +31,14 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class Add_House extends Fragment {
     // Variables for getting the fields
-    private EditText get_add,get_num,get_price;
+    private EditText get_add,get_num,get_price, del_address;
     private ImageView img1;
 
     // Strings for getting text
-    String add,num,pri;
+    String add,num,pri,add_del;
 
     //Recycler variables
-    CardView crd1,crd2;
+    CardView crd1,crd2,crdDelete;
 
     // Firebase Variable
     public FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -55,11 +55,13 @@ public class Add_House extends Fragment {
         // Card view fields
         crd1 = (CardView) view.findViewById(R.id.Cardview2);
         crd2 = (CardView) view.findViewById(R.id.Cardview3);
+        crdDelete = (CardView) view.findViewById(R.id.CardviewDelete);
 
         // Edit Text fields
         get_add = (EditText) view.findViewById(R.id.add_address);
         get_num = (EditText) view.findViewById(R.id.add_number);
         get_price = (EditText) view.findViewById(R.id.add_price);
+        del_address = (EditText) view.findViewById(R.id.delete_house_ed);
 
         // ImageField
         img1 = (ImageView) view.findViewById(R.id.House_pic);
@@ -76,6 +78,13 @@ public class Add_House extends Fragment {
             @Override
             public void onClick(View v) {
                 new_house();
+            }
+        });
+
+        crdDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete_house();
             }
         });
 
@@ -147,6 +156,14 @@ public class Add_House extends Fragment {
             //Toast.makeText(getContext(),add+num+pri,Toast.LENGTH_LONG).show();
 
         }
+    }
+
+    // Function for adding house info to firebase
+    public void delete_house(){
+        add_del = del_address.getText().toString();
+        refBookmarkedHouses.child("Houses").child(add_del).removeValue();
+        Toast.makeText(getContext(),add_del+" removed",Toast.LENGTH_SHORT).show();
+
     }
 
     // Validations

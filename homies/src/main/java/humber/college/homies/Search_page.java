@@ -175,7 +175,10 @@ public class Search_page extends Fragment {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                House p = snapshot.getValue(House.class);
+                //Toast.makeText(getActivity(), refUserName.child("userHouses").child(p.getName())+" was removed",Toast.LENGTH_SHORT).show();
+                refUserName.child("userHouses").child(p.getName()).removeValue();
+                refUserName.child("userBookmarkedHouses").child(p.getName()).removeValue();
             }
 
             @Override
