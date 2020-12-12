@@ -112,6 +112,7 @@
     <string name="smthwentwrong">Something went wrong</string>
     <string name="pickimage">You haven\'t picked Image</string>
     <string name="removed">" removed"</string>
+    <string name="emptysearchbar">Search bar must be empty to change sort</string>
     <string-array name="sortTypes">
         <item>Sort</item>
         <item>Price:Low to High</item>
