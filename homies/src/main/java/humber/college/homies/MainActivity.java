@@ -23,13 +23,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     public MainActivity(){
-        super(R.layout.searchlayout);
+        super(R.layout.main_activity_layout);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.searchlayout);
+        setContentView(R.layout.main_activity_layout);
         final Fragment searchFrag = new Search_page();
         final Fragment bookmarkFrag = new Bookmark_page();
         final Fragment profileFrag = new Profile_page();
