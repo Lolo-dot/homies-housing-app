@@ -54,7 +54,6 @@
     <string name="back_pres_neg">Non</string>
     <string name="snack_bar_value">Remplacez par votre propre action</string>
     <string name="action_snack_bar">Action</string>
-    <string name="database_ref_search_gae">Houses</string>
     <string name="on_cancel_search_page_error">a pas réussi à obtenir de la valeur</string>
     <string name="message_page_error">Veuillez autoriser les autorisations dappel</string>
     <string name="CallPermGranted">Autorisation d\'appel accordée</string>
@@ -66,14 +65,14 @@
     <string name="profileAge">"Âge: "</string>
     <string name="profilePhone">"Téléphone: "</string>
     <string name="profileRoommates">"Colocataires: "</string>
-    <string name="msg_fail">Message Sent Failed</string>
-    <string name="msg_success">Message Sent</string>
+    <string name="msg_fail">Échec du message envoyé</string>
+    <string name="msg_success">Radio désactivée</string>
     <string name="msg_gen_fail">Generic failure</string>
-    <string name="msg_no_service">No service</string>
-    <string name="msg_null">Null PDU</string>
+    <string name="msg_no_service">Panne générique</string>
+    <string name="msg_null">PDU nul</string>
     <string name="msg_radio_off">Radio off</string>
-    <string name="msg_delv">SMS delivered</string>
-    <string name="sms_not_del">SMS not delivered</string>
+    <string name="msg_delv">SMS livré</string>
+    <string name="sms_not_del">SMS non livré</string>
     <string name="Error_Phone">ENTRER UN NUMÉRO DE TÉLÉPHONE VALIDE</string>
     <string name="signup_exit_confirmation">Voulez-vous vraiment quitter la page d\'inscription? Tous les progrès seront perdus</string>
     <string name="nothing_found">Rien n\'a été trouvé</string>
@@ -109,4 +108,8 @@
     <string name="NA">N/A</string>
     <string name="Error_Max_Length_160">Longueur maximale 160</string>
     <string name="welcome_to_homies">Bienvenue à Homies</string>
+    <string name="emptysearchbar">La barre de recherche doit être vide pour changer le tri</string>
+    <string name="pickimage">Vous n\'avez pas sélectionné d\'image</string>
+    <string name="removed">enlevé</string>
+    <string name="smthwentwrong">Un problème est survenu</string>
 </resources>
