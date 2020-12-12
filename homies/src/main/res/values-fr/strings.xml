@@ -108,4 +108,5 @@
     <string name="Error_Username_Password">LE NOM D\'UTILISATEUR ET LE MOT DE PASSE NE CORRESPONDENT PAS</string>
     <string name="NA">N/A</string>
     <string name="Error_Max_Length_160">Longueur maximale 160</string>
+    <string name="welcome_to_homies">Bienvenue à Homies</string>
 </resources>

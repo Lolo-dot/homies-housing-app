@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
             BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
             bottomNavigationView.setSelectedItemId(R.id.p);
         }
-        createNotification("Welcome to Homies");
-
-
+        createNotification(getString(R.string.welcome_to_homies));
 
         //shared pref declarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);

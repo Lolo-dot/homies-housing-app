@@ -42,7 +42,6 @@ import java.util.Collections;
 public class Bookmark_page extends Fragment {
 
     SearchView sv;
-    Button but;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     public ArrayList<House> houseList = new ArrayList<>();
     RecyclerView rv;
@@ -54,12 +53,6 @@ public class Bookmark_page extends Fragment {
         View view = inflater.inflate(R.layout.bookmark_content_main, container, false);
 
         adapter = new MyAdapter(getContext(), houseList);
-
-
-   /* protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.bookmark_layout);*/
-
 
         //decalring shared prefs
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());

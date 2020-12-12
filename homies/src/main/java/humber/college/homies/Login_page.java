@@ -42,7 +42,6 @@ public class Login_page extends AppCompatActivity {
     public static final String LOGBOOL = "logbool";
 
     // Facebook SignIn Vaiables
-    String usernameFb;
     String usernameFbDB;
     String usernameFbDB2;
     private LoginButton loginButton;
