@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +22,8 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.firebase.database.DataSnapshot;
@@ -28,12 +32,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class Login_page extends AppCompatActivity {
 
     EditText mUsername, mPassword;
     Button button;
     CheckBox checkBox;
     SharedPreferences prefs;
+
 
     public static final String DARK_MODE_SWITCH = "darkmodeSwitch";
     public static final String REMEMBER_DETAILS = "rememberDetails";
@@ -42,8 +52,14 @@ public class Login_page extends AppCompatActivity {
     public static final String LOGBOOL = "logbool";
 
     // Facebook SignIn Vaiables
+    String usernameFb;
+    String usernameFbDB;
+    String usernameFbDB2;
     private LoginButton loginButton;
     CallbackManager callbackManager;
+    final FirebaseDatabase databasefb = FirebaseDatabase.getInstance();
+    public ArrayList<House> userHouses = new ArrayList<>();
+    public ArrayList<House> userBookmarkedHouses = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +83,9 @@ public class Login_page extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("usernameStorage",usernameFbDB);
+                editor.apply();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
@@ -81,13 +100,16 @@ public class Login_page extends AppCompatActivity {
 
             }
         });
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        AccessToken accessToken2 = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken2 != null && !accessToken2.isExpired();
         if (isLoggedIn) {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("usernameStorage",usernameFbDB2);
+            editor.apply();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
-        // End of Facebook code
+        // End of Facebook regular code
 
         mUsername = findViewById(R.id.loginUserName);
         mPassword = findViewById(R.id.loginPassword);
@@ -157,7 +179,8 @@ public class Login_page extends AppCompatActivity {
                 }
             }
         });
-    }
+    }// end of oncreate
+
 
     private void darkmodeCheck() {
         SharedPreferences preferences = getSharedPreferences(Settings_Fragment.SETTINGS_SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
