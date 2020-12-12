@@ -25,7 +25,6 @@ public class CustomFilter extends Filter {
         //check if text(constraint) is zero
         if(constraint != null && constraint.length() > 0) {
             constraint=constraint.toString().toUpperCase(); //make upeprcase for fitlering
-            //old ArrayList<House> filteredHouses=new ArrayList<>();
 
             for (int i=0;i<filterList.size();i++) {
                 //check if matches/ if filter list item has text in searchbox (constraint)
@@ -40,40 +39,8 @@ public class CustomFilter extends Filter {
             results.count=filterList.size();
             results.values=filterList;
         }
-
-        /*//start of test filter
-        if (constraint != null && constraint.length()>0 && isParsable(constraint.toString())){
-            int constraintNum;
-            constraintNum=Integer.parseInt(constraint.toString());//.substring(1);
-
-            //ArrayList<House> filteredHouses=new ArrayList<>();
-
-            for (int i=0;i<filterList.size();i++) {
-                //check if matches/ if filter list item has text in searchbox (constraint)
-                if(Integer.parseInt(filterList.get(i).getPos())<=constraintNum){
-                    //add homes(from filter list) to filteredhouses list
-                    filteredHouses.add(filterList.get(i));
-                }
-            }
-            results.count=filteredHouses.size();//matching size of list
-            results.values=filteredHouses;//matching values
-        }else {
-            results.count=filterList.size();
-            results.values=filterList;
-        }*/
-
         return results;
     }//end of actual fitler work
-
-    public static boolean isParsable(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (final NumberFormatException e) {
-            return false;
-        }
-    }
-
 
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
