@@ -103,7 +103,7 @@
     <string name="send">SEND</string>
     <string name="send_message">Send Message</string>
     <string name="something_went_wrong">Something went wrong</string>
-    <string name="havent_picked_image">You haven\'t picked Image</string>
+    <string name="havent_picked_image">You haven\'t picked an Image</string>
     <string name="bookmarks_welcome">Welcome to your Bookmarked Houses</string>
     <string name="Error_Username_Password">THE USERNAME AND PASSWORD DO NOT MATCH</string>
     <string name="NA">N/A</string>

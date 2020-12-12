@@ -17,7 +17,5 @@ public class Settings_page extends AppCompatActivity {
 
             getFragmentManager().beginTransaction().add(R.id.setting_fragment_container, new Settings_Fragment()).commit();
         }
-
     }
-
 }

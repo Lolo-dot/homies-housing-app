@@ -16,7 +16,6 @@
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/todo" />
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/Cardview2"
         android:layout_width="150dp"

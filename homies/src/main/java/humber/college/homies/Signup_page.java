@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -49,26 +47,6 @@ public class Signup_page extends AppCompatActivity {
         mConfirmPassword = findViewById(R.id.signupConfirmPassword);
         button = findViewById(R.id.signupButton);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        //getting master "Houses" list to assign to "userHouses" array list
-        //final DatabaseReference myRef = database.getReference("USER/"+username);
-       /* DatabaseReference refHouses = database.getReference(getString(R.string.database_ref_search_gae));
-        refHouses.addListenerForSingleValueEvent(new ValueEventListener() {
-                //housesList.clear();
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot postSnapshot : snapshot.getChildren()) { //loop to get all data from children of houses catalog
-                        House p = postSnapshot.getValue(House.class); //assigning object from database to new House p
-                        userHouses.add(p); //adding new house p to list
-                    }
-                    //adapter.notifyDataSetChanged(); //refreshes adapters house list
-                }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                //Toast.makeText(getActivity(), getString(R.string.on_cancel_search_page_error), Toast.LENGTH_SHORT).show();
-                Log.d("SIGNUPPAGEERROR", " master house list database snapshot failed in signup");
-            }
-        });*/
 
         //create profile submit button and validation
         button.setOnClickListener(new View.OnClickListener() {

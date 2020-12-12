@@ -10,10 +10,6 @@ public class SignupData {
     public ArrayList<House> userHouses;
     public ArrayList<House> userBookmarkedHouses;
 
-    public SignupData(){
-
-    }
-
     public SignupData(String username, String password, String email, ArrayList<House> userHouses, ArrayList<House> userBookmarkedHouses){
         this.username = username;
         this.password = password;
@@ -21,6 +17,4 @@ public class SignupData {
         this.userHouses= userHouses;
         this.userBookmarkedHouses = userBookmarkedHouses;
     }
-
-    public String getPassword() {return password;}
 }
