@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         //shared pref declarations
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("House Name").commit(); //removing old shared pref of phone number/email
+        editor.remove(getString(R.string.number_key_pref)).apply(); //removing old shared pref of phone number
 
         //bottom navigationbar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_bar);
