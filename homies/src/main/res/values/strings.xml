@@ -108,6 +108,7 @@
     <string name="Error_Username_Password">THE USERNAME AND PASSWORD DO NOT MATCH</string>
     <string name="NA">N/A</string>
     <string name="Error_Max_Length_160">Max Length 160</string>
+    <string name="welcome_to_homies">Welcome to Homies</string>
     <string-array name="sortTypes">
         <item>Sort</item>
         <item>Price:Low to High</item>
